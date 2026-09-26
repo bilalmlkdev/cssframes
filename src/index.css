@@ -1,4 +1,8 @@
+
+
 @import "tailwindcss";
+
+
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -78,6 +82,15 @@
   font-family: var(--font-mono);
   font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing:0.5px;
   color: var(--text-muted);
+  font-weight:500;
+}
+
+/* Hide scrollbar (sidebar) */
+.scrollbar-hidden {
+  scrollbar-width: none;
+}
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
 }

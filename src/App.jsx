@@ -31,7 +31,7 @@ function parseRoute() {
 }
 
 export default function App() {
-  const [theme, setTheme] = useState(() =>
+  const [, setTheme] = useState(() =>
     document.documentElement.classList.contains("dark") ? "dark" : "light",
   );
 
@@ -67,7 +67,7 @@ export default function App() {
 
   let view;
   if (route.view === "home") {
-    view = <HomePage theme={theme} onToggleTheme={toggleTheme} />;
+    view = <HomePage onToggleTheme={toggleTheme} />;
   } else if (route.view === "notfound") {
     view = <NotFoundPage />;
   } else {
@@ -83,7 +83,6 @@ export default function App() {
       <DocsLayout
         active={route.view}
         slug={route.slug}
-        theme={theme}
         onToggleTheme={toggleTheme}
       >
         {page}

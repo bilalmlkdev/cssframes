@@ -1,17 +1,15 @@
 import { Navbar } from "../components/Navbar";
 import { Hero } from "../components/Hero";
-import { AnimationShowcase } from "../components/AnimationShowcase";
-import { CtaSection } from "../components/CtaSection";
+import { FaqSection } from "../components/FaqSection";
 import { Footer } from "../components/Footer";
 
-export function HomePage({ theme, onToggleTheme }) {
+export function HomePage({ onToggleTheme }) {
   return (
-    <div className="mx-auto max-w-[1530px]">
-      <Navbar theme={theme} onToggleTheme={onToggleTheme} />
+    <div className="mx-auto w-full max-w-[1440px]">
+      <Navbar onToggleTheme={onToggleTheme} />
       <main className="flex flex-col">
         <Hero />
-        <AnimationShowcase />
-        <CtaSection />
+        <FaqSection />
       </main>
       <Footer />
     </div>

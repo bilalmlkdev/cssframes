@@ -47,7 +47,7 @@ function Preview({ anim }) {
 
   return (
     <div>
-      <div className="flex min-h-[340px] items-center justify-center rounded-xl border border-border bg-surface">
+      <div className="flex min-h-[340px] items-center justify-start rounded-xl border border-border bg-surface">
         <div
           key={`${object}-${replay}`}
           className={`cf-animated cf-${anim.slug}`}
