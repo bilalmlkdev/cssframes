@@ -2,9 +2,8 @@ import { animations, categories } from "../lib/animations";
 
 export function Hero() {
   return (
-    <section id="top" className="grid grid-cols-12 gap-px bg-border">
-      <div className="col-span-12 bg-background">
-        <div className="flex min-h-[56vh] flex-col items-center justify-center px-6 py-24 text-center">
+    <section id="top">
+      <div className="flex min-h-[56vh] flex-col items-center justify-center px-6 py-24 text-center">
           <h1 className="font-serif text-[12.5vw] leading-[.90] tracking-tight sm:text-6xl md:text-7xl lg:text-[130px]">
             {animations.length} animations,
             <br />
@@ -24,7 +23,6 @@ export function Hero() {
             , designed to be a reference for anyone adding motion to an
             interface.
           </p>
-        </div>
       </div>
     </section>
   );

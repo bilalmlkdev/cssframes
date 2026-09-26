@@ -47,7 +47,7 @@ export function Navbar({ theme, onToggleTheme }) {
   }, []);
 
   return (
-    <header className="col-span-12 flex items-center justify-between gap-4 bg-background px-4 py-3 sm:px-5">
+    <header className="flex items-center justify-between gap-4 px-5 py-4 sm:px-8">
       <a href="#top" className="flex items-center gap-2">
         <span className="text-lg font-medium tracking-tight">cssframes</span>
         <span className="rounded bg-text px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-background">
@@ -64,8 +64,6 @@ export function Navbar({ theme, onToggleTheme }) {
             How to use
           </a>
         </nav>
-
-        <span className="hidden h-4 w-px bg-border md:block" aria-hidden="true" />
 
         <a
           href={REPO_URL}

@@ -31,9 +31,9 @@ export default function App() {
   return (
     <div className="min-h-screen bg-background text-text">
       <style>{css}</style>
-  <div className="mx-auto grid max-w-[1530px] grid-cols-12 gap-px border border-border bg-border">
+      <div className="mx-auto max-w-[1530px]">
         <Navbar theme={theme} onToggleTheme={toggleTheme} />
-        <main className="col-span-12 flex flex-col gap-px bg-border">
+        <main className="flex flex-col">
           <Hero />
           <LibrarySection />
           <UsageSection />

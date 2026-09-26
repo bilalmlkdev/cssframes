@@ -72,9 +72,9 @@ export function PreviewModal({ anim, onClose }) {
         initial={{ opacity: 0, y: 16, scale: 0.97 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.18, ease: "easeOut" }}
-        className="relative z-10 max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-xl border border-border bg-surface shadow-2xl"
+        className="relative z-10 max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-xl bg-surface shadow-2xl"
       >
-        <div className="flex items-start justify-between border-b border-border px-5 py-4">
+        <div className="flex items-start justify-between px-5 py-4">
           <div>
             <h3 className="font-serif text-2xl">{anim.name}</h3>
             <p className="mono-label mt-1">
@@ -91,8 +91,8 @@ export function PreviewModal({ anim, onClose }) {
           </button>
         </div>
 
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-3 border-b border-border px-5 py-3">
-          <div className="flex rounded-lg border border-border p-0.5">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-3 px-5 pb-3">
+          <div className="flex rounded-lg bg-surface-2 p-0.5">
             {OBJECTS.map((o) => (
               <button
                 key={o}
@@ -136,14 +136,14 @@ export function PreviewModal({ anim, onClose }) {
           <button
             type="button"
             onClick={() => setReplay((r) => r + 1)}
-            className="ml-auto flex items-center gap-1.5 rounded-lg border border-border px-2.5 py-1.5 text-xs text-text transition-colors hover:bg-surface-2"
+            className="ml-auto flex items-center gap-1.5 rounded-lg bg-surface-2 px-2.5 py-1.5 text-xs text-text transition-colors hover:text-muted"
           >
             <RefreshCw size={12} />
             Replay
           </button>
         </div>
 
-        <div className="relative flex h-52 items-center justify-center overflow-hidden border-b border-border bg-background">
+        <div className="relative mb-4 flex h-52 items-center justify-center overflow-hidden bg-background">
           <div
             key={`${object}-${replay}`}
             className={`cf-animated cf-${anim.slug}`}
@@ -193,7 +193,7 @@ function CopyButton({ onClick, copied }) {
     <button
       type="button"
       onClick={onClick}
-      className="flex items-center gap-1 rounded-md border border-border px-2 py-1 text-[11px] text-muted transition-colors hover:text-text"
+      className="flex items-center gap-1 rounded-md bg-surface-2 px-2 py-1 text-[11px] text-muted transition-colors hover:text-text"
     >
       {copied ? (
         <>

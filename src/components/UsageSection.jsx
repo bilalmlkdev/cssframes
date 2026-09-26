@@ -12,7 +12,7 @@ function CodeBlock({ code, copyKey, copiedKey, onCopy }) {
       <button
         type="button"
         onClick={() => onCopy(code, copyKey)}
-        className="absolute right-2 top-2 flex items-center gap-1 rounded-md border border-white/15 bg-white/5 px-2 py-1 text-[11px] text-white/70 transition-colors hover:text-white"
+        className="absolute right-2 top-2 flex items-center gap-1 rounded-md bg-white/10 px-2 py-1 text-[11px] text-white/70 transition-colors hover:text-white"
       >
         {copiedKey === copyKey ? (
           <>
@@ -64,15 +64,18 @@ export function UsageSection() {
 }`;
 
   return (
-    <section id="usage" className="grid grid-cols-12 gap-px bg-border">
-      <div className="col-span-12 bg-background p-4">
-        <h2 className="font-serif text-lg uppercase tracking-wide">How to use</h2>
+    <section id="usage" className="px-5 pb-16 sm:px-8">
+      <div className="pt-4">
+        <h2 className="text-lg font-medium uppercase tracking-wide">
+          How to use
+        </h2>
         <p className="mt-1 text-sm text-muted">
           Three steps, no build tools.
         </p>
       </div>
 
-      <Step n={1} title="Add the stylesheet" className="md:col-span-4">
+      <div className="mt-8 grid gap-8 md:grid-cols-3">
+        <Step n={1} title="Add the stylesheet">
         <p className="text-sm leading-relaxed text-muted">
           Copy the whole library into a cssframes.css file, or paste it into
           your existing stylesheet.
@@ -94,7 +97,7 @@ export function UsageSection() {
         </button>
       </Step>
 
-      <Step n={2} title="Apply two classes" className="md:col-span-4">
+      <Step n={2} title="Apply two classes">
         <p className="text-sm leading-relaxed text-muted">
           cf-animated turns the element on, the second class picks which
           animation runs.
@@ -109,7 +112,7 @@ export function UsageSection() {
         </div>
       </Step>
 
-      <Step n={3} title="Tune the variables" className="md:col-span-4">
+      <Step n={3} title="Tune the variables">
         <p className="text-sm leading-relaxed text-muted">
           Set CSS variables globally, on a parent, or on the element itself.
         </p>
@@ -122,9 +125,11 @@ export function UsageSection() {
           />
         </div>
       </Step>
+      </div>
 
-      <div className="bg-background p-5 md:col-span-6">
-        <h3 className="font-serif text-lg">Every variable</h3>
+      <div className="mt-10 grid gap-8 md:grid-cols-2">
+        <div>
+          <h3 className="text-base font-medium">Every variable</h3>
         <dl className="mt-3 space-y-3">
           {VARIABLES.map((v) => (
             <div key={v.name}>
@@ -137,8 +142,8 @@ export function UsageSection() {
         </dl>
       </div>
 
-      <div className="bg-background p-5 md:col-span-6">
-        <h3 className="font-serif text-lg">Respect reduced motion</h3>
+        <div>
+          <h3 className="text-base font-medium">Respect reduced motion</h3>
         <p className="mt-2 text-xs leading-relaxed text-muted">
           Give users who ask for less motion an off switch. Drop this in your
           stylesheet and the library stays still.
@@ -151,19 +156,20 @@ export function UsageSection() {
             onCopy={doCopy}
           />
         </div>
+        </div>
       </div>
     </section>
   );
 }
 
-function Step({ n, title, className = "", children }) {
+function Step({ n, title, children }) {
   return (
-    <div className={`bg-background p-5 ${className}`}>
+    <div>
       <div className="flex items-center gap-2">
         <span className="font-mono text-xs text-muted">
           {String(n).padStart(2, "0")}
         </span>
-        <h3 className="font-serif text-base uppercase tracking-wide">
+        <h3 className="text-base font-medium uppercase tracking-wide">
           {title}
         </h3>
       </div>

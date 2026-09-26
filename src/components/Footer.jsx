@@ -2,7 +2,7 @@ import { GithubIcon } from "./GithubIcon";
 
 export function Footer() {
   return (
-    <footer className="col-span-12 flex flex-col items-center justify-between gap-4 bg-background p-4 text-sm text-muted sm:flex-row">
+    <footer className="flex flex-col items-center justify-between gap-4 px-5 py-6 text-sm text-muted sm:flex-row sm:px-8">
       <p className="font-serif text-base text-text">cssframes</p>
       <nav className="flex items-center gap-6">
         <a
