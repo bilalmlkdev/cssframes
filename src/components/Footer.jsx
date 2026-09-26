@@ -1,5 +1,6 @@
 import favicon from "../assets/favicon/favicon.svg";
 import { GithubIcon } from "./GithubIcon";
+import { REPO_URL, X_URL } from "../data/site";
 
 function XIcon({ size = 16 }) {
   return (
@@ -14,8 +15,6 @@ function XIcon({ size = 16 }) {
     </svg>
   );
 }
-
-const REPO = "https://github.com/bilalmlkdev/cssframes";
 
 export function Footer() {
   return (
@@ -47,9 +46,9 @@ export function Footer() {
           <ul className="mt-3 space-y-2.5">
             {[
               { to: "#/animations", label: "Animations", dot: "bg-text" },
-              { to: REPO, label: "GitHub", dot: "bg-cyan-400" },
+              { to: REPO_URL, label: "GitHub", dot: "bg-cyan-400" },
               {
-                to: `${REPO}/blob/main/LICENSE`,
+                to: `${REPO_URL}/blob/main/LICENSE`,
                 label: "License",
                 dot: "bg-amber-400",
               },
@@ -72,7 +71,7 @@ export function Footer() {
           <ul className="mt-3 space-y-2.5">
             <li>
               <a
-                href={REPO}
+                href={REPO_URL}
                 target="_blank"
                 rel="noreferrer"
                 className="text-[15px] font-bold hover:opacity-60"
@@ -82,7 +81,7 @@ export function Footer() {
             </li>
             <li>
               <a
-                href={`${REPO}/issues`}
+                href={`${REPO_URL}/issues`}
                 target="_blank"
                 rel="noreferrer"
                 className="text-[15px] font-bold hover:opacity-60"
@@ -92,7 +91,7 @@ export function Footer() {
             </li>
             <li>
               <a
-                href={`${REPO}/releases`}
+                href={`${REPO_URL}/releases`}
                 target="_blank"
                 rel="noreferrer"
                 className="text-[15px] font-bold hover:opacity-60"
@@ -107,7 +106,7 @@ export function Footer() {
           <p className="text-2xl text-muted">Follow us</p>
           <div className="mt-3 flex gap-2">
             <a
-              href={REPO}
+              href={REPO_URL}
               target="_blank"
               rel="noreferrer"
               className="flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-background transition-colors hover:bg-surface-2"
@@ -116,7 +115,7 @@ export function Footer() {
               <GithubIcon size={17} />
             </a>
             <a
-              href="https://x.com/bilalmlkdev"
+              href={X_URL}
               target="_blank"
               rel="noreferrer"
               className="flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-background transition-colors hover:bg-surface-2"

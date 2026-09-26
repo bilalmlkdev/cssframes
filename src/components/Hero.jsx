@@ -1,4 +1,4 @@
-import { animations } from "../lib/animations";
+import { animations } from "../data/animations";
 import { GithubIcon } from "./GithubIcon";
 
 export function Hero() {

@@ -1,17 +1,33 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { animations, buildCss } from "./lib/animations";
-import { Navbar } from "./components/Navbar";
-import { Hero } from "./components/Hero";
-import { LibrarySection } from "./components/LibrarySection";
-import { Footer } from "./components/Footer";
-import { DocsPage } from "./components/DocsPage";
+import { animations, findAnimation } from "./data/animations";
+import { buildCss } from "./lib/css";
+import { ErrorBoundary } from "./components/error/ErrorBoundary";
+import { DocsLayout } from "./components/DocsLayout";
+import { HomePage } from "./pages/HomePage";
+import { NotFoundPage } from "./pages/NotFoundPage";
+import { IntroductionPage } from "./pages/docs/IntroductionPage";
+import { InstallationPage } from "./pages/docs/InstallationPage";
+import { AnimationPage } from "./pages/docs/AnimationPage";
 
+// Hash router: #/ home, #/introduction, #/installation, #/animations/:slug.
+// Plain in-page anchors (#top, #library) stay on the home view.
 function parseRoute() {
   const hash = window.location.hash.replace(/^#/, "");
+  if (!hash.startsWith("/")) return { view: "home" };
+  if (hash === "/" || hash === "") return { view: "home" };
+  if (hash === "/introduction") return { view: "introduction" };
+  if (hash === "/installation") return { view: "installation" };
+  if (hash === "/animations") {
+    return { view: "animation", slug: animations[0].slug };
+  }
   const match = hash.match(/^\/animations\/(.+)$/);
-  if (match) return { view: "docs", slug: decodeURIComponent(match[1]) };
-  if (hash === "/animations") return { view: "docs", slug: null };
-  return { view: "home" };
+  if (match) {
+    const slug = decodeURIComponent(match[1]);
+    return findAnimation(slug)
+      ? { view: "animation", slug }
+      : { view: "notfound" };
+  }
+  return { view: "notfound" };
 }
 
 export default function App() {
@@ -30,6 +46,12 @@ export default function App() {
     return () => window.removeEventListener("hashchange", onHash);
   }, []);
 
+  useEffect(() => {
+    if (window.location.hash.startsWith("#/")) {
+      window.scrollTo(0, 0);
+    }
+  }, [route]);
+
   const toggleTheme = useCallback(() => {
     setTheme((prev) => {
       const next = prev === "dark" ? "light" : "dark";
@@ -43,30 +65,38 @@ export default function App() {
     });
   }, []);
 
-  if (route.view === "docs") {
-    return (
-      <div className="min-h-screen bg-background text-text">
-        <style>{css}</style>
-        <DocsPage
-          slug={route.slug}
-          theme={theme}
-          onToggleTheme={toggleTheme}
-        />
-      </div>
+  let view;
+  if (route.view === "home") {
+    view = <HomePage theme={theme} onToggleTheme={toggleTheme} />;
+  } else if (route.view === "notfound") {
+    view = <NotFoundPage />;
+  } else {
+    let page;
+    if (route.view === "introduction") {
+      page = <IntroductionPage />;
+    } else if (route.view === "installation") {
+      page = <InstallationPage />;
+    } else {
+      page = <AnimationPage slug={route.slug} />;
+    }
+    view = (
+      <DocsLayout
+        active={route.view}
+        slug={route.slug}
+        theme={theme}
+        onToggleTheme={toggleTheme}
+      >
+        {page}
+      </DocsLayout>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background text-text">
-      <style>{css}</style>
-      <div className="mx-auto max-w-[1530px]">
-        <Navbar theme={theme} onToggleTheme={toggleTheme} />
-        <main className="flex flex-col">
-          <Hero />
-          <LibrarySection />
-        </main>
-        <Footer />
+    <ErrorBoundary>
+      <div className="min-h-screen bg-background text-text">
+        <style>{css}</style>
+        {view}
       </div>
-    </div>
+    </ErrorBoundary>
   );
 }

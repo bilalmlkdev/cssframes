@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Check, Copy } from "lucide-react";
-import { buildCss } from "../lib/animations";
+import { buildCss } from "../lib/css";
 import { copyText } from "../lib/copy";
 
 function CodeBlock({ code, copyKey, copiedKey, onCopy }) {
