@@ -1,26 +1,51 @@
 import { Check, Copy } from "lucide-react";
+import { Highlight, themes } from "prism-react-renderer";
+import { useDarkMode } from "../lib/useDarkMode";
 
-export function CodeBlock({ code, copied, onCopy, maxH }) {
+export function HighlightedPre({ code, lang = "jsx", maxH }) {
+  const dark = useDarkMode();
+
+  return (
+    <Highlight
+      code={code.replace(/\n$/, "")}
+      language={lang}
+      theme={dark ? themes.vsDark : themes.vsLight}
+    >
+      {({ style, tokens, getLineProps, getTokenProps }) => (
+        <pre
+          style={{ ...style, background: "transparent" }}
+          className={`overflow-auto rounded-lg border border-border bg-code-bg p-5 font-mono text-sm leading-relaxed ${maxH || ""}`}
+        >
+          {tokens.map((line, i) => (
+            <div key={i} {...getLineProps({ line })}>
+              {line.map((token, key) => (
+                <span key={key} {...getTokenProps({ token })} />
+              ))}
+            </div>
+          ))}
+        </pre>
+      )}
+    </Highlight>
+  );
+}
+
+export function CodeBlock({ code, lang, copied, onCopy, maxH }) {
   return (
     <div className="relative">
-      <pre
-        className={`overflow-auto rounded-lg bg-code-bg px-4 py-3 font-mono text-xs leading-relaxed text-code-text ${maxH || ""}`}
-      >
-        {code}
-      </pre>
+      <HighlightedPre code={code} lang={lang} maxH={maxH} />
       <span className="absolute right-2 top-2">
         <button
           type="button"
           onClick={onCopy}
-          className="flex items-center gap-1 rounded-md bg-white/10 px-2 py-1 text-[11px] text-white/70 transition-colors hover:text-white"
+          className="flex items-center text-[11px] text-code-text/80 "
         >
           {copied ? (
             <>
-              <Check size={11} /> Copied
+              <Check size={14} />
             </>
           ) : (
             <>
-              <Copy size={11} /> Copy
+              <Copy size={14} />
             </>
           )}
         </button>

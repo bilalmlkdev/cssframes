@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { Check, Copy, RefreshCw } from "lucide-react";
+import { RefreshCw } from "lucide-react";
 import {
   animations,
-  categories,
   findAnimation,
 } from "../../data/animations";
-import { animCss, buildCss } from "../../lib/css";
+import { animCss } from "../../lib/css";
 import { CodeBlock } from "../../components/CodeBlock";
 import { useCopy } from "../../lib/useCopy";
 
@@ -47,7 +46,7 @@ function Preview({ anim }) {
 
   return (
     <div>
-      <div className="flex min-h-[340px] items-center justify-start rounded-xl border border-border bg-surface">
+      <div className="flex min-h-[340px] items-center justify-center rounded-xl border border-border bg-surface px-6 sm:px-8">
         <div
           key={`${object}-${replay}`}
           className={`cf-animated cf-${anim.slug}`}
@@ -133,7 +132,6 @@ export function AnimationPage({ slug }) {
   const index = animations.findIndex((a) => a.slug === anim.slug);
   const prev = index > 0 ? animations[index - 1] : null;
   const next = index < animations.length - 1 ? animations[index + 1] : null;
-  const categoryLabel = categories.find((c) => c.id === anim.category)?.label;
 
   const usage = `<div class="cf-animated cf-${anim.slug}">Hello</div>`;
   const codeSnippet = `${usage}\n\n${animCss(anim)}\n\n${anim.keyframes}`;
@@ -144,11 +142,11 @@ export function AnimationPage({ slug }) {
 }`;
 
   return (
-    <article className="mx-auto max-w-3xl px-5 py-10 sm:px-8">
-      <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+    <article className="max-w-3xl ml-45 px-5 py-15 sm:px-8">
+      <h1 className="text-[24px] font-medium tracking-tight">
         {anim.name}
       </h1>
-      <p className="mt-3 text-base leading-relaxed text-muted sm:text-lg">
+      <p className="mt-3 text-base leading-relaxed text-muted">
         {anim.desc}
       </p>
 
@@ -158,7 +156,7 @@ export function AnimationPage({ slug }) {
       </h2>
       <p className="mt-6 text-base font-medium">Basic usage</p>
 
-      <div className="mt-3 flex gap-6 border-b border-border">
+      <div className="mt-4 flex px-2 gap-6 border-b border-border">
         <button
           type="button"
           onClick={() => setTab("preview")}
@@ -183,12 +181,13 @@ export function AnimationPage({ slug }) {
         </button>
       </div>
 
-      <div className="mt-5">
+      <div className="mt-3">
         {tab === "preview" ? (
           <Preview anim={anim} />
         ) : (
           <CodeBlock
             code={codeSnippet}
+            lang="css"
             maxH="max-h-96"
             copied={copiedKey === "usage"}
             onCopy={() => doCopy(codeSnippet, "usage")}
@@ -204,33 +203,20 @@ export function AnimationPage({ slug }) {
       </p>
       <div className="mt-4">
         <CodeBlock
-          code={`<!-- add to your html -->\n${usage}`}
+          lang="markup"
+          code={`${usage}`}
           copied={copiedKey === "html"}
           onCopy={() => doCopy(usage, "html")}
         />
       </div>
       <div className="mt-3">
         <CodeBlock
+          lang="css"
           code={vars}
           copied={copiedKey === "vars"}
           onCopy={() => doCopy(vars, "vars")}
         />
       </div>
-      <button
-        type="button"
-        onClick={() => doCopy(buildCss(), "full")}
-        className="mt-4 flex items-center gap-2 rounded-lg bg-text px-4 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-80"
-      >
-        {copiedKey === "full" ? (
-          <>
-            <Check size={14} /> Copied
-          </>
-        ) : (
-          <>
-            <Copy size={14} /> Copy full cssframes.css
-          </>
-        )}
-      </button>
 
       {/* Animation API */}
       <h2 className="mt-14 text-2xl font-semibold tracking-tight">
@@ -305,14 +291,14 @@ export function AnimationPage({ slug }) {
         {prev ? (
           <a
             href={`#/animations/${prev.slug}`}
-            className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-2 text-sm transition-colors hover:bg-surface-2"
+            className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 shadow-xs text-sm transition-colors hover:bg-surface-2"
           >
             &lt; {prev.name}
           </a>
         ) : (
           <a
             href="#/installation"
-            className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-2 text-sm transition-colors hover:bg-surface-2"
+            className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 shadow-xs text-sm transition-colors hover:bg-surface-2"
           >
             &lt; Installation
           </a>
@@ -320,16 +306,12 @@ export function AnimationPage({ slug }) {
         {next && (
           <a
             href={`#/animations/${next.slug}`}
-            className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-2 text-sm transition-colors hover:bg-surface-2"
+            className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 shadow-xs text-sm transition-colors hover:bg-surface-2"
           >
             {next.name} &gt;
           </a>
         )}
       </div>
-
-      <p className="mt-10 text-xs text-muted">
-        {categoryLabel} - cf-{anim.slug}
-      </p>
     </article>
   );
 }

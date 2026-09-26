@@ -2,17 +2,16 @@ import { useState } from "react";
 import { Check, Copy } from "lucide-react";
 import { buildCss } from "../lib/css";
 import { copyText } from "../lib/copy";
+import { HighlightedPre } from "./CodeBlock";
 
-function CodeBlock({ code, copyKey, copiedKey, onCopy }) {
+function CodeBlock({ code, lang, copyKey, copiedKey, onCopy }) {
   return (
     <div className="relative">
-      <pre className="overflow-x-auto rounded-lg bg-code-bg px-4 py-3 font-mono text-xs leading-relaxed text-code-text">
-        {code}
-      </pre>
+      <HighlightedPre code={code} lang={lang} />
       <button
         type="button"
         onClick={() => onCopy(code, copyKey)}
-        className="absolute right-2 top-2 flex items-center gap-1 rounded-md bg-white/10 px-2 py-1 text-[11px] text-white/70 transition-colors hover:text-white"
+        className="absolute right-2 top-2 flex items-center gap-1 rounded-md border border-code-text/15 bg-code-text/10 px-2 py-1 text-[11px] text-code-text/80 transition-colors hover:text-code-text"
       >
         {copiedKey === copyKey ? (
           <>
@@ -105,6 +104,7 @@ export function UsageSection() {
         <div className="mt-3">
           <CodeBlock
             code={usageSnippet}
+            lang="jsx"
             copyKey="usage"
             copiedKey={copiedKey}
             onCopy={doCopy}
@@ -119,6 +119,7 @@ export function UsageSection() {
         <div className="mt-3">
           <CodeBlock
             code={varsSnippet}
+            lang="css"
             copyKey="vars"
             copiedKey={copiedKey}
             onCopy={doCopy}
@@ -151,6 +152,7 @@ export function UsageSection() {
         <div className="mt-3">
           <CodeBlock
             code={motionSnippet}
+            lang="css"
             copyKey="motion"
             copiedKey={copiedKey}
             onCopy={doCopy}

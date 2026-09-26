@@ -30,11 +30,11 @@ export function InstallationPage() {
   const { copiedKey, doCopy } = useCopy();
 
   return (
-    <article className="mx-auto max-w-3xl px-5 py-10 sm:px-8">
-      <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+    <article className="max-w-3xl ml-45 px-5 py-15 sm:px-8">
+      <h1 className="text-[24px] font-medium tracking-tight">
         Installation
       </h1>
-      <p className="mt-4 text-base leading-relaxed text-muted sm:text-lg">
+      <p className="mt-4 text-base leading-relaxed text-muted">
         There is nothing to install to use cssframes. Copy the stylesheet or a
         single animation, add two classes, done.
       </p>
@@ -140,6 +140,7 @@ export function InstallationPage() {
       </p>
       <div className="mt-4">
         <CodeBlock
+          lang="markup"
           code={usageSnippet}
           copied={copiedKey === "usage"}
           onCopy={() => doCopy(usageSnippet, "usage")}
@@ -149,13 +150,13 @@ export function InstallationPage() {
       <div className="mt-14 flex justify-between">
         <a
           href="#/introduction"
-          className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-2 text-sm transition-colors hover:bg-surface-2"
+          className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 shadow-xs text-sm transition-colors hover:bg-surface-2"
         >
           &lt; Introduction
         </a>
         <a
           href={`#/animations/fade-in`}
-          className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-2 text-sm transition-colors hover:bg-surface-2"
+          className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 shadow-xs text-sm transition-colors hover:bg-surface-2"
         >
           Animations &gt;
         </a>

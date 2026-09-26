@@ -16,8 +16,8 @@
   --text-muted: #71717a;
   --accent: #000000;
   --accent-fg: #ffffff;
-  --code-bg: #18181b;
-  --code-text: #e4e4e7;
+  --code-bg: #f4f4f5;
+  --code-text: #18181b;
 }
 
 .dark {

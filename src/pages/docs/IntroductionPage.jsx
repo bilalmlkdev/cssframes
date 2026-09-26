@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Check, Copy } from "lucide-react";
 import { copyText } from "../../lib/copy";
+import { HighlightedPre } from "../../components/CodeBlock";
 
 const usageSnippet = `<div class="cf-animated cf-zoom-in">Hello</div>`;
 
@@ -29,16 +30,14 @@ const FEATURES = [
   },
 ];
 
-function Snippet({ code, copied, onCopy }) {
+function Snippet({ code, lang = "jsx", copied, onCopy }) {
   return (
     <div className="relative">
-      <pre className="overflow-x-auto rounded-lg bg-code-bg px-4 py-3 font-mono text-xs leading-relaxed text-code-text">
-        {code}
-      </pre>
+      <HighlightedPre code={code} lang={lang} />
       <button
         type="button"
         onClick={onCopy}
-        className="absolute right-2 top-2 flex items-center gap-1 rounded-md bg-white/10 px-2 py-1 text-[11px] text-white/70 transition-colors hover:text-white"
+        className="absolute right-2 top-2 flex items-center gap-1 rounded-md border border-code-text/15 bg-code-text/10 px-2 py-1 text-[11px] text-code-text/80 transition-colors hover:text-code-text"
       >
         {copied ? (
           <>
@@ -66,11 +65,11 @@ export function IntroductionPage() {
   };
 
   return (
-    <article className="mx-auto max-w-3xl px-5 py-10 sm:px-8">
-      <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+    <article className="max-w-3xl ml-45 px-5 py-15 sm:px-8">
+      <h1 className="text-[24px] font-medium tracking-tight">
         Introduction
       </h1>
-      <p className="mt-4 text-base leading-relaxed text-muted sm:text-lg">
+      <p className="mt-4 text-base leading-relaxed text-muted">
         cssframes is an open-source library of pure CSS keyframe animations.
         It is a reference you browse, a stylesheet you copy, and a small set of
         variables you tune - nothing more.
@@ -102,6 +101,7 @@ export function IntroductionPage() {
       <div className="mt-4">
         <Snippet
           code={usageSnippet}
+          lang="jsx"
           copied={copied === "usage"}
           onCopy={() => doCopy(usageSnippet, "usage")}
         />
@@ -117,6 +117,7 @@ export function IntroductionPage() {
       <div className="mt-4">
         <Snippet
           code={varsSnippet}
+          lang="css"
           copied={copied === "vars"}
           onCopy={() => doCopy(varsSnippet, "vars")}
         />
@@ -131,6 +132,7 @@ export function IntroductionPage() {
       </p>
       <div className="mt-4">
         <Snippet
+          lang="css"
           code={`@media (prefers-reduced-motion: reduce) {
   .cf-animated {
     animation: none;
@@ -150,7 +152,7 @@ export function IntroductionPage() {
         <span />
         <a
           href="#/installation"
-          className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-2 text-sm transition-colors hover:bg-surface-2"
+          className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 shaow-xs text-sm transition-colors hover:bg-surface-2"
         >
           Installation &gt;
         </a>

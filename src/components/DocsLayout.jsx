@@ -47,17 +47,6 @@ export function DocsLayout({
           >
             Home
           </a>
-         
-          <a
-            href="#/introduction"
-            className={`rounded-md px-2 py-1.5 text-sm transition-colors ${
-              active === "introduction"
-                ? "bg-surface-2 font-medium"
-                : "hover:bg-surface-2 hover:text-text"
-            }`}
-          >
-            Introduction
-          </a>
           <a
             href="#/installation"
             className={`rounded-md px-2 py-1.5 text-sm transition-colors ${
@@ -69,24 +58,9 @@ export function DocsLayout({
             Installation
           </a>
 
-            <a
-            href="#/installation"
-            className={`rounded-md px-2 py-1.5 text-sm transition-colors ${
-              active === "installation"
-                ? "bg-surface-2 font-medium"
-                : "hover:bg-surface-2 hover:text-text"
-            }`}
-          >
-              Modal context Protocol
-            </a>
-
-          <p className="mt-9 px-2 pb-1 pt-2 text-sm text-muted font-medium">
-            Animations
-          </p>
-
           {categories.map((cat) => (
             <div key={cat.id} className="mt-9">
-              <p className="px-2 pb-1 text-sm text-muted font-medium">{cat.label}</p>
+              <p className="px-2 pb-1 text-sm text-muted font-medium">{cat.label} Animations</p>
               <div className="flex flex-col gap-0.5">
                 {animations
                   .filter((a) => a.category === cat.id)
