@@ -18,6 +18,8 @@
   --accent-fg: #ffffff;
   --code-bg: #f4f4f5;
   --code-text: #18181b;
+  --highlight-a: #e04900;
+  --highlight-b: #9a9a00;
   color-scheme: light;
 }
 
@@ -32,6 +34,8 @@
   --accent-fg: #000000;
   --code-bg: #09090b;
   --code-text: #d4d4d8;
+  --highlight-a: #ff5a1f;
+  --highlight-b: #dada00;
   color-scheme: dark;
 }
 
@@ -46,6 +50,8 @@
   --color-accent-fg: var(--accent-fg);
   --color-code-bg: var(--code-bg);
   --color-code-text: var(--code-text);
+  --color-highlight-a: var(--highlight-a);
+  --color-highlight-b: var(--highlight-b);
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Inter", ui-monospace, SFMono-Regular, monospace;

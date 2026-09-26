@@ -1,4 +1,5 @@
 import { animations } from "../../data/animations";
+import DomeGallery from "./DomeGallery";
 
 export function Hero() {
   return (
@@ -14,6 +15,7 @@ export function Hero() {
         drop it into any project - no JavaScript, no dependencies, no build
         step.
       </p>
+
 
       <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
         <a
@@ -98,12 +100,30 @@ export function Hero() {
           </span>
 
           <span className="flex items-center gap-2 text-sm transition-colors hover:text-text">
-            <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
+            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" aria-hidden="true">
               <path d="M12 4.5 21.5 20H2.5L12 4.5Z" fill="currentColor" />
             </svg>
             Vercel
           </span>
         </div>
+      </div>
+
+
+
+
+            <div className="mt-10 h-[500px] w-[900px] max-w-full overflow-hidden">
+        <DomeGallery
+          fit={0.6}
+          minRadius={300}
+          maxRadius={560}
+          overlayBlurColor="var(--background)"
+          maxVerticalRotationDeg={0}
+          segments={34}
+          dragDampening={2}
+          openedImageWidth="280px"
+          openedImageHeight="280px"
+          grayscale={false}
+        />
       </div>
     </section>
   );

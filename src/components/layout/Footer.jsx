@@ -14,7 +14,7 @@ export function Footer() {
       />
 
       <div className="flex flex-col gap-8 px-5 pb-14 pt-6 sm:px-8 lg:flex-row lg:items-start lg:justify-between lg:gap-16">
-        <p className="text-5xl font-medium leading-none tracking-tight sm:text-6xl lg:text-7xl">
+        <p className="text-5xl font-medium leading-none tracking-tight">
           cssframes
         </p>
 

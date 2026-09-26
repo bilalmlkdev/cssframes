@@ -7,12 +7,6 @@ export function FaqSection() {
       <div className="mx-auto max-w-5xl">
         <div className="flex flex-wrap items-end justify-between gap-3 pb-2">
           <h2 className="text-lg font-medium uppercase tracking-wide">FAQ</h2>
-          <a
-            href="#/introduction"
-            className="text-sm font-medium transition-colors hover:text-muted"
-          >
-            Read the docs &rarr;
-          </a>
         </div>
 
         <div className="mt-4 border-t border-border">
