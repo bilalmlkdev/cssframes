@@ -1,57 +1,89 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Birthstone&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
-
- @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
-
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
 
-@utility scrollbar-hide {
-  &::-webkit-scrollbar {
-    display: none;
+/* ============================================================
+   Design tokens
+   Light theme lives on :root, dark theme overrides on .dark.
+   Tailwind utilities (bg-background, text-muted, ...) map to
+   these through @theme inline below.
+   ============================================================ */
+:root {
+  --background: #fafafa;
+  --surface: #ffffff;
+  --surface-2: #f4f4f5;
+  --border: #e4e4e7;
+  --text: #18181b;
+  --text-muted: #71717a;
+  --accent: #7c3aed;
+  --accent-fg: #ffffff;
+  --accent-soft: #f5f3ff;
+  --code-bg: #18181b;
+  --code-text: #e4e4e7;
+  --stage-dot: #d4d4d8;
+}
+
+.dark {
+  --background: #09090b;
+  --surface: #18181b;
+  --surface-2: #27272a;
+  --border: #27272a;
+  --text: #fafafa;
+  --text-muted: #a1a1aa;
+  --accent: #8b5cf6;
+  --accent-fg: #ffffff;
+  --accent-soft: #2e1065;
+  --code-bg: #09090b;
+  --code-text: #d4d4d8;
+  --stage-dot: #3f3f46;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-accent-soft: var(--accent-soft);
+  --color-code-bg: var(--code-bg);
+  --color-code-text: var(--code-text);
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
   }
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+
+  body {
+    background-color: var(--background);
+    color: var(--text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  ::selection {
+    background-color: var(--accent);
+    color: var(--accent-fg);
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
 }
 
-@theme {
-  --font-outfit:"Inter" ,serif;
-  /* --font-outfit:"Outfit" ,serif; */
-  --font-heading : "Montserrat";
-  --font-styling : "Birthstone";
-  --font-grotesk : "JetBrains Mono"
-}
-
-button {
-cursor:pointer;
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #050505;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #7c3aed, #2563eb);
-  border-radius: 999px;
-  border: 2px solid #050505;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #a855f7, #3b82f6);
-}
-
-/* Firefox */
-* {
-  scrollbar-width:auto;
-  scrollbar-color: #7c3aed #050505;
+/* Dotted stage used behind every animation preview */
+@utility stage-dots {
+  background-image: radial-gradient(var(--stage-dot) 1px, transparent 1px);
+  background-size: 16px 16px;
 }

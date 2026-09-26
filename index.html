@@ -1,35 +1,49 @@
 <!doctype html>
-<!--
-██████╗ ██╗██╗      █████╗ ██╗
-██╔══██╗██║██║     ██╔══██╗██║
-██████╔╝██║██║     ███████║██║
-██╔══██╗██║██║     ██╔══██║██║
-██████╔╝██║███████╗██║  ██║███████╗
-╚═════╝ ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝
-███╗   ███╗ █████╗ ██╗     ██╗██╗  ██╗
-████╗ ████║██╔══██╗██║     ██║██║ ██╔╝
-██╔████╔██║███████║██║     ██║█████╔╝
-██║╚██╔╝██║██╔══██║██║     ██║██╔═██╗
-██║ ╚═╝ ██║██║  ██║███████╗██║██║  ██╗
-╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚═╝╚═╝  ╚═╝
-What are you doing here?! you sneaky developer...
--->
 <html lang="en">
- <head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Cssframes - Open-Source library of animations using pure CSS keyframe.</title>
-    <meta name="title" content="Cssframes - Open-Source library of animations using pure CSS keyframe." />
-    <meta name="description" content="Explore Cssframes, a lightweight, open-source library of high-quality animations built with pure CSS keyframes by Bilal Malik. Copy, paste, and animate." />
+    <title>cssframes - Open-source CSS animation library</title>
+    <meta
+      name="title"
+      content="cssframes - Open-source CSS animation library"
+    />
+    <meta
+      name="description"
+      content="Explore cssframes, a lightweight, open-source library of high-quality CSS keyframe animations by Bilal Malik. Preview every animation live, copy the CSS, paste it into your project."
+    />
     <meta name="author" content="Bilal Malik" />
-    <meta name="keywords" content="CSS animations, CSS keyframes, open-source CSS, web design, pure CSS, Bilal Malik, Cssframes" />
+    <meta
+      name="keywords"
+      content="CSS animations, CSS keyframes, open-source CSS, animation library, pure CSS, Bilal Malik, cssframes"
+    />
     <link rel="shortcut icon" href="./src/assets/favicon/favicon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      // Apply the saved theme before first paint so there is no flash.
+      try {
+        var t = localStorage.getItem("cssframes-theme");
+        if (
+          t === "dark" ||
+          (!t && window.matchMedia("(prefers-color-scheme: dark)").matches)
+        ) {
+          document.documentElement.classList.add("dark");
+        }
+      } catch (e) {
+        /* no storage */
+      }
+    </script>
+  </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
-
-
-
