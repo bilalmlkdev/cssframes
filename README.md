@@ -1,5 +1,3 @@
-<div align="left">
-
 # cssframes
 
 **Pure CSS keyframe animations you can preview, copy, and paste.**
@@ -9,7 +7,6 @@ No JavaScript runs your motion. No package to install. Free and open source.
 [![GitHub Stars](https://img.shields.io/github/stars/bilalmlkdev/cssframes?style=for-the-badge&logo=github&color=yellow)](https://github.com/bilalmlkdev/cssframes)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg?style=for-the-badge)](./LICENSE)
 
-</div>
 
 ## Why cssframes
 
