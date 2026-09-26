@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { copyText } from "./copy";
+import { copyText } from "../lib/copy";
 
 // Clipboard copy with a transient "copied" key for the calling UI.
 export function useCopy() {

@@ -1,7 +1,7 @@
 // cssframes - stylesheet builders.
 // animCss() renders the class rule for one animation, buildCss() assembles
 // the full shipped stylesheet. One source of truth: the data module.
-import { animations } from "../data/animations";
+import { animations } from "../data/animations.js";
 
 export function animCss(anim) {
   const parts = [
@@ -31,8 +31,14 @@ export function buildCss(list = animations) {
   animation-fill-mode: both;
 }`;
 
+  const reducedMotion = `@media (prefers-reduced-motion: reduce) {
+  .cf-animated {
+    animation: none;
+  }
+}`;
+
   const rules = list.map(animCss).join("\n\n");
   const keyframes = list.map((a) => a.keyframes).join("\n\n");
 
-  return `${base}\n\n${rules}\n\n${keyframes}\n`;
+  return `${base}\n\n${rules}\n\n${keyframes}\n\n${reducedMotion}\n`;
 }

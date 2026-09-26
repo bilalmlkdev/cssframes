@@ -1,111 +1,63 @@
 <div align="center">
 
   <a href="https://cssframes.vercel.app/">
-    <img src="https://raw.githubusercontent.com/bilalmlkdev/cssframes/main/src/assets/favicon/favicon.svg" alt="cssframes Logo" width="100%" height="120">
+    <img src="./src/assets/favicon/favicon.svg" alt="cssframes logo" width="90" height="90">
   </a>
 
 # cssframes
 
-A place to build, save, and reuse CSS animations - entirely in your browser. <br>
-No sign-up, no server, no lost work between sessions.
+**45 pure CSS keyframe animations you can preview, copy, and paste.**
+No JavaScript runs your motion. No package to install. Free and open source.
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_Site-black?style=for-the-badge)](https://cssframes.vercel.app)
-[![GitHub Stars](https://img.shields.io/github/stars/bilalmlkdev/cssframes?style=for-the-badge&logo=github&color=yellow)](https://github.com/bilalmlkdev/cssframes.git)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](./LICENSE)
+[![Live Demo](https://img.shields.io/badge/live_demo-visit_site-black?style=for-the-badge)](https://cssframes.vercel.app)
+[![GitHub Stars](https://img.shields.io/github/stars/bilalmlkdev/cssframes?style=for-the-badge&logo=github&color=yellow)](https://github.com/bilalmlkdev/cssframes)
+[![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg?style=for-the-badge)](./LICENSE)
 
 </div>
 
-[![cssframes Dashboard](https://raw.githubusercontent.com/bilalmlkdev/cssframes/main/src/assets/homePreview.png)](https://cssframes.vercel.app/)
+## Why cssframes
 
-# Why I built this
+- **Pure CSS.** Every animation is a `@keyframes` rule and a class. No JavaScript library, no runtime.
+- **Copy and paste.** Preview any animation on the site, copy its CSS, and drop it into your project. There is no package to install.
+- **Fully customizable.** Duration, delay, and iteration live in CSS variables, so you tune motion per element.
+- **Reduced motion ready.** The stylesheet ships with a `prefers-reduced-motion` media query that turns the whole library off.
+- **Framework friendly.** Works in React, Next.js, Vue, Svelte, or plain HTML. If it runs CSS, it runs cssframes.
 
-I kept reaching for the same handful of CSS animations across projects,
-and kept rewriting them from memory or digging through old files to
-find the keyframes I liked. So I built cssframes as the place I wished
-I already had: browse a library of ready-made animations, preview them
-live, and when I make something new, save it right there in the
-browser so it's still there next time.
+## Installation
 
-There's no backend, no account, no database. Everything - the library,
-your own creations, your preview settings - lives in `localStorage`.
-Clone it, open it, and it just works.
+Download [`cssframes.css`](https://raw.githubusercontent.com/bilalmlkdev/cssframes/main/cssframes.css) from the repository, or copy any single animation's CSS from the docs.
 
-# What it does
+Then link it:
 
-- **Browse a library** of ready-made CSS keyframe animations, organized
-  by category - entrances, exits, text, loaders, and more.
-- **Live preview** every animation on a box, circle, text, or icon
-  before you commit to it.
-- **Create your own** with a visual editor: pick a shape, write or tweak
-  the keyframes, adjust the preview background, and see it move in
-  real time.
-- **Save what you make.** Every animation you create is stored locally
-  in your browser, so it's there the next time you open the app -
-  no account required.
-- **Copy the exact CSS** for anything in the library or anything you've
-  made, ready to paste into your own project.
-
-# How it works
-
-1. Browse the library or search for an animation by name.
-2. Preview it live against a box, circle, text, or icon.
-3. Copy the CSS keyframes straight into your project - or open the
-   creator to build your own from scratch.
-4. Anything you create is saved locally and shows up in your community
-   library on your next visit.
-
-# Design principles
-
-- **Performance first.** Every animation relies on GPU-friendly
-  properties - `transform` and `opacity` - instead of layout-triggering
-  ones like `width`, `top`, or `margin`.
-- **No dependencies to run it.** Pure CSS keyframes, no JavaScript
-  animation runtime required in your own project.
-- **Nothing to configure.** No API keys, no backend, no environment
-  variables - clone it and it runs.
-
-# Animation categories
-
-- **Entrance** - fade, slide, zoom, and reveal animations.
-- **Exit** - mirrored versions for elements leaving the screen.
-- **Text** - typewriter, glitch, and kinetic text effects.
-- **Fading** - opacity-based transitions.
-- **Rotating** - spin and rotation-based motion.
-- **Bouncing** - spring and bounce feedback.
-- **Sliding** - directional movement.
-- **Attention** - pulse, shake, and emphasis effects for drawing focus.
-- **Loader** - spinners and progress indicators.
-
-# Local, persistent storage
-
-Animations you create through the in-app creator save directly to your
-browser's `localStorage` - no backend, no server to run or deploy.
-
-```text
-src/utils/communityAnimations.js
+```html
+<link rel="stylesheet" href="cssframes.css" />
 ```
 
-This is what makes the project genuinely zero-infrastructure: clone
-it, run `npm install && npm run dev`, and every feature - including
-creating and saving your own animations - works immediately, with
-nothing else to configure or host.
+Or paste the contents into a stylesheet you already have.
 
-# Project structure
+## Usage
 
-```text
-cssframes/
-├── src/
-│   ├── components/       # Reusable UI components
-│   ├── data/             # Motion presets & categories
-│   ├── utils/            # Local animation storage (localStorage)
-│   ├── App.jsx
-│   └── main.jsx
-│
-├── package.json
-└── vite.config.js
+Add two classes: `cf-animated` turns the element on, and an animation class picks the motion.
+
+```html
+<div class="cf-animated cf-zoom-in">Hello</div>
 ```
 
-# Getting started
+Tune it with CSS variables:
+
+```css
+.cf-animated.cf-zoom-in {
+  --cf-duration: 900ms;
+  --cf-delay: 0.2s;
+  --cf-iteration: 1;
+}
+```
+
+## Animations
+
+45 animations across 5 categories: Entrances, Exits, Attention, Loops, and Text. Browse them all at [cssframes.vercel.app](https://cssframes.vercel.app/#/animations).
+
+## Local development
 
 ```bash
 git clone https://github.com/bilalmlkdev/cssframes.git
@@ -114,42 +66,26 @@ npm install
 npm run dev
 ```
 
-No environment variables, no API keys, nothing else to set up.
+Available scripts:
 
-# Performance guidelines
+- `npm run dev` starts the Vite dev server.
+- `npm run build` generates `cssframes.css` and builds the static site.
+- `npm run css` regenerates `cssframes.css` only.
+- `npm run lint` runs ESLint.
+- `npm test` runs the test suite with the Node test runner.
 
-If you're contributing a new animation:
+## Accessibility
 
-- Prefer `transform` and `opacity` for smooth, GPU-accelerated motion.
-- Avoid animating layout-triggering properties such as `width`,
-  `height`, `top`, `left`, or `margin`.
-- Keep animations short, reusable, and easy to compose with others.
-- Include a clear title, duration, and one-line description.
+Animations are disabled automatically for anyone whose system asks for reduced motion, both in the shipped stylesheet and across this site's own interface.
 
-# License
+## Contributing
 
-Distributed under the MIT License. See [`LICENSE`](./LICENSE) for details.
+Contributions are welcome. Read [CONTRIBUTING.md](./CONTRIBUTING.md) for the workflow and animation guidelines, then open an issue or pull request on [GitHub](https://github.com/bilalmlkdev/cssframes).
 
-```text
-MIT License
+## Author
 
-Copyright (c) 2026 Bilal Malik
+Built by **Bilal Malik** - [GitHub](https://github.com/bilalmlkdev) / [X](https://x.com/bilalmlkdev).
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+## License
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
+[MIT](./LICENSE) - free for personal and commercial use.

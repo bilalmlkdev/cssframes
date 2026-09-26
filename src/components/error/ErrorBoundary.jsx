@@ -12,6 +12,10 @@ export class ErrorBoundary extends Component {
     return { error };
   }
 
+  componentDidCatch() {
+    document.title = "Something broke - cssframes";
+  }
+
   render() {
     const { error } = this.state;
     if (!error) return this.props.children;

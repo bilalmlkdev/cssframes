@@ -1,8 +1,16 @@
 import { REPO_URL } from "../../data/site";
+import { useDocumentMeta } from "../../hooks/useDocumentMeta";
+import { DocsArticle } from "../../components/layout/DocsArticle";
+import { Pager } from "../../components/layout/Pager";
 
 export function IntroductionPage() {
+  useDocumentMeta(
+    "Introduction - cssframes",
+    "cssframes is an open-source collection of pure CSS keyframe animations: preview, copy, and paste.",
+  );
+
   return (
-    <article className="max-w-3xl ml-45 px-5 py-15 sm:px-8">
+    <DocsArticle>
       <h1 className="text-[24px] font-medium tracking-tight">
         Introduction
       </h1>
@@ -59,15 +67,10 @@ export function IntroductionPage() {
         </p>
       </div>
 
-      <div className="mt-14 flex justify-between">
-        <span />
-        <a
-          href="#/installation"
-          className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 shadow-xs text-sm transition-colors hover:bg-surface-2"
-        >
-          Installation &gt;
-        </a>
-      </div>
-    </article>
+      <Pager
+        prev={null}
+        next={{ href: "#/installation", label: "Installation" }}
+      />
+    </DocsArticle>
   );
 }

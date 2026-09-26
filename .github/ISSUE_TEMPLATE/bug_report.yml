@@ -1,0 +1,41 @@
+name: Bug report
+description: Report something that is broken in cssframes or the site
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Clear description of the bug.
+      placeholder: The animation does not run when...
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Minimal steps someone else can follow.
+      placeholder: |
+        1. Go to ...
+        2. Copy ...
+        3. See ...
+    validations:
+      required: true
+  - type: input
+    id: slug
+    attributes:
+      label: Animation slug
+      description: Only if the bug is about a specific animation (for example zoom-in).
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and OS
+      placeholder: Chrome 130 on macOS
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      placeholder: What you expected to happen instead.

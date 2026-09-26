@@ -1,4 +1,4 @@
-import { animations } from "../data/animations";
+import { animations } from "../../data/animations";
 
 export function Hero() {
   return (

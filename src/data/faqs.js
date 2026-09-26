@@ -9,7 +9,7 @@ export const FAQS = [
   },
   {
     q: "How do I install it?",
-    a: "Copy the full cssframes.css from the Installation page into your project, or copy a single animation's CSS. There is no package to install, though the repo is on GitHub if you prefer npm workflows.",
+    a: "Download cssframes.css from the repository, or copy a single animation's CSS from the docs. There is no package to install, and the file is plain CSS.",
   },
   {
     q: "Can I change the duration, delay, or repeat count?",
@@ -21,7 +21,7 @@ export const FAQS = [
   },
   {
     q: "What about accessibility and reduced motion?",
-    a: "Add the prefers-reduced-motion media query from the Introduction page and the entire library turns off for people who ask for less motion.",
+    a: "The stylesheet ships with a prefers-reduced-motion media query, so the entire library turns off for people who ask for less motion.",
   },
   {
     q: "Is cssframes free to use?",

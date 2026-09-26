@@ -1,0 +1,543 @@
+/*! cssframes v1.0.0 | MIT | https://github.com/bilalmlkdev/cssframes */
+
+.cf-animated {
+  animation-duration: var(--cf-duration, 800ms);
+  animation-delay: var(--cf-delay, 0ms);
+  animation-iteration-count: var(--cf-iteration, 1);
+  animation-fill-mode: both;
+}
+
+.cf-fade-in {
+  animation-name: cf-fade-in;
+  animation-duration: var(--cf-duration, 500ms);
+  animation-timing-function: ease-out;
+}
+
+.cf-fade-in-up {
+  animation-name: cf-fade-in-up;
+  animation-duration: var(--cf-duration, 600ms);
+  animation-timing-function: ease-out;
+}
+
+.cf-fade-in-down {
+  animation-name: cf-fade-in-down;
+  animation-duration: var(--cf-duration, 600ms);
+  animation-timing-function: ease-out;
+}
+
+.cf-fade-in-left {
+  animation-name: cf-fade-in-left;
+  animation-duration: var(--cf-duration, 600ms);
+  animation-timing-function: ease-out;
+}
+
+.cf-fade-in-right {
+  animation-name: cf-fade-in-right;
+  animation-duration: var(--cf-duration, 600ms);
+  animation-timing-function: ease-out;
+}
+
+.cf-zoom-in {
+  animation-name: cf-zoom-in;
+  animation-duration: var(--cf-duration, 500ms);
+  animation-timing-function: ease-out;
+}
+
+.cf-zoom-bounce {
+  animation-name: cf-zoom-bounce;
+  animation-duration: var(--cf-duration, 700ms);
+  animation-timing-function: ease-out;
+}
+
+.cf-slide-in-up {
+  animation-name: cf-slide-in-up;
+  animation-duration: var(--cf-duration, 600ms);
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cf-slide-in-down {
+  animation-name: cf-slide-in-down;
+  animation-duration: var(--cf-duration, 600ms);
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cf-slide-in-left {
+  animation-name: cf-slide-in-left;
+  animation-duration: var(--cf-duration, 600ms);
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cf-slide-in-right {
+  animation-name: cf-slide-in-right;
+  animation-duration: var(--cf-duration, 600ms);
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cf-flip-in-x {
+  animation-name: cf-flip-in-x;
+  animation-duration: var(--cf-duration, 700ms);
+  animation-timing-function: ease-out;
+}
+
+.cf-flip-in-y {
+  animation-name: cf-flip-in-y;
+  animation-duration: var(--cf-duration, 700ms);
+  animation-timing-function: ease-out;
+}
+
+.cf-rise-in {
+  animation-name: cf-rise-in;
+  animation-duration: var(--cf-duration, 600ms);
+  animation-timing-function: ease-out;
+}
+
+.cf-fade-out {
+  animation-name: cf-fade-out;
+  animation-duration: var(--cf-duration, 500ms);
+  animation-timing-function: ease-out;
+}
+
+.cf-fade-out-up {
+  animation-name: cf-fade-out-up;
+  animation-duration: var(--cf-duration, 500ms);
+  animation-timing-function: ease-out;
+}
+
+.cf-fade-out-down {
+  animation-name: cf-fade-out-down;
+  animation-duration: var(--cf-duration, 500ms);
+  animation-timing-function: ease-out;
+}
+
+.cf-zoom-out {
+  animation-name: cf-zoom-out;
+  animation-duration: var(--cf-duration, 500ms);
+  animation-timing-function: ease-out;
+}
+
+.cf-slide-out-down {
+  animation-name: cf-slide-out-down;
+  animation-duration: var(--cf-duration, 600ms);
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cf-slide-out-up {
+  animation-name: cf-slide-out-up;
+  animation-duration: var(--cf-duration, 600ms);
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cf-flip-out-x {
+  animation-name: cf-flip-out-x;
+  animation-duration: var(--cf-duration, 700ms);
+  animation-timing-function: ease-in;
+}
+
+.cf-blur-out {
+  animation-name: cf-blur-out;
+  animation-duration: var(--cf-duration, 500ms);
+  animation-timing-function: ease-out;
+}
+
+.cf-collapse-out {
+  animation-name: cf-collapse-out;
+  animation-duration: var(--cf-duration, 450ms);
+  animation-timing-function: ease-out;
+}
+
+.cf-bounce {
+  animation-name: cf-bounce;
+  animation-duration: var(--cf-duration, 900ms);
+  animation-timing-function: ease-out;
+}
+
+.cf-flash {
+  animation-name: cf-flash;
+  animation-duration: var(--cf-duration, 700ms);
+  animation-timing-function: ease-out;
+}
+
+.cf-pulse {
+  animation-name: cf-pulse;
+  animation-duration: var(--cf-duration, 900ms);
+  animation-timing-function: ease-out;
+}
+
+.cf-shake {
+  animation-name: cf-shake;
+  animation-duration: var(--cf-duration, 600ms);
+  animation-timing-function: ease-out;
+}
+
+.cf-swing {
+  animation-name: cf-swing;
+  animation-duration: var(--cf-duration, 900ms);
+  animation-timing-function: ease-in-out;
+  transform-origin: top center;
+}
+
+.cf-tada {
+  animation-name: cf-tada;
+  animation-duration: var(--cf-duration, 900ms);
+  animation-timing-function: ease-in-out;
+}
+
+.cf-wobble {
+  animation-name: cf-wobble;
+  animation-duration: var(--cf-duration, 900ms);
+  animation-timing-function: ease-in-out;
+}
+
+.cf-heartbeat {
+  animation-name: cf-heartbeat;
+  animation-duration: var(--cf-duration, 1100ms);
+  animation-timing-function: ease-in-out;
+}
+
+.cf-rubber-band {
+  animation-name: cf-rubber-band;
+  animation-duration: var(--cf-duration, 800ms);
+  animation-timing-function: ease-out;
+}
+
+.cf-spin {
+  animation-name: cf-spin;
+  animation-duration: var(--cf-duration, 1400ms);
+  animation-timing-function: linear;
+  animation-iteration-count: var(--cf-iteration, infinite);
+}
+
+.cf-ping {
+  animation-name: cf-ping;
+  animation-duration: var(--cf-duration, 1000ms);
+  animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  animation-iteration-count: var(--cf-iteration, infinite);
+}
+
+.cf-bob {
+  animation-name: cf-bob;
+  animation-duration: var(--cf-duration, 900ms);
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: var(--cf-iteration, infinite);
+}
+
+.cf-pulse-ring {
+  animation-name: cf-pulse-ring;
+  animation-duration: var(--cf-duration, 1200ms);
+  animation-timing-function: ease-out;
+  animation-iteration-count: var(--cf-iteration, infinite);
+}
+
+.cf-hue-cycle {
+  animation-name: cf-hue-cycle;
+  animation-duration: var(--cf-duration, 4000ms);
+  animation-timing-function: linear;
+  animation-iteration-count: var(--cf-iteration, infinite);
+}
+
+.cf-wiggle {
+  animation-name: cf-wiggle;
+  animation-duration: var(--cf-duration, 700ms);
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: var(--cf-iteration, infinite);
+}
+
+.cf-flicker {
+  animation-name: cf-flicker;
+  animation-duration: var(--cf-duration, 1600ms);
+  animation-timing-function: linear;
+  animation-iteration-count: var(--cf-iteration, infinite);
+}
+
+.cf-float {
+  animation-name: cf-float;
+  animation-duration: var(--cf-duration, 3000ms);
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: var(--cf-iteration, infinite);
+}
+
+.cf-blur-in {
+  animation-name: cf-blur-in;
+  animation-duration: var(--cf-duration, 700ms);
+  animation-timing-function: ease-out;
+}
+
+.cf-tracking-in {
+  animation-name: cf-tracking-in;
+  animation-duration: var(--cf-duration, 800ms);
+  animation-timing-function: ease-out;
+}
+
+.cf-skew-in {
+  animation-name: cf-skew-in;
+  animation-duration: var(--cf-duration, 600ms);
+  animation-timing-function: ease-out;
+}
+
+.cf-focus-in {
+  animation-name: cf-focus-in;
+  animation-duration: var(--cf-duration, 700ms);
+  animation-timing-function: ease-out;
+}
+
+.cf-type-in {
+  animation-name: cf-type-in;
+  animation-duration: var(--cf-duration, 1400ms);
+  animation-timing-function: steps(24, end);
+  display: inline-block; white-space: nowrap; overflow: hidden; max-width: 100%; border-right: 2px solid currentColor;
+}
+
+@keyframes cf-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes cf-fade-in-up {
+  from { opacity: 0; transform: translate3d(0, 24px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes cf-fade-in-down {
+  from { opacity: 0; transform: translate3d(0, -24px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes cf-fade-in-left {
+  from { opacity: 0; transform: translate3d(-24px, 0, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes cf-fade-in-right {
+  from { opacity: 0; transform: translate3d(24px, 0, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes cf-zoom-in {
+  from { opacity: 0; transform: scale(0.86); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes cf-zoom-bounce {
+  0% { opacity: 0; transform: scale(0.4); }
+  60% { opacity: 1; transform: scale(1.06); }
+  80% { transform: scale(0.97); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes cf-slide-in-up {
+  from { transform: translate3d(0, 100%, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+
+@keyframes cf-slide-in-down {
+  from { transform: translate3d(0, -100%, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+
+@keyframes cf-slide-in-left {
+  from { transform: translate3d(-100%, 0, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+
+@keyframes cf-slide-in-right {
+  from { transform: translate3d(100%, 0, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+
+@keyframes cf-flip-in-x {
+  from { opacity: 0; transform: perspective(600px) rotateX(90deg); }
+  to { opacity: 1; transform: perspective(600px) rotateX(0); }
+}
+
+@keyframes cf-flip-in-y {
+  from { opacity: 0; transform: perspective(600px) rotateY(90deg); }
+  to { opacity: 1; transform: perspective(600px) rotateY(0); }
+}
+
+@keyframes cf-rise-in {
+  from { opacity: 0; transform: translate3d(0, 16px, 0) scale(0.985); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes cf-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes cf-fade-out-up {
+  from { opacity: 1; transform: translate3d(0, 0, 0); }
+  to { opacity: 0; transform: translate3d(0, -24px, 0); }
+}
+
+@keyframes cf-fade-out-down {
+  from { opacity: 1; transform: translate3d(0, 0, 0); }
+  to { opacity: 0; transform: translate3d(0, 24px, 0); }
+}
+
+@keyframes cf-zoom-out {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.8); }
+}
+
+@keyframes cf-slide-out-down {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(0, 100%, 0); }
+}
+
+@keyframes cf-slide-out-up {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(0, -100%, 0); }
+}
+
+@keyframes cf-flip-out-x {
+  from { opacity: 1; transform: perspective(600px) rotateX(0); }
+  to { opacity: 0; transform: perspective(600px) rotateX(90deg); }
+}
+
+@keyframes cf-blur-out {
+  from { opacity: 1; filter: blur(0); }
+  to { opacity: 0; filter: blur(8px); }
+}
+
+@keyframes cf-collapse-out {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.85); }
+}
+
+@keyframes cf-bounce {
+  0%, 20%, 53%, 100% { transform: translate3d(0, 0, 0); }
+  40%, 43% { transform: translate3d(0, -18px, 0); }
+  70% { transform: translate3d(0, -8px, 0); }
+  90% { transform: translate3d(0, -2px, 0); }
+}
+
+@keyframes cf-flash {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
+
+@keyframes cf-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes cf-shake {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  10%, 30%, 50%, 70%, 90% { transform: translate3d(-8px, 0, 0); }
+  20%, 40%, 60%, 80% { transform: translate3d(8px, 0, 0); }
+}
+
+@keyframes cf-swing {
+  0% { transform: rotate(0); }
+  20% { transform: rotate(14deg); }
+  40% { transform: rotate(-10deg); }
+  60% { transform: rotate(6deg); }
+  80% { transform: rotate(-4deg); }
+  100% { transform: rotate(0); }
+}
+
+@keyframes cf-tada {
+  0% { transform: scale(1); }
+  10%, 30%, 50%, 70%, 90% { transform: scale(1.08) rotate(2deg); }
+  20%, 40%, 60%, 80% { transform: scale(1.08) rotate(-2deg); }
+  100% { transform: scale(1); }
+}
+
+@keyframes cf-wobble {
+  0% { transform: translate3d(0, 0, 0) rotate(0); }
+  15% { transform: translate3d(-10px, 0, 0) rotate(-5deg); }
+  30% { transform: translate3d(8px, 0, 0) rotate(3deg); }
+  45% { transform: translate3d(-6px, 0, 0) rotate(-3deg); }
+  60% { transform: translate3d(4px, 0, 0) rotate(2deg); }
+  75% { transform: translate3d(-2px, 0, 0) rotate(-1deg); }
+  100% { transform: translate3d(0, 0, 0) rotate(0); }
+}
+
+@keyframes cf-heartbeat {
+  0%, 100% { transform: scale(1); }
+  14% { transform: scale(1.15); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.12); }
+  56% { transform: scale(1); }
+}
+
+@keyframes cf-rubber-band {
+  0% { transform: scale(1); }
+  30% { transform: scaleX(1.25) scaleY(0.75); }
+  40% { transform: scaleX(0.75) scaleY(1.25); }
+  50% { transform: scaleX(1.15) scaleY(0.85); }
+  65% { transform: scaleX(0.95) scaleY(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes cf-spin {
+  from { transform: rotate(0); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes cf-ping {
+  0% { transform: scale(1); opacity: 0.8; }
+  80%, 100% { transform: scale(2); opacity: 0; }
+}
+
+@keyframes cf-bob {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -10%, 0); }
+}
+
+@keyframes cf-pulse-ring {
+  from { transform: scale(0.85); opacity: 1; }
+  to { transform: scale(1.6); opacity: 0; }
+}
+
+@keyframes cf-hue-cycle {
+  from { filter: hue-rotate(0deg); }
+  to { filter: hue-rotate(360deg); }
+}
+
+@keyframes cf-wiggle {
+  0%, 100% { transform: rotate(0); }
+  25% { transform: rotate(-6deg); }
+  75% { transform: rotate(6deg); }
+}
+
+@keyframes cf-flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+  20%, 22%, 24%, 55% { opacity: 0.3; }
+}
+
+@keyframes cf-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -12px, 0); }
+}
+
+@keyframes cf-blur-in {
+  from { opacity: 0; filter: blur(8px); }
+  to { opacity: 1; filter: blur(0); }
+}
+
+@keyframes cf-tracking-in {
+  from { opacity: 0; letter-spacing: 0.4em; }
+  to { opacity: 1; letter-spacing: 0; }
+}
+
+@keyframes cf-skew-in {
+  from { opacity: 0; transform: translate3d(0, 20px, 0) skewX(-8deg); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) skewX(0); }
+}
+
+@keyframes cf-focus-in {
+  from { opacity: 0; filter: blur(12px); transform: scale(1.06); }
+  to { opacity: 1; filter: blur(0); transform: scale(1); }
+}
+
+@keyframes cf-type-in {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cf-animated {
+    animation: none;
+  }
+}

@@ -1,4 +1,11 @@
+import { useDocumentMeta } from "../hooks/useDocumentMeta";
+
 export function NotFoundPage() {
+  useDocumentMeta(
+    "Page not found - cssframes",
+    "This page does not exist. The link may be old, or the animation slug is wrong.",
+  );
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-background px-6 text-center text-text">
       <p className="mono-label">404</p>

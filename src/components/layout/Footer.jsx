@@ -1,4 +1,4 @@
-import { REPO_URL, X_URL } from "../data/site";
+import { REPO_URL, X_URL } from "../../data/site";
 
 export function Footer() {
   return (

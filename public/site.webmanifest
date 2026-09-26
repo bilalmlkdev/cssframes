@@ -1,0 +1,16 @@
+{
+  "name": "cssframes",
+  "short_name": "cssframes",
+  "description": "45 pure CSS keyframe animations you can preview, copy, and paste.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

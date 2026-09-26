@@ -1,6 +1,9 @@
-import { CodeBlock } from "../../components/CodeBlock";
-import { useCopy } from "../../lib/useCopy";
-import { REPO_CLONE, REPO_URL } from "../../data/site";
+import { CodeBlock } from "../../components/ui/CodeBlock";
+import { useCopy } from "../../hooks/useCopy";
+import { useDocumentMeta } from "../../hooks/useDocumentMeta";
+import { DocsArticle } from "../../components/layout/DocsArticle";
+import { Pager } from "../../components/layout/Pager";
+import { CSS_URL, REPO_CLONE, REPO_URL } from "../../data/site";
 
 const linkSnippet = `<link rel="stylesheet" href="cssframes.css" />`;
 
@@ -24,9 +27,13 @@ const prerequisites = [
 
 export function InstallationPage() {
   const { copiedKey, doCopy } = useCopy();
+  useDocumentMeta(
+    "Installation - cssframes",
+    "Install cssframes: add the stylesheet, two classes, and run the docs locally.",
+  );
 
   return (
-    <article className="max-w-3xl ml-45 px-5 py-15 sm:px-8">
+    <DocsArticle>
       <h1 className="text-[24px] font-medium tracking-tight">
         Installation
       </h1>
@@ -67,6 +74,16 @@ export function InstallationPage() {
           onCopy={() => doCopy(linkSnippet, "link")}
         />
       </div>
+      <a
+        href={CSS_URL}
+        target="_blank"
+        rel="noreferrer"
+        className="mt-4 inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2.5 text-sm font-medium transition-colors hover:bg-surface-2"
+      >
+        <Download size={14} />
+        Download cssframes.css
+      </a>
+
       {/* Usage */}
       <h2 className="mt-12 text-2xl font-medium tracking-tight">Usage</h2>
       <p className="mt-4 text-base leading-relaxed">
@@ -167,20 +184,10 @@ export function InstallationPage() {
         Open on GitHub
       </a>
 
-      <div className="mt-14 flex justify-between">
-        <a
-          href="#/introduction"
-          className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 shadow-xs text-sm transition-colors hover:bg-surface-2"
-        >
-          &lt; Introduction
-        </a>
-        <a
-          href={`#/animations/fade-in`}
-          className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 shadow-xs text-sm transition-colors hover:bg-surface-2"
-        >
-          Animations &gt;
-        </a>
-      </div>
-    </article>
+      <Pager
+        prev={{ href: "#/introduction", label: "Introduction" }}
+        next={{ href: "#/animations/fade-in", label: "Animations" }}
+      />
+    </DocsArticle>
   );
 }

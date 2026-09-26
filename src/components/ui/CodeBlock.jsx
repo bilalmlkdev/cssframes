@@ -1,7 +1,7 @@
 import { Check, Copy } from "lucide-react";
 import { Highlight, themes } from "prism-react-renderer";
-import { useDarkMode } from "../lib/useDarkMode";
-import "../lib/prismLanguages";
+import { useDarkMode } from "../../hooks/useDarkMode";
+import "../../lib/prismLanguages";
 
 export function HighlightedPre({ code, lang = "jsx", maxH }) {
   const dark = useDarkMode();
@@ -38,6 +38,7 @@ export function CodeBlock({ code, lang, copied, onCopy, maxH }) {
         <button
           type="button"
           onClick={onCopy}
+          aria-label={copied ? "Copied to clipboard" : "Copy code"}
           className="flex items-center text-[11px] text-code-text/80 "
         >
           {copied ? (
@@ -50,6 +51,9 @@ export function CodeBlock({ code, lang, copied, onCopy, maxH }) {
             </>
           )}
         </button>
+        <span role="status" className="sr-only">
+          {copied ? "Copied to clipboard" : ""}
+        </span>
       </span>
     </div>
   );

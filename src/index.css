@@ -18,6 +18,7 @@
   --accent-fg: #ffffff;
   --code-bg: #f4f4f5;
   --code-text: #18181b;
+  color-scheme: light;
 }
 
 .dark {
@@ -31,6 +32,7 @@
   --accent-fg: #000000;
   --code-bg: #09090b;
   --code-text: #d4d4d8;
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -74,6 +76,25 @@
   * {
     scrollbar-width: thin;
     scrollbar-color: var(--border) transparent;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--text-muted);
+    outline-offset: 2px;
+  }
+
+  /* Site UI motion respects reduced motion. The library previews keep
+     running: they are the documentation content itself. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *:not(.cf-animated) {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
   }
 }
 

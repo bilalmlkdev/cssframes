@@ -2,7 +2,8 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { animations, findAnimation } from "./data/animations";
 import { buildCss } from "./lib/css";
 import { ErrorBoundary } from "./components/error/ErrorBoundary";
-import { DocsLayout } from "./components/DocsLayout";
+import { SkipLink } from "./components/ui/SkipLink";
+import { DocsLayout } from "./components/layout/DocsLayout";
 import { HomePage } from "./pages/HomePage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { IntroductionPage } from "./pages/docs/IntroductionPage";
@@ -10,7 +11,7 @@ import { InstallationPage } from "./pages/docs/InstallationPage";
 import { AnimationPage } from "./pages/docs/AnimationPage";
 
 // Hash router: #/ home, #/introduction, #/installation, #/animations/:slug.
-// Plain in-page anchors (#top, #library) stay on the home view.
+// Plain in-page anchors like #top stay on the home view.
 function parseRoute() {
   const hash = window.location.hash.replace(/^#/, "");
   if (!hash.startsWith("/")) return { view: "home" };
@@ -77,7 +78,7 @@ export default function App() {
     } else if (route.view === "installation") {
       page = <InstallationPage />;
     } else {
-      page = <AnimationPage slug={route.slug} />;
+      page = <AnimationPage key={route.slug} slug={route.slug} />;
     }
     view = (
       <DocsLayout
@@ -93,6 +94,7 @@ export default function App() {
   return (
     <ErrorBoundary>
       <div className="min-h-screen bg-background text-text">
+        <SkipLink />
         <style>{css}</style>
         {view}
       </div>

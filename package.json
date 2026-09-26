@@ -2,9 +2,21 @@
   "name": "cssframes",
   "private": true,
   "version": "1.0.0",
+  "description": "45 pure CSS keyframe animations you can preview, copy, and paste. No JavaScript, no dependencies.",
+  "keywords": [
+    "css",
+    "css-animations",
+    "keyframes",
+    "animation-library",
+    "pure-css"
+  ],
   "type": "module",
   "author": "Bilal Malik (bilalmlkdev)",
   "license": "MIT",
+  "homepage": "https://cssframes.vercel.app",
+  "bugs": {
+    "url": "https://github.com/bilalmlkdev/cssframes/issues"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/bilalmlkdev/cssframes.git"
@@ -12,7 +24,12 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "css": "node scripts/build-css.mjs",
+    "prebuild": "node scripts/build-css.mjs",
     "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "node --test \"test/*.test.js\"",
     "preview": "vite preview"
   },
   "dependencies": {

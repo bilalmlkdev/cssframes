@@ -1,5 +1,5 @@
 import { Plus } from "lucide-react";
-import { FAQS } from "../data/faqs";
+import { FAQS } from "../../data/faqs";
 
 export function FaqSection() {
   return (

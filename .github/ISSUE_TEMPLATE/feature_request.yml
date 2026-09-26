@@ -1,0 +1,30 @@
+name: Feature request
+description: Suggest a new animation, docs improvement, or site feature
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of request is this?
+      options:
+        - New animation
+        - Docs improvement
+        - Site feature
+        - Build or tooling
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: detail
+    attributes:
+      label: Describe it
+      description: What should exist that does not exist today?
+      placeholder: A new entrance animation that scales up while fading in.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why would this help?
+      placeholder: The use case or problem this solves.

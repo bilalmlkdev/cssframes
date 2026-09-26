@@ -1,6 +1,6 @@
 import { GithubIcon } from "./GithubIcon";
-import { useStars } from "../lib/useStars";
-import { formatStars } from "../utils/format";
+import { useStars } from "../../hooks/useStars";
+import { formatStars } from "../../utils/format";
 
 export function GitHubStarsLink({ repo, className = "" }) {
   const stars = useStars(repo);

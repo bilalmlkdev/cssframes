@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { RefreshCw } from "lucide-react";
 import {
   animations,
   findAnimation,
 } from "../../data/animations";
 import { animCss } from "../../lib/css";
-import { CodeBlock } from "../../components/CodeBlock";
-import { useCopy } from "../../lib/useCopy";
+import { CodeBlock } from "../../components/ui/CodeBlock";
+import { useCopy } from "../../hooks/useCopy";
+import { useDocumentMeta } from "../../hooks/useDocumentMeta";
+import { DocsArticle } from "../../components/layout/DocsArticle";
+import { Pager } from "../../components/layout/Pager";
 
 const OBJECTS = ["box", "circle", "text", "button"];
 
@@ -32,16 +35,6 @@ function Preview({ anim }) {
   const [duration, setDuration] = useState(anim.duration);
   const [infinite, setInfinite] = useState(Boolean(anim.iteration));
   const [replay, setReplay] = useState(0);
-  const [animKey, setAnimKey] = useState(anim.slug);
-
-  if (animKey !== anim.slug) {
-    setAnimKey(anim.slug);
-    setObject("text");
-    setDuration(anim.duration);
-    setInfinite(Boolean(anim.iteration));
-    setReplay((r) => r + 1);
-  }
-
   return (
     <div>
       <div className="flex min-h-[340px] items-center justify-center rounded-xl border border-border bg-surface px-6 sm:px-8">
@@ -116,16 +109,10 @@ export function AnimationPage({ slug }) {
   const anim = findAnimation(slug);
   const [tab, setTab] = useState("preview");
   const { copiedKey, doCopy } = useCopy();
-  const [activeSlug, setActiveSlug] = useState(anim.slug);
-
-  if (activeSlug !== anim.slug) {
-    setActiveSlug(anim.slug);
-    setTab("preview");
-  }
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [anim.slug]);
+  useDocumentMeta(
+    `${anim.name} animation - cssframes`,
+    `${anim.desc} Preview it live and copy the CSS for ${anim.name}.`,
+  );
 
   const index = animations.findIndex((a) => a.slug === anim.slug);
   const prev = index > 0 ? animations[index - 1] : null;
@@ -140,7 +127,7 @@ export function AnimationPage({ slug }) {
 }`;
 
   return (
-    <article className="max-w-3xl ml-45 px-5 py-15 sm:px-8">
+    <DocsArticle>
       <h1 className="text-[24px] font-medium tracking-tight">
         {anim.name}
       </h1>
@@ -222,19 +209,20 @@ export function AnimationPage({ slug }) {
       </h2>
       <p className="mt-4 font-medium">Properties</p>
       <div className="mt-3 overflow-x-auto rounded-lg border border-border">
-        <table className="w-full border-collapse text-left text-sm">
+        <table
+        aria-label="Animation API properties" className="w-full border-collapse text-left text-sm">
           <thead>
             <tr className="bg-surface-2">
-              <th className="border-b border-border px-4 py-2.5 font-medium">
+              <th scope="col" className="border-b border-border px-4 py-2.5 font-medium">
                 Property
               </th>
-              <th className="border-b border-border px-4 py-2.5 font-medium">
+              <th scope="col" className="border-b border-border px-4 py-2.5 font-medium">
                 Type
               </th>
-              <th className="border-b border-border px-4 py-2.5 font-medium">
+              <th scope="col" className="border-b border-border px-4 py-2.5 font-medium">
                 Default
               </th>
-              <th className="border-b border-border px-4 py-2.5 font-medium">
+              <th scope="col" className="border-b border-border px-4 py-2.5 font-medium">
                 Description
               </th>
             </tr>
@@ -285,31 +273,14 @@ export function AnimationPage({ slug }) {
       </div>
 
       {/* Prev / Next */}
-      <div className="mt-14 flex items-center justify-between gap-4">
-        {prev ? (
-          <a
-            href={`#/animations/${prev.slug}`}
-            className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 shadow-xs text-sm transition-colors hover:bg-surface-2"
-          >
-            &lt; {prev.name}
-          </a>
-        ) : (
-          <a
-            href="#/installation"
-            className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 shadow-xs text-sm transition-colors hover:bg-surface-2"
-          >
-            &lt; Installation
-          </a>
-        )}
-        {next && (
-          <a
-            href={`#/animations/${next.slug}`}
-            className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 shadow-xs text-sm transition-colors hover:bg-surface-2"
-          >
-            {next.name} &gt;
-          </a>
-        )}
-      </div>
-    </article>
+      <Pager
+        prev={
+          prev
+            ? { href: `#/animations/${prev.slug}`, label: prev.name }
+            : { href: "#/installation", label: "Installation" }
+        }
+        next={next ? { href: `#/animations/${next.slug}`, label: next.name } : null}
+      />
+    </DocsArticle>
   );
 }

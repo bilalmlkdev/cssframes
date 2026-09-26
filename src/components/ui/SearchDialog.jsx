@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Search } from "lucide-react";
-import { animations, categories } from "../data/animations";
-import { GET_STARTED } from "../data/site";
+import { animations, categories } from "../../data/animations";
+import { GET_STARTED } from "../../data/site";
 
 function buildItems() {
   const pages = GET_STARTED.map((p) => ({
@@ -20,18 +20,17 @@ function buildItems() {
   return [...pages, ...anims];
 }
 
-export function SearchDialog({ open, onClose }) {
+function goTo(href) {
+  window.location.hash = href;
+}
+
+// Mounted by the parent only while open, so state resets on every open.
+export function SearchDialog({ onClose }) {
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState(0);
-  const [openKey, setOpenKey] = useState(open);
+  const dialogRef = useRef(null);
   const inputRef = useRef(null);
   const items = useMemo(() => buildItems(), []);
-
-  if (openKey !== open) {
-    setOpenKey(open);
-    setQuery("");
-    setSelected(0);
-  }
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -45,13 +44,20 @@ export function SearchDialog({ open, onClose }) {
   }, [items, query]);
 
   useEffect(() => {
-    if (open) inputRef.current?.focus();
-  }, [open]);
-
-  if (!open) return null;
+    const previouslyFocused = document.activeElement;
+    inputRef.current?.focus();
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      if (previouslyFocused instanceof HTMLElement) {
+        previouslyFocused.focus();
+      }
+    };
+  }, []);
 
   const choose = (item) => {
-    window.location.hash = item.href;
+    goTo(item.href);
     onClose();
   };
 
@@ -67,28 +73,62 @@ export function SearchDialog({ open, onClose }) {
     } else if (e.key === "Enter" && results[selected]) {
       e.preventDefault();
       choose(results[selected]);
+    } else if (e.key === "Tab") {
+      // Simple focus trap: keep Tab inside the dialog.
+      const focusables = dialogRef.current?.querySelectorAll(
+        'input, button, [href], [tabindex]:not([tabindex="-1"])',
+      );
+      if (!focusables || focusables.length === 0) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
     }
   };
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center px-4 pt-[12vh]">
-      <div
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+      <button
+        type="button"
+        aria-label="Close search"
         onClick={onClose}
-        aria-hidden="true"
+        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
       />
-      <div className="relative w-full max-w-lg overflow-hidden rounded-xl bg-surface shadow-2xl">
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Search animations and pages"
+        onKeyDown={onKeyDown}
+        className="relative w-full max-w-lg overflow-hidden rounded-xl bg-surface shadow-2xl"
+      >
         <div className="flex items-center gap-2 border-b border-border px-4">
-          <Search size={15} className="shrink-0 text-muted" />
+          <Search
+            size={15}
+            className="shrink-0 text-muted"
+            aria-hidden="true"
+          />
           <input
             ref={inputRef}
             type="text"
+            role="combobox"
+            aria-expanded="true"
+            aria-controls="search-results"
+            aria-autocomplete="list"
+            aria-activedescendant={
+              results[selected] ? `search-option-${selected}` : undefined
+            }
+            aria-label="Search animations and pages"
             value={query}
             onChange={(e) => {
               setQuery(e.target.value);
               setSelected(0);
             }}
-            onKeyDown={onKeyDown}
             placeholder="Search animations and pages..."
             className="w-full bg-transparent py-3.5 text-sm outline-none placeholder:text-muted"
           />
@@ -97,7 +137,12 @@ export function SearchDialog({ open, onClose }) {
           </kbd>
         </div>
 
-        <div className="max-h-[50vh] overflow-y-auto p-2">
+        <div
+          id="search-results"
+          role="listbox"
+          aria-label="Search results"
+          className="max-h-[50vh] overflow-y-auto p-2"
+        >
           {results.length === 0 ? (
             <p className="px-3 py-6 text-center text-sm text-muted">
               No results for &quot;{query}&quot;.
@@ -106,7 +151,10 @@ export function SearchDialog({ open, onClose }) {
             results.map((item, i) => (
               <button
                 key={item.href}
+                id={`search-option-${i}`}
                 type="button"
+                role="option"
+                aria-selected={i === selected}
                 onClick={() => choose(item)}
                 onMouseEnter={() => setSelected(i)}
                 className={`flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-left transition-colors ${
