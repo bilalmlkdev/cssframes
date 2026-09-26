@@ -57,11 +57,8 @@ export function Navbar({ theme, onToggleTheme }) {
 
       <div className="flex items-center gap-4 sm:gap-5">
         <nav className="hidden items-center gap-5 text-sm md:flex">
-          <a href="#library" className="transition-colors hover:text-muted">
+          <a href="#/animations" className="transition-colors hover:text-muted">
             Animations
-          </a>
-          <a href="#usage" className="transition-colors hover:text-muted">
-            How to use
           </a>
         </nav>
 
@@ -86,7 +83,7 @@ export function Navbar({ theme, onToggleTheme }) {
         </button>
 
         <a
-          href="#usage"
+          href="#library"
           className="rounded-lg bg-text px-3 py-1.5 text-sm font-medium text-background transition-opacity hover:opacity-80"
         >
           Get started

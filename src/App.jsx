@@ -1,10 +1,18 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { animations, buildCss } from "./lib/animations";
 import { Navbar } from "./components/Navbar";
 import { Hero } from "./components/Hero";
 import { LibrarySection } from "./components/LibrarySection";
-import { UsageSection } from "./components/UsageSection";
 import { Footer } from "./components/Footer";
+import { DocsPage } from "./components/DocsPage";
+
+function parseRoute() {
+  const hash = window.location.hash.replace(/^#/, "");
+  const match = hash.match(/^\/animations\/(.+)$/);
+  if (match) return { view: "docs", slug: decodeURIComponent(match[1]) };
+  if (hash === "/animations") return { view: "docs", slug: null };
+  return { view: "home" };
+}
 
 export default function App() {
   const [theme, setTheme] = useState(() =>
@@ -14,6 +22,13 @@ export default function App() {
   // The full library stylesheet: injected once for the site and reused
   // by every copy button, so the page and the copied code never drift.
   const css = useMemo(() => buildCss(animations), []);
+  const [route, setRoute] = useState(parseRoute);
+
+  useEffect(() => {
+    const onHash = () => setRoute(parseRoute());
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
+  }, []);
 
   const toggleTheme = useCallback(() => {
     setTheme((prev) => {
@@ -28,6 +43,19 @@ export default function App() {
     });
   }, []);
 
+  if (route.view === "docs") {
+    return (
+      <div className="min-h-screen bg-background text-text">
+        <style>{css}</style>
+        <DocsPage
+          slug={route.slug}
+          theme={theme}
+          onToggleTheme={toggleTheme}
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-background text-text">
       <style>{css}</style>
@@ -36,7 +64,6 @@ export default function App() {
         <main className="flex flex-col">
           <Hero />
           <LibrarySection />
-          <UsageSection />
         </main>
         <Footer />
       </div>

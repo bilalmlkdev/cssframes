@@ -16,7 +16,7 @@ export function Hero() {
 
       <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
         <a
-          href="#library"
+          href="#/animations"
           className="flex items-center gap-2 rounded-lg bg-surface-2 px-4 py-2.5 text-sm font-medium transition-colors hover:bg-border"
         >
           Browse animations
