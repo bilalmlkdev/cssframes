@@ -1,12 +1,8 @@
-<div align="center">
-
-  <a href="https://cssframes.vercel.app/">
-    <img src="./src/assets/favicon/favicon.svg" alt="cssframes logo" width="90" height="90">
-  </a>
+<div align="left">
 
 # cssframes
 
-**45 pure CSS keyframe animations you can preview, copy, and paste.**
+**Pure CSS keyframe animations you can preview, copy, and paste.**
 No JavaScript runs your motion. No package to install. Free and open source.
 
 [![Live Demo](https://img.shields.io/badge/live_demo-visit_site-black?style=for-the-badge)](https://cssframes.vercel.app)
@@ -55,7 +51,7 @@ Tune it with CSS variables:
 
 ## Animations
 
-45 animations across 5 categories: Entrances, Exits, Attention, Loops, and Text. Browse them all at [cssframes.vercel.app](https://cssframes.vercel.app/#/animations).
+Entrances, Exits, Attention, Loops, and Text. Browse them all at [cssframes.vercel.app](https://cssframes.vercel.app/#/animations).
 
 ## Local development
 

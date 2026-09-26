@@ -3,6 +3,7 @@ import { animations, findAnimation } from "./data/animations";
 import { buildCss } from "./lib/css";
 import { ErrorBoundary } from "./components/error/ErrorBoundary";
 import { SkipLink } from "./components/ui/SkipLink";
+import { DocsLoader } from "./components/ui/DocsLoader";
 import { DocsLayout } from "./components/layout/DocsLayout";
 import { HomePage } from "./pages/HomePage";
 import { NotFoundPage } from "./pages/NotFoundPage";
@@ -41,11 +42,41 @@ export default function App() {
   const css = useMemo(() => buildCss(animations), []);
   const [route, setRoute] = useState(parseRoute);
 
+  // First time this session enters the docs from the site, play a short
+  // loader. Driven from the hashchange handler so it never sets state
+  // inside an effect.
+  const [docsLoader, setDocsLoader] = useState(false);
+
+  const maybeShowDocsLoader = useCallback((view) => {
+    const isDocs =
+      view === "introduction" ||
+      view === "installation" ||
+      view === "animation";
+    if (!isDocs) return;
+    try {
+      if (sessionStorage.getItem("cssframes-docs-seen") === "1") return;
+    } catch {
+      return;
+    }
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    try {
+      sessionStorage.setItem("cssframes-docs-seen", "1");
+    } catch {
+      /* storage unavailable */
+    }
+    setDocsLoader(true);
+    window.setTimeout(() => setDocsLoader(false), 1250);
+  }, []);
+
   useEffect(() => {
-    const onHash = () => setRoute(parseRoute());
+    const onHash = () => {
+      const next = parseRoute();
+      setRoute(next);
+      maybeShowDocsLoader(next.view);
+    };
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
-  }, []);
+  }, [maybeShowDocsLoader]);
 
   useEffect(() => {
     if (window.location.hash.startsWith("#/")) {
@@ -95,6 +126,7 @@ export default function App() {
     <ErrorBoundary>
       <div className="min-h-screen bg-background text-text">
         <SkipLink />
+        {docsLoader && <DocsLoader />}
         <style>{css}</style>
         {view}
       </div>

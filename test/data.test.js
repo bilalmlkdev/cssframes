@@ -4,9 +4,9 @@ import { animations, categories, findAnimation } from "../src/data/animations.js
 import { FAQS } from "../src/data/faqs.js";
 import { GET_STARTED, REPO } from "../src/data/site.js";
 
-test("45 animations across 5 categories", () => {
-  assert.equal(animations.length, 45);
-  assert.equal(categories.length, 5);
+test("animations and categories are present", () => {
+  assert.ok(animations.length > 0);
+  assert.ok(categories.length > 0);
 });
 
 test("every animation has required fields and a valid category", () => {

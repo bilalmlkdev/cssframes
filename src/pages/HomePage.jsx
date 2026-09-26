@@ -8,11 +8,11 @@ import { useDocumentMeta } from "../hooks/useDocumentMeta";
 export function HomePage({ onToggleTheme }) {
   useDocumentMeta(
     "cssframes - Open-source CSS animation library",
-    "45 pure CSS keyframe animations you can preview, copy, and paste into any project. No JavaScript, no dependencies, free and open source.",
+    "Pure CSS keyframe animations you can preview, copy, and paste into any project. No JavaScript, no dependencies, free and open source.",
   );
 
   return (
-    <div className="mx-auto w-full max-w-[1440px]">
+    <div className="mx-auto w-full max-w-[1220px]">
       <Navbar onToggleTheme={onToggleTheme} />
       <main id="main" className="flex flex-col">
         <Hero />

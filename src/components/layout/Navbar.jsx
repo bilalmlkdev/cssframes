@@ -52,7 +52,6 @@ export function Navbar({ onToggleTheme }) {
       </nav>
 
       <div className="flex items-center gap-3">
-        <div className="h-4 w-0.5 bg-[var(--border)]" aria-hidden="true" />
         <GitHubStarsLink repo={REPO} className="text-sm" />
         <ThemeToggle onToggle={onToggleTheme} className="h-8 w-8" />
         <a

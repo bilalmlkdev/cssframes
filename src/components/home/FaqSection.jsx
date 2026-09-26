@@ -3,10 +3,9 @@ import { FAQS } from "../../data/faqs";
 
 export function FaqSection() {
   return (
-    <section className="px-5 pb-20 sm:px-8">
-      <div className="mx-auto max-w-5xl">
+    <section className="px-5 pb-20 pt-8 sm:px-12 max-w-[900px]">
         <div className="flex flex-wrap items-end justify-between gap-3 pb-2">
-          <h2 className="text-lg font-medium uppercase tracking-wide">FAQ</h2>
+          <h2 className="font-heading text-lg font-medium uppercase tracking-wide">FAQ</h2>
         </div>
 
         <div className="mt-4 border-t border-border">
@@ -25,7 +24,6 @@ export function FaqSection() {
             </details>
           ))}
         </div>
-      </div>
     </section>
   );
 }

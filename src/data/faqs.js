@@ -1,7 +1,7 @@
 export const FAQS = [
   {
     q: "What is cssframes?",
-    a: "An open-source library of pure CSS keyframe animations. Forty-five animations in five categories, shipped as one stylesheet you can copy and paste.",
+    a: "An open-source library of pure CSS keyframe animations, shipped as one stylesheet you can copy and paste.",
   },
   {
     q: "Do I need JavaScript to use it?",

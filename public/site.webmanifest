@@ -1,7 +1,7 @@
 {
   "name": "cssframes",
   "short_name": "cssframes",
-  "description": "45 pure CSS keyframe animations you can preview, copy, and paste.",
+  "description": "Pure CSS keyframe animations you can preview, copy, and paste.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

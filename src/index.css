@@ -2,6 +2,22 @@
 
 @import "tailwindcss";
 
+@font-face {
+  font-family: "PP Editorial New";
+  src: url("/fonts/PPEditorialNew-Regular-BF644b214ff145f.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Editorial New";
+  src: url("/fonts/PPEditorialNew-Ultralight-BF644b21500d0c0.otf") format("opentype");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
 
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -55,6 +71,7 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Inter", ui-monospace, SFMono-Regular, monospace;
+  --font-heading: "PP Editorial New", Georgia, serif;
 }
 
 @layer base {
@@ -120,4 +137,33 @@
 }
 .scrollbar-hidden::-webkit-scrollbar {
   display: none;
+}
+
+/* First-time docs entry loader */
+@keyframes docs-loader-fade {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  78% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.docs-loader {
+  animation: docs-loader-fade 1.2s ease forwards;
+}
+
+@keyframes loader-slide {
+  from {
+    transform: translateX(-120%);
+  }
+  to {
+    transform: translateX(340%);
+  }
 }
