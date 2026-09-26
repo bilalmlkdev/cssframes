@@ -34,9 +34,9 @@ export function AnimationCard({ anim, onOpen }) {
       }}
       onMouseEnter={handleEnter}
       onMouseLeave={() => setHovering(false)}
-      className="group relative z-0 flex h-full cursor-pointer flex-col bg-background p-4 transition-all duration-200 hover:z-10 hover:translate-x-1 hover:-translate-y-1 hover:rounded-xl hover:shadow-[0_0_0_1px_var(--text)]"
+      className="group relative flex h-full cursor-pointer flex-col rounded-3xl bg-surface p-5 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_6px_16px_-6px_rgba(0,0,0,0.08)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_2px_4px_rgba(0,0,0,0.06),0_16px_32px_-12px_rgba(0,0,0,0.14)]"
     >
-      <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden bg-surface p-4">
+      <div className="relative flex h-48 items-center justify-center overflow-hidden rounded-xl bg-surface-2 p-4 sm:h-52">
         <div
           key={nonce}
           className={`max-w-full text-center font-serif text-2xl leading-snug ${hovering ? `cf-animated cf-${anim.slug}` : ""}`}
@@ -65,9 +65,9 @@ export function AnimationCard({ anim, onOpen }) {
         </button>
       </div>
 
-      <h3 className="mt-4 font-serif text-2xl leading-tight">{anim.name}</h3>
-      <p className="mt-1 text-sm italic text-muted">{categoryLabel}</p>
-      <p className="mt-3 text-sm leading-relaxed text-muted">{anim.desc}</p>
+      <h3 className="mt-4 text-base font-medium">{anim.name}</h3>
+      <p className="mt-1 text-sm text-muted">{categoryLabel}</p>
+      <p className="mt-2 text-sm leading-relaxed text-muted">{anim.desc}</p>
     </article>
   );
 }
