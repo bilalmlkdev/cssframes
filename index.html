@@ -21,7 +21,7 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href="https://cssframes.vercel.app/" />
     <link rel="manifest" href="/site.webmanifest" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#ffffff" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -61,10 +61,7 @@
       // Apply the saved theme before first paint so there is no flash.
       try {
         var t = localStorage.getItem("cssframes-theme");
-        if (
-          t === "dark" ||
-          (!t && window.matchMedia("(prefers-color-scheme: dark)").matches)
-        ) {
+        if (t === "dark") {
           document.documentElement.classList.add("dark");
         }
       } catch (e) {
