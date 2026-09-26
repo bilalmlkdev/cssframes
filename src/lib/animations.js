@@ -16,6 +16,7 @@ export const animations = [
   {
     slug: "fade-in",
     name: "Fade In",
+    desc: "Reveals an element by fading it smoothly from transparent to fully visible.",
     category: "entrances",
     duration: 500,
     keyframes: `@keyframes cf-fade-in {
@@ -26,6 +27,7 @@ export const animations = [
   {
     slug: "fade-in-up",
     name: "Fade In Up",
+    desc: "Fades an element in while rising from slightly below, a classic content reveal.",
     category: "entrances",
     duration: 600,
     keyframes: `@keyframes cf-fade-in-up {
@@ -36,6 +38,7 @@ export const animations = [
   {
     slug: "fade-in-down",
     name: "Fade In Down",
+    desc: "Fades an element in as it settles down from above into place.",
     category: "entrances",
     duration: 600,
     keyframes: `@keyframes cf-fade-in-down {
@@ -46,6 +49,7 @@ export const animations = [
   {
     slug: "fade-in-left",
     name: "Fade In Left",
+    desc: "Slides an element in from the left edge while fading it into view.",
     category: "entrances",
     duration: 600,
     keyframes: `@keyframes cf-fade-in-left {
@@ -56,6 +60,7 @@ export const animations = [
   {
     slug: "fade-in-right",
     name: "Fade In Right",
+    desc: "Slides an element in from the right edge while fading it into view.",
     category: "entrances",
     duration: 600,
     keyframes: `@keyframes cf-fade-in-right {
@@ -66,6 +71,7 @@ export const animations = [
   {
     slug: "zoom-in",
     name: "Zoom In",
+    desc: "Scales an element up gently from smaller as it fades into place.",
     category: "entrances",
     duration: 500,
     keyframes: `@keyframes cf-zoom-in {
@@ -76,6 +82,7 @@ export const animations = [
   {
     slug: "zoom-bounce",
     name: "Zoom Bounce",
+    desc: "Pops an element in with a playful overshoot before it settles.",
     category: "entrances",
     duration: 700,
     timing: "ease-out",
@@ -89,6 +96,7 @@ export const animations = [
   {
     slug: "slide-in-up",
     name: "Slide In Up",
+    desc: "Pushes an element up from below the viewport edge, without fading.",
     category: "entrances",
     duration: 600,
     timing: "cubic-bezier(0.22, 1, 0.36, 1)",
@@ -100,6 +108,7 @@ export const animations = [
   {
     slug: "slide-in-down",
     name: "Slide In Down",
+    desc: "Drops an element down from above into its position, without fading.",
     category: "entrances",
     duration: 600,
     timing: "cubic-bezier(0.22, 1, 0.36, 1)",
@@ -111,6 +120,7 @@ export const animations = [
   {
     slug: "slide-in-left",
     name: "Slide In Left",
+    desc: "Moves an element in from the left with a smooth decelerating curve.",
     category: "entrances",
     duration: 600,
     timing: "cubic-bezier(0.22, 1, 0.36, 1)",
@@ -122,6 +132,7 @@ export const animations = [
   {
     slug: "slide-in-right",
     name: "Slide In Right",
+    desc: "Moves an element in from the right with a smooth decelerating curve.",
     category: "entrances",
     duration: 600,
     timing: "cubic-bezier(0.22, 1, 0.36, 1)",
@@ -133,6 +144,7 @@ export const animations = [
   {
     slug: "flip-in-x",
     name: "Flip In X",
+    desc: "Rotates an element into view around its horizontal axis.",
     category: "entrances",
     duration: 700,
     timing: "ease-out",
@@ -144,6 +156,7 @@ export const animations = [
   {
     slug: "flip-in-y",
     name: "Flip In Y",
+    desc: "Rotates an element into view around its vertical axis.",
     category: "entrances",
     duration: 700,
     timing: "ease-out",
@@ -155,6 +168,7 @@ export const animations = [
   {
     slug: "rise-in",
     name: "Rise In",
+    desc: "A subtle entrance that lifts an element a short distance as it appears.",
     category: "entrances",
     duration: 600,
     keyframes: `@keyframes cf-rise-in {
@@ -167,6 +181,7 @@ export const animations = [
   {
     slug: "fade-out",
     name: "Fade Out",
+    desc: "Removes an element by fading it smoothly to full transparency.",
     category: "exits",
     duration: 500,
     keyframes: `@keyframes cf-fade-out {
@@ -177,6 +192,7 @@ export const animations = [
   {
     slug: "fade-out-up",
     name: "Fade Out Up",
+    desc: "Fades an element away as it drifts upward out of view.",
     category: "exits",
     duration: 500,
     keyframes: `@keyframes cf-fade-out-up {
@@ -187,6 +203,7 @@ export const animations = [
   {
     slug: "fade-out-down",
     name: "Fade Out Down",
+    desc: "Fades an element away as it sinks downward out of view.",
     category: "exits",
     duration: 500,
     keyframes: `@keyframes cf-fade-out-down {
@@ -197,6 +214,7 @@ export const animations = [
   {
     slug: "zoom-out",
     name: "Zoom Out",
+    desc: "Shrinks an element slightly as it fades away.",
     category: "exits",
     duration: 500,
     keyframes: `@keyframes cf-zoom-out {
@@ -207,6 +225,7 @@ export const animations = [
   {
     slug: "slide-out-down",
     name: "Slide Out Down",
+    desc: "Pushes an element down past the bottom edge as it leaves.",
     category: "exits",
     duration: 600,
     timing: "cubic-bezier(0.22, 1, 0.36, 1)",
@@ -218,6 +237,7 @@ export const animations = [
   {
     slug: "slide-out-up",
     name: "Slide Out Up",
+    desc: "Pushes an element up past the top edge as it leaves.",
     category: "exits",
     duration: 600,
     timing: "cubic-bezier(0.22, 1, 0.36, 1)",
@@ -229,6 +249,7 @@ export const animations = [
   {
     slug: "flip-out-x",
     name: "Flip Out X",
+    desc: "Rotates an element away around its horizontal axis as it disappears.",
     category: "exits",
     duration: 700,
     timing: "ease-in",
@@ -240,6 +261,7 @@ export const animations = [
   {
     slug: "blur-out",
     name: "Blur Out",
+    desc: "Softens an element out of focus as it fades away.",
     category: "exits",
     duration: 500,
     keyframes: `@keyframes cf-blur-out {
@@ -250,6 +272,7 @@ export const animations = [
   {
     slug: "collapse-out",
     name: "Collapse Out",
+    desc: "Contracts an element inward as it quickly fades out.",
     category: "exits",
     duration: 450,
     keyframes: `@keyframes cf-collapse-out {
@@ -262,6 +285,7 @@ export const animations = [
   {
     slug: "bounce",
     name: "Bounce",
+    desc: "A vertical bounce that pulls attention to buttons, badges, and alerts.",
     category: "attention",
     duration: 900,
     timing: "ease-out",
@@ -275,6 +299,7 @@ export const animations = [
   {
     slug: "flash",
     name: "Flash",
+    desc: "Alternates opacity quickly to flash an element like a warning light.",
     category: "attention",
     duration: 700,
     keyframes: `@keyframes cf-flash {
@@ -285,6 +310,7 @@ export const animations = [
   {
     slug: "pulse",
     name: "Pulse",
+    desc: "A gentle scale pulse that highlights a single important element.",
     category: "attention",
     duration: 900,
     keyframes: `@keyframes cf-pulse {
@@ -295,6 +321,7 @@ export const animations = [
   {
     slug: "shake",
     name: "Shake",
+    desc: "Vibrates an element side to side, the classic invalid-input signal.",
     category: "attention",
     duration: 600,
     keyframes: `@keyframes cf-shake {
@@ -306,6 +333,7 @@ export const animations = [
   {
     slug: "swing",
     name: "Swing",
+    desc: "Swings an element from a top anchor like a hanging sign.",
     category: "attention",
     duration: 900,
     timing: "ease-in-out",
@@ -322,6 +350,7 @@ export const animations = [
   {
     slug: "tada",
     name: "Tada",
+    desc: "A celebratory wiggle with scale, perfect for success moments.",
     category: "attention",
     duration: 900,
     timing: "ease-in-out",
@@ -335,6 +364,7 @@ export const animations = [
   {
     slug: "wobble",
     name: "Wobble",
+    desc: "Sways an element side to side with a tipsy, playful motion.",
     category: "attention",
     duration: 900,
     timing: "ease-in-out",
@@ -351,6 +381,7 @@ export const animations = [
   {
     slug: "heartbeat",
     name: "Heartbeat",
+    desc: "A double scale pulse that mimics a beating heart.",
     category: "attention",
     duration: 1100,
     timing: "ease-in-out",
@@ -365,6 +396,7 @@ export const animations = [
   {
     slug: "rubber-band",
     name: "Rubber Band",
+    desc: "Stretches and squashes an element like a rubber band snapping back.",
     category: "attention",
     duration: 800,
     keyframes: `@keyframes cf-rubber-band {
@@ -381,6 +413,7 @@ export const animations = [
   {
     slug: "spin",
     name: "Spin",
+    desc: "Continuously rotates an element, ideal for loaders and spinners.",
     category: "loops",
     duration: 1400,
     iteration: "infinite",
@@ -393,6 +426,7 @@ export const animations = [
   {
     slug: "ping",
     name: "Ping",
+    desc: "Emits an expanding ripple from an element, like a notification ping.",
     category: "loops",
     duration: 1000,
     iteration: "infinite",
@@ -405,6 +439,7 @@ export const animations = [
   {
     slug: "bob",
     name: "Bob",
+    desc: "Bobs an element up and down on a steady loop for loading states.",
     category: "loops",
     duration: 900,
     iteration: "infinite",
@@ -417,6 +452,7 @@ export const animations = [
   {
     slug: "pulse-ring",
     name: "Pulse Ring",
+    desc: "Expands and fades a ring outward in an endless radar-like pulse.",
     category: "loops",
     duration: 1200,
     iteration: "infinite",
@@ -429,6 +465,7 @@ export const animations = [
   {
     slug: "hue-cycle",
     name: "Hue Cycle",
+    desc: "Cycles an element through every color of the wheel on a loop.",
     category: "loops",
     duration: 4000,
     iteration: "infinite",
@@ -441,6 +478,7 @@ export const animations = [
   {
     slug: "wiggle",
     name: "Wiggle",
+    desc: "Rocks an element back and forth with a small looping rotation.",
     category: "loops",
     duration: 700,
     iteration: "infinite",
@@ -454,6 +492,7 @@ export const animations = [
   {
     slug: "flicker",
     name: "Flicker",
+    desc: "Flickers an element like a neon sign or an unstable light source.",
     category: "loops",
     duration: 1600,
     iteration: "infinite",
@@ -466,6 +505,7 @@ export const animations = [
   {
     slug: "float",
     name: "Float",
+    desc: "Drifts an element gently up and down for a calm floating effect.",
     category: "loops",
     duration: 3000,
     iteration: "infinite",
@@ -480,6 +520,7 @@ export const animations = [
   {
     slug: "blur-in",
     name: "Blur In",
+    desc: "Brings text into focus from a soft blur, great for headings.",
     category: "text",
     duration: 700,
     keyframes: `@keyframes cf-blur-in {
@@ -490,6 +531,7 @@ export const animations = [
   {
     slug: "tracking-in",
     name: "Tracking In",
+    desc: "Expands letter spacing inward as the text fades into place.",
     category: "text",
     duration: 800,
     timing: "ease-out",
@@ -501,6 +543,7 @@ export const animations = [
   {
     slug: "skew-in",
     name: "Skew In",
+    desc: "Slants text into position with a quick skew and lift.",
     category: "text",
     duration: 600,
     keyframes: `@keyframes cf-skew-in {
@@ -511,6 +554,7 @@ export const animations = [
   {
     slug: "focus-in",
     name: "Focus In",
+    desc: "Sharpens oversized blurred text down to a crisp resting size.",
     category: "text",
     duration: 700,
     keyframes: `@keyframes cf-focus-in {
@@ -521,6 +565,7 @@ export const animations = [
   {
     slug: "type-in",
     name: "Type In",
+    desc: "Types text out character by character with a caret at the end.",
     category: "text",
     duration: 1400,
     timing: "steps(24, end)",

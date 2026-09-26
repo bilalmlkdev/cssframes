@@ -16,7 +16,7 @@ function CodeBlock({ code, copyKey, copiedKey, onCopy }) {
       >
         {copiedKey === copyKey ? (
           <>
-            <Check size={11} className="text-emerald-400" /> Copied
+            <Check size={11} /> Copied
           </>
         ) : (
           <>
@@ -29,9 +29,15 @@ function CodeBlock({ code, copyKey, copiedKey, onCopy }) {
 }
 
 const VARIABLES = [
-  { name: "--cf-duration", desc: "How long the animation runs. Defaults to each animation's own value." },
+  {
+    name: "--cf-duration",
+    desc: "How long the animation runs. Defaults to each animation's own value.",
+  },
   { name: "--cf-delay", desc: "Wait before the animation starts." },
-  { name: "--cf-iteration", desc: "How many times it runs. Use infinite for loops." },
+  {
+    name: "--cf-iteration",
+    desc: "How many times it runs. Use infinite for loops.",
+  },
 ];
 
 export function UsageSection() {
@@ -58,109 +64,108 @@ export function UsageSection() {
 }`;
 
   return (
-    <section id="usage" className="scroll-mt-16 border-t border-border py-14">
-      <p className="mono-label">How to use</p>
-      <h2 className="mt-1.5 text-2xl font-semibold tracking-tight">
-        Three steps, no build tools
-      </h2>
-
-      <div className="mt-8 grid gap-4 md:grid-cols-3">
-        <Step n={1} title="Add the stylesheet">
-          <p className="text-sm leading-relaxed text-muted">
-            Copy the whole library into a cssframes.css file, or paste it
-            into your existing stylesheet.
-          </p>
-          <button
-            type="button"
-            onClick={() => doCopy(buildCss(), "full")}
-            className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg bg-accent px-4 py-2.5 text-xs font-medium text-accent-fg transition-opacity hover:opacity-90"
-          >
-            {copiedKey === "full" ? (
-              <>
-                <Check size={12} /> Copied
-              </>
-            ) : (
-              <>
-                <Copy size={12} /> Copy full cssframes.css
-              </>
-            )}
-          </button>
-        </Step>
-
-        <Step n={2} title="Apply two classes">
-          <p className="text-sm leading-relaxed text-muted">
-            cf-animated turns the element on, the second class picks which
-            animation runs.
-          </p>
-          <div className="mt-3">
-            <CodeBlock
-              code={usageSnippet}
-              copyKey="usage"
-              copiedKey={copiedKey}
-              onCopy={doCopy}
-            />
-          </div>
-        </Step>
-
-        <Step n={3} title="Tune the variables">
-          <p className="text-sm leading-relaxed text-muted">
-            Set CSS variables globally, on a parent, or on the element
-            itself.
-          </p>
-          <div className="mt-3">
-            <CodeBlock
-              code={varsSnippet}
-              copyKey="vars"
-              copiedKey={copiedKey}
-              onCopy={doCopy}
-            />
-          </div>
-        </Step>
+    <section id="usage" className="grid grid-cols-12 gap-px bg-border">
+      <div className="col-span-12 bg-background p-4">
+        <h2 className="font-serif text-lg uppercase tracking-wide">How to use</h2>
+        <p className="mt-1 text-sm text-muted">
+          Three steps, no build tools.
+        </p>
       </div>
 
-      <div className="mt-6 grid gap-4 md:grid-cols-2">
-        <div className="rounded-xl border border-border bg-surface p-5">
-          <h3 className="text-sm font-semibold">Every variable</h3>
-          <dl className="mt-3 space-y-3">
-            {VARIABLES.map((v) => (
-              <div key={v.name}>
-                <dt className="font-mono text-xs text-accent">{v.name}</dt>
-                <dd className="mt-0.5 text-xs leading-relaxed text-muted">
-                  {v.desc}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </div>
+      <Step n={1} title="Add the stylesheet" className="md:col-span-4">
+        <p className="text-sm leading-relaxed text-muted">
+          Copy the whole library into a cssframes.css file, or paste it into
+          your existing stylesheet.
+        </p>
+        <button
+          type="button"
+          onClick={() => doCopy(buildCss(), "full")}
+          className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg bg-accent px-4 py-2.5 text-xs font-medium text-accent-fg transition-opacity hover:opacity-90"
+        >
+          {copiedKey === "full" ? (
+            <>
+              <Check size={12} /> Copied
+            </>
+          ) : (
+            <>
+              <Copy size={12} /> Copy full cssframes.css
+            </>
+          )}
+        </button>
+      </Step>
 
-        <div className="rounded-xl border border-border bg-surface p-5">
-          <h3 className="text-sm font-semibold">Respect reduced motion</h3>
-          <p className="mt-2 text-xs leading-relaxed text-muted">
-            Give users who ask for less motion an off switch. Drop this in
-            your stylesheet and the library stays still.
-          </p>
-          <div className="mt-3">
-            <CodeBlock
-              code={motionSnippet}
-              copyKey="motion"
-              copiedKey={copiedKey}
-              onCopy={doCopy}
-            />
-          </div>
+      <Step n={2} title="Apply two classes" className="md:col-span-4">
+        <p className="text-sm leading-relaxed text-muted">
+          cf-animated turns the element on, the second class picks which
+          animation runs.
+        </p>
+        <div className="mt-3">
+          <CodeBlock
+            code={usageSnippet}
+            copyKey="usage"
+            copiedKey={copiedKey}
+            onCopy={doCopy}
+          />
+        </div>
+      </Step>
+
+      <Step n={3} title="Tune the variables" className="md:col-span-4">
+        <p className="text-sm leading-relaxed text-muted">
+          Set CSS variables globally, on a parent, or on the element itself.
+        </p>
+        <div className="mt-3">
+          <CodeBlock
+            code={varsSnippet}
+            copyKey="vars"
+            copiedKey={copiedKey}
+            onCopy={doCopy}
+          />
+        </div>
+      </Step>
+
+      <div className="bg-background p-5 md:col-span-6">
+        <h3 className="font-serif text-lg">Every variable</h3>
+        <dl className="mt-3 space-y-3">
+          {VARIABLES.map((v) => (
+            <div key={v.name}>
+              <dt className="font-mono text-xs text-accent">{v.name}</dt>
+              <dd className="mt-0.5 text-xs leading-relaxed text-muted">
+                {v.desc}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+
+      <div className="bg-background p-5 md:col-span-6">
+        <h3 className="font-serif text-lg">Respect reduced motion</h3>
+        <p className="mt-2 text-xs leading-relaxed text-muted">
+          Give users who ask for less motion an off switch. Drop this in your
+          stylesheet and the library stays still.
+        </p>
+        <div className="mt-3">
+          <CodeBlock
+            code={motionSnippet}
+            copyKey="motion"
+            copiedKey={copiedKey}
+            onCopy={doCopy}
+          />
         </div>
       </div>
     </section>
   );
 }
 
-function Step({ n, title, children }) {
+function Step({ n, title, className = "", children }) {
   return (
-    <div className="rounded-xl border border-border bg-surface p-5">
+    <div className={`bg-background p-5 ${className}`}>
       <div className="flex items-center gap-2">
-        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-accent-soft text-xs font-semibold text-accent">
-          {n}
+        <span className="font-mono text-xs text-muted">
+          {String(n).padStart(2, "0")}
         </span>
-        <h3 className="text-sm font-semibold">{title}</h3>
+        <h3 className="font-serif text-base uppercase tracking-wide">
+          {title}
+        </h3>
       </div>
       <div className="mt-3">{children}</div>
     </div>

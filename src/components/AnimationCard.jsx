@@ -3,19 +3,6 @@ import { Check, Copy } from "lucide-react";
 import { animCss, categories } from "../lib/animations";
 import { copyText } from "../lib/copy";
 
-function PreviewTarget({ anim }) {
-  if (anim.category === "text") {
-    return (
-      <span className="text-2xl font-semibold text-accent">Hello</span>
-    );
-  }
-  return (
-    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-accent to-fuchsia-500 text-xs font-bold text-white shadow-md shadow-accent/30">
-      CF
-    </div>
-  );
-}
-
 export function AnimationCard({ anim, onOpen }) {
   const [hovering, setHovering] = useState(false);
   const [nonce, setNonce] = useState(0);
@@ -47,12 +34,12 @@ export function AnimationCard({ anim, onOpen }) {
       }}
       onMouseEnter={handleEnter}
       onMouseLeave={() => setHovering(false)}
-      className="group cursor-pointer rounded-xl border border-border bg-surface p-3 transition-colors hover:border-accent/60"
+      className="group relative z-0 flex h-full cursor-pointer flex-col bg-background p-4 transition-all duration-200 hover:z-10 hover:translate-x-1 hover:-translate-y-1 hover:rounded-xl hover:shadow-[0_0_0_1px_var(--text)]"
     >
-      <div className="stage-dots relative flex h-32 items-center justify-center overflow-hidden rounded-lg border border-border/60 bg-surface-2">
+      <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden bg-surface p-4">
         <div
           key={nonce}
-          className={hovering ? `cf-animated cf-${anim.slug}` : undefined}
+          className={`max-w-full text-center font-serif text-2xl leading-snug ${hovering ? `cf-animated cf-${anim.slug}` : ""}`}
           style={
             hovering
               ? {
@@ -62,25 +49,13 @@ export function AnimationCard({ anim, onOpen }) {
               : undefined
           }
         >
-          <PreviewTarget anim={anim} />
-        </div>
-        <span className="mono-label absolute right-2.5 top-2.5 opacity-0 transition-opacity group-hover:opacity-100">
-          Preview
-        </span>
-      </div>
-
-      <div className="mt-3 flex items-center justify-between gap-2">
-        <div className="min-w-0">
-          <h3 className="truncate text-sm font-medium">{anim.name}</h3>
-          <p className="text-xs text-muted">
-            cf-{anim.slug} - {anim.duration}ms
-          </p>
+          {anim.name}
         </div>
         <button
           type="button"
           onClick={handleCopy}
           aria-label={`Copy CSS for ${anim.name}`}
-          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-border text-muted transition-colors hover:text-text"
+          className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-md bg-background text-muted opacity-0 transition-all hover:text-text group-hover:opacity-100"
         >
           {copied ? (
             <Check size={14} className="text-accent" />
@@ -89,7 +64,10 @@ export function AnimationCard({ anim, onOpen }) {
           )}
         </button>
       </div>
-      <p className="mono-label mt-1.5">{categoryLabel}</p>
+
+      <h3 className="mt-4 font-serif text-2xl leading-tight">{anim.name}</h3>
+      <p className="mt-1 text-sm italic text-muted">{categoryLabel}</p>
+      <p className="mt-3 text-sm leading-relaxed text-muted">{anim.desc}</p>
     </article>
   );
 }

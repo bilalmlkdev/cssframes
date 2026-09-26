@@ -26,31 +26,53 @@ export function LibrarySection() {
   const countFor = (id) => animations.filter((a) => a.category === id).length;
 
   return (
-    <section id="library" className="scroll-mt-16 border-t border-border py-14">
-      <div className="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <p className="mono-label">The library</p>
-          <h2 className="mt-1.5 text-2xl font-semibold tracking-tight">
-            Pick an animation, copy the code
-          </h2>
-        </div>
-        <p className="text-sm text-muted">
-          {filtered.length} of {animations.length}
-        </p>
+    <section id="library" className="grid grid-cols-12 gap-px bg-border">
+      {/* Section header row */}
+      <div className="col-span-12 flex flex-wrap items-center justify-between gap-3 bg-background p-4">
+        <h2 className="font-serif text-lg uppercase tracking-wide">
+          Animations
+          <span className="ml-3 text-sm font-normal normal-case tracking-normal text-muted">
+            {filtered.length} of {animations.length}
+          </span>
+        </h2>
+        <a
+          href="https://github.com/bilalmlkdev/cssframes"
+          target="_blank"
+          rel="noreferrer"
+          className="flex items-center gap-1 text-sm text-text transition-colors hover:text-muted"
+        >
+          Star on GitHub
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true"
+            className="h-4 w-4"
+          >
+            <path
+              d="M5 12h14M12 5l7 7-7 7"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </a>
       </div>
 
-      <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+      {/* Controls row */}
+      <div className="col-span-12 flex flex-col gap-3 bg-background p-4 sm:flex-row sm:items-center">
         <div className="relative">
           <Search
             size={14}
             className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted"
           />
           <input
+            id="library-search"
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search animations..."
-            className="w-full rounded-lg border border-border bg-surface py-2 pl-9 pr-3 text-sm outline-none transition-colors placeholder:text-muted focus:border-accent sm:w-64"
+            className="w-full rounded-lg border border-border bg-surface py-2 pl-9 pr-3 text-sm outline-none transition-colors placeholder:text-muted focus:border-text sm:w-64"
           />
         </div>
 
@@ -71,14 +93,20 @@ export function LibrarySection() {
         </div>
       </div>
 
+      {/* Cards as hairline grid cells */}
       {filtered.length > 0 ? (
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="col-span-12 grid grid-cols-12 gap-px bg-border">
           {filtered.map((anim) => (
-            <AnimationCard key={anim.slug} anim={anim} onOpen={setActive} />
+            <li
+              key={anim.slug}
+              className="col-span-full sm:col-span-6 lg:col-span-4 xl:col-span-3"
+            >
+              <AnimationCard anim={anim} onOpen={setActive} />
+            </li>
           ))}
-        </div>
+        </ul>
       ) : (
-        <p className="mt-12 text-center text-sm text-muted">
+        <p className="col-span-12 bg-background p-10 text-center text-sm text-muted">
           No animations match &quot;{query}&quot;.
         </p>
       )}
@@ -97,10 +125,10 @@ function Pill({ active, onClick, label }) {
     <button
       type="button"
       onClick={onClick}
-      className={`rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${
+      className={`rounded-md border px-3 py-1.5 text-xs uppercase tracking-wide transition-colors ${
         active
-          ? "border-accent bg-accent text-accent-fg"
-          : "border-border bg-surface text-muted hover:text-text"
+          ? "border-text bg-text text-background"
+          : "border-border text-muted hover:text-text"
       }`}
     >
       {label}

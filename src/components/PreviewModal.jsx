@@ -11,21 +11,19 @@ const MotionPanel = motion.div;
 
 function Target({ object }) {
   if (object === "circle") {
-    return <div className="h-20 w-20 rounded-full bg-accent shadow-lg shadow-accent/30" />;
+    return <div className="h-20 w-20 rounded-full bg-accent" />;
   }
   if (object === "text") {
     return <span className="text-4xl font-semibold text-accent">Hello</span>;
   }
   if (object === "button") {
     return (
-      <span className="rounded-xl bg-accent px-6 py-3 text-sm font-medium text-accent-fg shadow-lg shadow-accent/30">
+      <span className="rounded-xl bg-accent px-6 py-3 text-sm font-medium text-accent-fg">
         Button
       </span>
     );
   }
-  return (
-    <div className="h-20 w-20 rounded-3xl bg-gradient-to-br from-accent to-fuchsia-500 shadow-lg shadow-accent/30" />
-  );
+  return <div className="h-20 w-20 rounded-3xl bg-text" />;
 }
 
 export function PreviewModal({ anim, onClose }) {
@@ -74,11 +72,11 @@ export function PreviewModal({ anim, onClose }) {
         initial={{ opacity: 0, y: 16, scale: 0.97 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.18, ease: "easeOut" }}
-        className="relative z-10 max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-border bg-surface shadow-2xl"
+        className="relative z-10 max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-xl border border-border bg-surface shadow-2xl"
       >
         <div className="flex items-start justify-between border-b border-border px-5 py-4">
           <div>
-            <h3 className="text-lg font-semibold tracking-tight">{anim.name}</h3>
+            <h3 className="font-serif text-2xl">{anim.name}</h3>
             <p className="mono-label mt-1">
               {categoryLabel} - cf-{anim.slug}
             </p>
@@ -145,7 +143,7 @@ export function PreviewModal({ anim, onClose }) {
           </button>
         </div>
 
-        <div className="stage-dots relative flex h-52 items-center justify-center overflow-hidden border-b border-border bg-surface-2">
+        <div className="relative flex h-52 items-center justify-center overflow-hidden border-b border-border bg-background">
           <div
             key={`${object}-${replay}`}
             className={`cf-animated cf-${anim.slug}`}

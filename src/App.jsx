@@ -29,15 +29,17 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background text-text">
       <style>{css}</style>
-      <Navbar theme={theme} onToggleTheme={toggleTheme} />
-      <main className="mx-auto max-w-5xl px-4">
-        <Hero />
-        <LibrarySection />
-        <UsageSection />
-      </main>
-      <Footer />
+  <div className="mx-auto grid max-w-[1530px] grid-cols-12 gap-px border border-border bg-border">
+        <Navbar theme={theme} onToggleTheme={toggleTheme} />
+        <main className="col-span-12 flex flex-col gap-px bg-border">
+          <Hero />
+          <LibrarySection />
+          <UsageSection />
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 }

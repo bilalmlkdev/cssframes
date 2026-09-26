@@ -2,40 +2,31 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* ============================================================
-   Design tokens
-   Light theme lives on :root, dark theme overrides on .dark.
-   Tailwind utilities (bg-background, text-muted, ...) map to
-   these through @theme inline below.
-   ============================================================ */
+
 :root {
-  --background: #fafafa;
+  --background: #ffffff;
   --surface: #ffffff;
   --surface-2: #f4f4f5;
-  --border: #e4e4e7;
-  --text: #18181b;
+  --border: #dfdcd9;
+  --text: #000000;
   --text-muted: #71717a;
-  --accent: #7c3aed;
+  --accent: #000000;
   --accent-fg: #ffffff;
-  --accent-soft: #f5f3ff;
   --code-bg: #18181b;
   --code-text: #e4e4e7;
-  --stage-dot: #d4d4d8;
 }
 
 .dark {
-  --background: #09090b;
+  --background: #000000;
   --surface: #18181b;
   --surface-2: #27272a;
   --border: #27272a;
-  --text: #fafafa;
+  --text: #ffffff;
   --text-muted: #a1a1aa;
-  --accent: #8b5cf6;
-  --accent-fg: #ffffff;
-  --accent-soft: #2e1065;
+  --accent: #ffffff;
+  --accent-fg: #000000;
   --code-bg: #09090b;
   --code-text: #d4d4d8;
-  --stage-dot: #3f3f46;
 }
 
 @theme inline {
@@ -47,11 +38,11 @@
   --color-muted: var(--text-muted);
   --color-accent: var(--accent);
   --color-accent-fg: var(--accent-fg);
-  --color-accent-soft: var(--accent-soft);
   --color-code-bg: var(--code-bg);
   --color-code-text: var(--code-text);
-  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, monospace;
 }
 
 @layer base {
@@ -82,8 +73,11 @@
   }
 }
 
-/* Dotted stage used behind every animation preview */
-@utility stage-dots {
-  background-image: radial-gradient(var(--stage-dot) 1px, transparent 1px);
-  background-size: 16px 16px;
+/* Small uppercase mono eyebrow label */
+@utility mono-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
 }

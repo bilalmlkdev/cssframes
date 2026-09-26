@@ -1,46 +1,90 @@
-import { Moon, Sun } from "lucide-react";
-import { GithubIcon } from "./GithubIcon";
+import { useEffect } from "react";
+import { Moon, Search, Sun } from "lucide-react";
+
+function focusSearch() {
+  document.getElementById("library")?.scrollIntoView({ behavior: "smooth" });
+  window.setTimeout(() => {
+    document.getElementById("library-search")?.focus();
+  }, 400);
+}
 
 export function Navbar({ theme, onToggleTheme }) {
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        focusSearch();
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur-md">
-      <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4">
-        <a href="#top" className="flex items-center gap-2 text-sm font-semibold tracking-tight">
-          <span className="flex h-6 w-6 items-center justify-center rounded-md bg-accent text-[11px] font-bold text-accent-fg">
-            C
-          </span>
-          cssframes
+    <header className="col-span-12 grid grid-cols-12 gap-px bg-border">
+      {/* Logo cell */}
+      <div className="col-span-7 flex items-end bg-background p-4 md:col-span-4">
+        <a
+          href="#top"
+          className="font-serif text-2xl leading-none tracking-normal sm:text-[37px]"
+        >
+          The Component Gallery
         </a>
-
-        <nav className="hidden items-center gap-6 text-sm text-muted sm:flex">
-          <a href="#library" className="transition-colors hover:text-text">
-            Animations
-          </a>
-          <a href="#usage" className="transition-colors hover:text-text">
-            How to use
-          </a>
-        </nav>
-
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={onToggleTheme}
-            aria-label="Toggle color theme"
-            className="flex h-8 w-8 items-center justify-center rounded-lg border border-border text-muted transition-colors hover:text-text"
-          >
-            {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
-          </button>
-          <a
-            href="https://github.com/bilalmlkdev/cssframes"
-            target="_blank"
-            rel="noreferrer"
-            className="flex h-8 items-center gap-1.5 rounded-lg border border-border px-3 text-xs font-medium text-text transition-colors hover:bg-surface-2"
-          >
-            <GithubIcon size={14} />
-            <span className="hidden sm:inline">GitHub</span>
-          </a>
-        </div>
       </div>
+
+      {/* Search + theme cell */}
+      <div className="col-span-5 flex items-end justify-between bg-background py-2 px-3 md:col-span-4">
+        <button
+          type="button"
+          onClick={focusSearch}
+          className="flex items-center gap-2 rounded-lg text-base uppercase tracking-wide transition-colors hover:bg-surface-2"
+        >
+          <span className="hidden sm:inline">Search</span>
+          <Search size={14} />
+          <span className="hidden gap-1 md:flex">
+            <kbd className="rounded border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted">
+              ⌘
+            </kbd>
+            <kbd className="rounded border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted">
+              K
+            </kbd>
+          </span>
+        </button>
+        <button
+          type="button"
+          onClick={onToggleTheme}
+          aria-label="Toggle color theme"
+          className="flex h-10 w-10 items-center justify-center rounded-lg p-2.5 transition-colors hover:bg-surface-2"
+        >
+          {theme === "dark" ? <Moon size={20} /> : <Sun size={20} />}
+        </button>
+      </div>
+
+      {/* Nav cell */}
+      <nav className="col-span-12 hidden items-end bg-background p-4 md:col-span-4 md:flex">
+        <ul className="flex w-full items-baseline justify-between text-[17px] uppercase tracking-wide">
+          <li>
+            <a href="#library" className="transition-colors hover:text-muted">
+              Animations
+            </a>
+          </li>
+          <li>
+            <a href="#usage" className="transition-colors hover:text-muted">
+              How to use
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://github.com/bilalmlkdev/cssframes"
+              target="_blank"
+              rel="noreferrer"
+              className="transition-colors hover:text-muted"
+            >
+              GitHub
+            </a>
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 }
