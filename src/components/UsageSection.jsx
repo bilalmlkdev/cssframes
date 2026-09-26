@@ -1,17 +1,16 @@
 import { useState } from "react";
 import { Check, Copy } from "lucide-react";
-import { buildCss } from "../lib/css";
 import { copyText } from "../lib/copy";
 import { HighlightedPre } from "./CodeBlock";
 
 function CodeBlock({ code, lang, copyKey, copiedKey, onCopy }) {
   return (
-    <div className="relative">
+    <div className="group/code relative">
       <HighlightedPre code={code} lang={lang} />
       <button
         type="button"
         onClick={() => onCopy(code, copyKey)}
-        className="absolute right-2 top-2 flex items-center gap-1 rounded-md border border-code-text/15 bg-code-text/10 px-2 py-1 text-[11px] text-code-text/80 transition-colors hover:text-code-text"
+        className="absolute right-2 top-2 flex items-center gap-1 rounded-md border border-code-text/15 bg-code-text/10 px-2 py-1 text-[11px] text-code-text/80 opacity-0 transition-opacity focus-visible:opacity-100 group-hover/code:opacity-100"
       >
         {copiedKey === copyKey ? (
           <>
@@ -79,21 +78,6 @@ export function UsageSection() {
           Copy the whole library into a cssframes.css file, or paste it into
           your existing stylesheet.
         </p>
-        <button
-          type="button"
-          onClick={() => doCopy(buildCss(), "full")}
-          className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg bg-accent px-4 py-2.5 text-xs font-medium text-accent-fg transition-opacity hover:opacity-90"
-        >
-          {copiedKey === "full" ? (
-            <>
-              <Check size={12} /> Copied
-            </>
-          ) : (
-            <>
-              <Copy size={12} /> Copy full cssframes.css
-            </>
-          )}
-        </button>
       </Step>
 
       <Step n={2} title="Apply two classes">

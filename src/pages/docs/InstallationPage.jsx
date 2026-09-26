@@ -1,28 +1,24 @@
-import { Check, Copy, GitBranch } from "lucide-react";
-import { buildCss } from "../../lib/css";
 import { CodeBlock } from "../../components/CodeBlock";
 import { useCopy } from "../../lib/useCopy";
-import { REPO, REPO_CLONE, REPO_URL } from "../../data/site";
-import { GithubIcon } from "../../components/GithubIcon";
+import { REPO_CLONE, REPO_URL } from "../../data/site";
 
-const usageSnippet = `<link rel="stylesheet" href="cssframes.css" />
+const linkSnippet = `<link rel="stylesheet" href="cssframes.css" />`;
 
-<div class="cf-animated cf-fade-in-up">
-  Hello
-</div>`;
+const usageSnippet = `<div class="cf-animated cf-fade-in-up">Hello</div>`;
 
-const requirements = [
+const cloneSnippet = `git clone ${REPO_CLONE}
+cd cssframes
+npm install
+npm run dev`;
+
+const prerequisites = [
   {
-    title: "Using the library",
-    body: "Any modern browser. The output is plain CSS, so it works with every framework, bundler, or none at all.",
+    term: "A project",
+    body: " that loads a stylesheet - React, Next.js, Vue, Svelte, or plain HTML.",
   },
   {
-    title: "Working on cssframes",
-    body: "Node.js 18 or newer and npm. Clone the repo, run npm install, then npm run dev for the local site.",
-  },
-  {
-    title: "Deploying the site",
-    body: "npm run build produces the static site in dist. Vercel or any static host can serve it.",
+    term: "Node.js",
+    body: " version 18 or later, only if you want to run this repository locally.",
   },
 ];
 
@@ -34,109 +30,52 @@ export function InstallationPage() {
       <h1 className="text-[24px] font-medium tracking-tight">
         Installation
       </h1>
-      <p className="mt-4 text-base leading-relaxed text-muted">
-        There is nothing to install to use cssframes. Copy the stylesheet or a
-        single animation, add two classes, done.
-      </p>
 
-      {/* Requirements */}
-      <h2 className="mt-12 text-2xl font-semibold tracking-tight">
-        Requirements
+      {/* Prerequisites */}
+      <h2 className="mt-12 text-2xl font-medium tracking-tight">
+        Prerequisites
       </h2>
-      <div className="mt-5 space-y-3">
-        {requirements.map((r) => (
-          <div key={r.title} className="rounded-xl bg-surface-2 p-4">
-            <p className="text-sm font-medium">{r.title}</p>
-            <p className="mt-1.5 text-sm leading-relaxed text-muted">
-              {r.body}
-            </p>
-          </div>
+      <p className="mt-4 text-base leading-relaxed">
+        Before installing, ensure you have the following:
+      </p>
+      <ul className="mt-4 list-disc space-y-2.5 pl-5 text-base leading-relaxed marker:text-muted">
+        {prerequisites.map((p) => (
+          <li key={p.term}>
+            <span className="underline underline-offset-4">{p.term}</span>
+            {p.body}
+          </li>
         ))}
-      </div>
-
-      {/* Repository */}
-      <h2 className="mt-12 text-2xl font-semibold tracking-tight">
-        Repository
-      </h2>
-      <p className="mt-4 text-sm leading-relaxed text-muted">
-        The source lives on GitHub. Clone it to contribute, or copy the URL to
-        reference it.
-      </p>
-      <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-        <div className="flex flex-1 items-center gap-2 rounded-lg bg-surface-2 px-3 py-2.5">
-          <GithubIcon size={15} />
-          <code className="flex-1 truncate font-mono text-xs">{REPO}</code>
-        </div>
-        <button
-          type="button"
-          onClick={() => doCopy(REPO_CLONE, "repo")}
-          className="flex items-center justify-center gap-2 rounded-lg border border-border px-4 py-2.5 text-sm font-medium transition-colors hover:bg-surface-2"
-        >
-          {copiedKey === "repo" ? (
-            <>
-              <Check size={14} /> Copied
-            </>
-          ) : (
-            <>
-              <Copy size={14} /> Copy clone URL
-            </>
-          )}
-        </button>
-      </div>
-      <div className="mt-3">
-        <CodeBlock
-          code={`git clone ${REPO_CLONE}\ncd cssframes\nnpm install\nnpm run dev`}
-          copied={copiedKey === "clone"}
-          onCopy={() =>
-            doCopy(
-              `git clone ${REPO_CLONE}\ncd cssframes\nnpm install\nnpm run dev`,
-              "clone",
-            )
-          }
-        />
-      </div>
-      <a
-        href={REPO_URL}
-        target="_blank"
-        rel="noreferrer"
-        className="mt-4 inline-flex items-center gap-2 rounded-lg bg-text px-4 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-80"
-      >
-        <GitBranch size={14} />
-        Open on GitHub
-      </a>
+      </ul>
 
       {/* Stylesheet */}
-      <h2 className="mt-12 text-2xl font-semibold tracking-tight">
-        The stylesheet
+      <h2 className="mt-12 text-2xl font-medium tracking-tight">
+        Add the stylesheet
       </h2>
-      <p className="mt-4 text-sm leading-relaxed text-muted">
-        One file with every class and every keyframes rule. Save it as
-        cssframes.css, or paste it into the stylesheet you already have.
+      <p className="mt-4 text-base leading-relaxed">
+        cssframes has no package to install. Copy the full library into a{" "}
+        <code className="rounded bg-surface-2 px-1.5 py-0.5 font-mono text-sm">
+          cssframes.css
+        </code>{" "}
+        file, or paste it into the stylesheet you already have. Then link it
+        in your project:
       </p>
-      <button
-        type="button"
-        onClick={() => doCopy(buildCss(), "full")}
-        className="mt-4 flex items-center gap-2 rounded-lg bg-text px-4 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-80"
-      >
-        {copiedKey === "full" ? (
-          <>
-            <Check size={14} /> Copied
-          </>
-        ) : (
-          <>
-            <Copy size={14} /> Copy full cssframes.css
-          </>
-        )}
-      </button>
-
-      {/* First usage */}
-      <h2 className="mt-12 text-2xl font-semibold tracking-tight">
-        First usage
-      </h2>
-      <p className="mt-4 text-sm leading-relaxed text-muted">
-        Link the file, add the base class plus any animation class, and the
-        motion runs. Open the animations list in the sidebar to preview each
-        one and copy its CSS.
+      <div className="mt-4">
+        <CodeBlock
+          lang="markup"
+          code={linkSnippet}
+          copied={copiedKey === "link"}
+          onCopy={() => doCopy(linkSnippet, "link")}
+        />
+      </div>
+      {/* Usage */}
+      <h2 className="mt-12 text-2xl font-medium tracking-tight">Usage</h2>
+      <p className="mt-4 text-base leading-relaxed">
+        Once the stylesheet is loaded,{" "}
+        <code className="rounded bg-surface-2 px-1.5 py-0.5 font-mono text-sm">
+          cf-animated
+        </code>{" "}
+        turns the element on and the second class picks the animation. Open
+        any animation in the sidebar to preview it and copy its CSS.
       </p>
       <div className="mt-4">
         <CodeBlock
@@ -146,6 +85,87 @@ export function InstallationPage() {
           onCopy={() => doCopy(usageSnippet, "usage")}
         />
       </div>
+
+      {/* Development */}
+      <h2 className="mt-12 text-2xl font-medium tracking-tight">
+        Running this project locally
+      </h2>
+      <p className="mt-4 text-base leading-relaxed">
+        Want to browse the docs offline or contribute? The site is a small
+        Vite + React app. Clone it, install the dependencies once, and start
+        the dev server:
+      </p>
+
+      <ol className="mt-5 space-y-4">
+        <li className="flex gap-3">
+          <span className="mt-0.5 font-mono text-xs text-muted">01</span>
+          <div>
+            <p className="text-base">Clone the repository</p>
+            <p className="mt-1 text-sm leading-relaxed text-muted">
+              Download the source with{" "}
+              <code className="rounded bg-surface-2 px-1.5 py-0.5 font-mono text-xs">
+                git clone
+              </code>{" "}
+              and move into the folder.
+            </p>
+          </div>
+        </li>
+        <li className="flex gap-3">
+          <span className="mt-0.5 font-mono text-xs text-muted">02</span>
+          <div>
+            <p className="text-base">Install dependencies</p>
+            <p className="mt-1 text-sm leading-relaxed text-muted">
+              Run{" "}
+              <code className="rounded bg-surface-2 px-1.5 py-0.5 font-mono text-xs">
+                npm install
+              </code>{" "}
+              once. It pulls everything the docs site needs - React, Vite,
+              Tailwind, and Prism for code highlighting.
+            </p>
+          </div>
+        </li>
+        <li className="flex gap-3">
+          <span className="mt-0.5 font-mono text-xs text-muted">03</span>
+          <div>
+            <p className="text-base">Start the dev server</p>
+            <p className="mt-1 text-sm leading-relaxed text-muted">
+              Run{" "}
+              <code className="rounded bg-surface-2 px-1.5 py-0.5 font-mono text-xs">
+                npm run dev
+              </code>{" "}
+              and open{" "}
+              <code className="rounded bg-surface-2 px-1.5 py-0.5 font-mono text-xs">
+                http://localhost:5173
+              </code>
+              . Edits hot-reload as you save.
+            </p>
+          </div>
+        </li>
+      </ol>
+
+      <div className="mt-5">
+        <CodeBlock
+          lang="bash"
+          code={cloneSnippet}
+          copied={copiedKey === "clone"}
+          onCopy={() => doCopy(cloneSnippet, "clone")}
+        />
+      </div>
+      <p className="mt-3 text-sm leading-relaxed text-muted">
+        The same three commands are all you need. After{" "}
+        <code className="rounded bg-surface-2 px-1.5 py-0.5 font-mono text-xs">
+          npm run dev
+        </code>
+        , the URL Vite prints in the terminal is your local site.
+      </p>
+      <a
+        href={REPO_URL}
+        target="_blank"
+        rel="noreferrer"
+        className="mt-4 inline-flex items-center gap-2 rounded-lg bg-text px-2 py-1.5 text-xs font-medium shadow-xs text-background transition-opacity hover:opacity-80"
+      >
+        Open on GitHub
+      </a>
 
       <div className="mt-14 flex justify-between">
         <a

@@ -28,9 +28,7 @@ function Target({ object }) {
 }
 
 function Preview({ anim }) {
-  const [object, setObject] = useState(
-    anim.category === "text" ? "text" : "box",
-  );
+  const [object, setObject] = useState("text");
   const [duration, setDuration] = useState(anim.duration);
   const [infinite, setInfinite] = useState(Boolean(anim.iteration));
   const [replay, setReplay] = useState(0);
@@ -38,7 +36,7 @@ function Preview({ anim }) {
 
   if (animKey !== anim.slug) {
     setAnimKey(anim.slug);
-    setObject(anim.category === "text" ? "text" : "box");
+    setObject("text");
     setDuration(anim.duration);
     setInfinite(Boolean(anim.iteration));
     setReplay((r) => r + 1);
@@ -104,7 +102,7 @@ function Preview({ anim }) {
         <button
           type="button"
           onClick={() => setReplay((r) => r + 1)}
-          className="ml-auto flex items-center gap-1.5 rounded-lg bg-surface-2 px-2.5 py-1.5 text-xs text-text transition-colors hover:text-muted"
+          className="ml-auto flex items-center gap-1.5 rounded-lg bg-surface-2 px-2.5 py-1.5 text-xs shadow-xs text-text transition-colors hover:text-muted"
         >
           <RefreshCw size={12} />
           Replay

@@ -1,158 +1,69 @@
-import { useState } from "react";
-import { Check, Copy } from "lucide-react";
-import { copyText } from "../../lib/copy";
-import { HighlightedPre } from "../../components/CodeBlock";
-
-const usageSnippet = `<div class="cf-animated cf-zoom-in">Hello</div>`;
-
-const varsSnippet = `.cf-animated.cf-zoom-in {
-  --cf-duration: 900ms;
-  --cf-delay: 0.2s;
-  --cf-iteration: 1;
-}`;
-
-const FEATURES = [
-  {
-    title: "Pure CSS",
-    body: "Every animation is a keyframes rule and a class. No JavaScript runs your motion.",
-  },
-  {
-    title: "Copy and paste",
-    body: "Grab one animation or the whole stylesheet - there is no package to install to use it.",
-  },
-  {
-    title: "Fully customizable",
-    body: "Duration, delay, and iteration live in CSS variables, so you tune motion per element.",
-  },
-  {
-    title: "Reduced motion ready",
-    body: "A single media query turns the whole library off for people who ask for less motion.",
-  },
-];
-
-function Snippet({ code, lang = "jsx", copied, onCopy }) {
-  return (
-    <div className="relative">
-      <HighlightedPre code={code} lang={lang} />
-      <button
-        type="button"
-        onClick={onCopy}
-        className="absolute right-2 top-2 flex items-center gap-1 rounded-md border border-code-text/15 bg-code-text/10 px-2 py-1 text-[11px] text-code-text/80 transition-colors hover:text-code-text"
-      >
-        {copied ? (
-          <>
-            <Check size={11} /> Copied
-          </>
-        ) : (
-          <>
-            <Copy size={11} /> Copy
-          </>
-        )}
-      </button>
-    </div>
-  );
-}
+import { REPO_URL } from "../../data/site";
 
 export function IntroductionPage() {
-  const [copied, setCopied] = useState(null);
-
-  const doCopy = async (text, key) => {
-    const ok = await copyText(text);
-    if (ok) {
-      setCopied(key);
-      setTimeout(() => setCopied(null), 1600);
-    }
-  };
-
   return (
     <article className="max-w-3xl ml-45 px-5 py-15 sm:px-8">
       <h1 className="text-[24px] font-medium tracking-tight">
         Introduction
       </h1>
-      <p className="mt-4 text-base leading-relaxed text-muted">
-        cssframes is an open-source library of pure CSS keyframe animations.
-        It is a reference you browse, a stylesheet you copy, and a small set of
-        variables you tune - nothing more.
-      </p>
 
-      <h2 className="mt-12 text-2xl font-semibold tracking-tight">
-        Why cssframes
-      </h2>
-      <div className="mt-5 grid gap-4 sm:grid-cols-2">
-        {FEATURES.map((f) => (
-          <div key={f.title} className="rounded-xl bg-surface-2 p-4">
-            <p className="text-sm font-medium">{f.title}</p>
-            <p className="mt-1.5 text-sm leading-relaxed text-muted">
-              {f.body}
-            </p>
-          </div>
-        ))}
-      </div>
+      <div className="mt-6 space-y-5 text-base leading-relaxed">
+        <p>
+          <span className="font-medium">cssframes</span> is a set of
+          customizable, production-ready CSS keyframe animations, making it
+          easy to add motion to buttons, cards, page transitions, menus, and
+          loading states, quickly and beautifully.
+        </p>
 
-      <h2 className="mt-12 text-2xl font-semibold tracking-tight">
-        Basic usage
-      </h2>
-      <p className="mt-4 text-sm leading-relaxed text-muted">
-        Two classes do the work. <code className="font-mono text-xs">
-          cf-animated
-        </code>{" "}
-        turns the element on, and the second class picks the animation.
-      </p>
-      <div className="mt-4">
-        <Snippet
-          code={usageSnippet}
-          lang="jsx"
-          copied={copied === "usage"}
-          onCopy={() => doCopy(usageSnippet, "usage")}
-        />
-      </div>
+        <p>
+          <span className="font-medium">cssframes</span> is built with the
+          same idea as a component library: one stylesheet, predictable class
+          names, and CSS variables for tuning. But instead of shipping
+          components, it ships motion. Drop{" "}
+          <code className="rounded bg-surface-2 px-1.5 py-0.5 font-mono text-sm">
+            cf-animated
+          </code>{" "}
+          and an animation class like{" "}
+          <code className="rounded bg-surface-2 px-1.5 py-0.5 font-mono text-sm">
+            cf-zoom-in
+          </code>{" "}
+          on any element and it animates. No JavaScript runs your motion, and
+          there is no package to install - copy the CSS and you are done.
+        </p>
 
-      <h2 className="mt-12 text-2xl font-semibold tracking-tight">
-        Tuning with variables
-      </h2>
-      <p className="mt-4 text-sm leading-relaxed text-muted">
-        Set the variables globally, on a parent, or on the element itself.
-        Every animation falls back to its own default duration.
-      </p>
-      <div className="mt-4">
-        <Snippet
-          code={varsSnippet}
-          lang="css"
-          copied={copied === "vars"}
-          onCopy={() => doCopy(varsSnippet, "vars")}
-        />
-      </div>
+        <p>
+          Every animation is a plain keyframes rule, so it works in any
+          framework or plain HTML. Duration, delay, and iteration live in CSS
+          variables, so you tune motion per element without editing the
+          library. A single reduced-motion media query turns everything off
+          for people who ask for less motion.
+        </p>
 
-      <h2 className="mt-12 text-2xl font-semibold tracking-tight">
-        Respecting reduced motion
-      </h2>
-      <p className="mt-4 text-sm leading-relaxed text-muted">
-        Give people who ask for less motion an off switch. Drop this into your
-        stylesheet and the library stays still.
-      </p>
-      <div className="mt-4">
-        <Snippet
-          lang="css"
-          code={`@media (prefers-reduced-motion: reduce) {
-  .cf-animated {
-    animation: none;
-  }
-}`}
-          copied={copied === "motion"}
-          onCopy={() =>
-            doCopy(
-              `@media (prefers-reduced-motion: reduce) {\n  .cf-animated {\n    animation: none;\n  }\n}`,
-              "motion",
-            )
-          }
-        />
+        <p>
+          This project is a work in progress, and we are continuously
+          improving and expanding the collection. We would love to hear your
+          feedback or see your contributions as it evolves.
+        </p>
+
+        <p>
+          cssframes is open source. Check out the code and contribute on{" "}
+          <a
+            href={REPO_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="font-medium underline underline-offset-4 transition-opacity hover:opacity-70"
+          >
+            GitHub
+          </a>
+          .
+        </p>
       </div>
 
       <div className="mt-14 flex justify-between">
         <span />
         <a
           href="#/installation"
-          className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 shaow-xs text-sm transition-colors hover:bg-surface-2"
+          className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 shadow-xs text-sm transition-colors hover:bg-surface-2"
         >
           Installation &gt;
         </a>

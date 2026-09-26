@@ -1,6 +1,7 @@
 import { Check, Copy } from "lucide-react";
 import { Highlight, themes } from "prism-react-renderer";
 import { useDarkMode } from "../lib/useDarkMode";
+import "../lib/prismLanguages";
 
 export function HighlightedPre({ code, lang = "jsx", maxH }) {
   const dark = useDarkMode();
@@ -14,7 +15,7 @@ export function HighlightedPre({ code, lang = "jsx", maxH }) {
       {({ style, tokens, getLineProps, getTokenProps }) => (
         <pre
           style={{ ...style, background: "transparent" }}
-          className={`overflow-auto rounded-lg border border-border bg-code-bg p-5 font-mono text-sm leading-relaxed ${maxH || ""}`}
+          className={`overflow-auto whitespace-pre-wrap break-words rounded-lg border border-border bg-code-bg p-5 font-mono text-sm leading-relaxed ${maxH || ""}`}
         >
           {tokens.map((line, i) => (
             <div key={i} {...getLineProps({ line })}>
@@ -31,9 +32,9 @@ export function HighlightedPre({ code, lang = "jsx", maxH }) {
 
 export function CodeBlock({ code, lang, copied, onCopy, maxH }) {
   return (
-    <div className="relative">
+    <div className="group/code relative">
       <HighlightedPre code={code} lang={lang} maxH={maxH} />
-      <span className="absolute right-2 top-2">
+      <span className="absolute right-2 top-2 opacity-0 transition-opacity focus-within:opacity-100 group-hover/code:opacity-100">
         <button
           type="button"
           onClick={onCopy}

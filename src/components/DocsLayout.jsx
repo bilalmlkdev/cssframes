@@ -39,7 +39,7 @@ export function DocsLayout({
           <p className="px-2 pb-1 pt-2 text-sm text-muted font-medium">Get Started</p>
           <a
             href="#/introduction"
-            className={`rounded-md px-2 py-1.5 text-sm transition-colors ${
+            className={`w-fit rounded-md px-2 py-1.5 text-sm transition-colors ${
               active === "introduction"
                 ? "bg-surface-2 font-medium"
                 : "hover:bg-surface-2 hover:text-text"
@@ -49,7 +49,7 @@ export function DocsLayout({
           </a>
           <a
             href="#/installation"
-            className={`rounded-md px-2 py-1.5 text-sm transition-colors ${
+            className={`w-fit rounded-md px-2 py-1.5 text-sm transition-colors ${
               active === "installation"
                 ? "bg-surface-2 font-medium"
                 : "hover:bg-surface-2 hover:text-text"
@@ -68,7 +68,7 @@ export function DocsLayout({
                     <a
                       key={a.slug}
                       href={`#/animations/${a.slug}`}
-                      className={`rounded-md px-2 py-1.5 text-sm transition-colors ${
+                      className={`w-fit rounded-md px-2 py-1.5 text-sm transition-colors ${
                         active === "animation" && a.slug === slug
                           ? "bg-surface-2 font-medium"
                           : "hover:bg-surface-2 hover:text-text"
@@ -88,7 +88,7 @@ export function DocsLayout({
             href={REPO_URL}
             target="_blank"
             rel="noreferrer"
-            className="rounded-md px-2 py-1.5 text-sm transition-colors hover:bg-surface-2 hover:text-text"
+            className="w-fit rounded-md px-2 py-1.5 text-sm transition-colors hover:bg-surface-2 hover:text-text"
           >
             GitHub
           </a>
@@ -96,13 +96,13 @@ export function DocsLayout({
             href={X_URL}
             target="_blank"
             rel="noreferrer"
-            className="rounded-md px-2 py-1.5 text-sm transition-colors hover:bg-surface-2 hover:text-text"
+            className="w-fit rounded-md px-2 py-1.5 text-sm transition-colors hover:bg-surface-2 hover:text-text"
           >
             X (Twitter)
           </a>
           <a
             href="mailto:bilalmlkdev@gmail.com"
-            className="rounded-md px-2 py-1.5 text-sm transition-colors hover:bg-surface-2 hover:text-text"
+            className="w-fit rounded-md px-2 py-1.5 text-sm transition-colors hover:bg-surface-2 hover:text-text"
           >
             Email
           </a>
