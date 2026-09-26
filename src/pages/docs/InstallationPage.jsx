@@ -1,9 +1,11 @@
+import { Download } from "lucide-react";
 import { CodeBlock } from "../../components/ui/CodeBlock";
+import { buildCss } from "../../lib/css";
 import { useCopy } from "../../hooks/useCopy";
 import { useDocumentMeta } from "../../hooks/useDocumentMeta";
 import { DocsArticle } from "../../components/layout/DocsArticle";
 import { Pager } from "../../components/layout/Pager";
-import { CSS_URL, REPO_CLONE, REPO_URL } from "../../data/site";
+import { REPO_CLONE, REPO_URL } from "../../data/site";
 
 const linkSnippet = `<link rel="stylesheet" href="cssframes.css" />`;
 
@@ -74,15 +76,24 @@ export function InstallationPage() {
           onCopy={() => doCopy(linkSnippet, "link")}
         />
       </div>
-      <a
-        href={CSS_URL}
-        target="_blank"
-        rel="noreferrer"
+      <button
+        type="button"
+        onClick={() => {
+          const blob = new Blob([buildCss()], { type: "text/css" });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "cssframes.css";
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          URL.revokeObjectURL(url);
+        }}
         className="mt-4 inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2.5 text-sm font-medium transition-colors hover:bg-surface-2"
       >
         <Download size={14} />
         Download cssframes.css
-      </a>
+      </button>
 
       {/* Usage */}
       <h2 className="mt-12 text-2xl font-medium tracking-tight">Usage</h2>

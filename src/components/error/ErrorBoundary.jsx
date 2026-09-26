@@ -1,11 +1,13 @@
 import { Component } from "react";
+import { Check, Copy } from "lucide-react";
+import { Logo } from "../ui/Logo";
 
-// Catches render/runtime errors anywhere in the tree and shows a tight,
-// calm fallback instead of a blank page.
+// Catches render/runtime errors anywhere in the tree and shows a calm,
+// designed fallback instead of a blank page.
 export class ErrorBoundary extends Component {
   constructor(props) {
     super(props);
-    this.state = { error: null };
+    this.state = { error: null, copied: false };
   }
 
   static getDerivedStateFromError(error) {
@@ -16,41 +18,81 @@ export class ErrorBoundary extends Component {
     document.title = "Something broke - cssframes";
   }
 
-  render() {
+  copyError = async () => {
     const { error } = this.state;
+    try {
+      await navigator.clipboard.writeText(String(error?.message || error));
+      this.setState({ copied: true });
+      setTimeout(() => this.setState({ copied: false }), 1600);
+    } catch {
+      /* clipboard unavailable */
+    }
+  };
+
+  render() {
+    const { error, copied } = this.state;
     if (!error) return this.props.children;
 
+    const message = String(error?.message || error);
+
     return (
-      <div className="flex min-h-screen items-center justify-center bg-background px-6 text-text">
-        <div className="w-full max-w-sm rounded-2xl bg-surface p-8 text-center shadow-[0_1px_2px_rgba(0,0,0,0.04),0_6px_16px_-6px_rgba(0,0,0,0.08)]">
-          <p className="mono-label">Error</p>
-          <p className="mt-3 text-2xl font-semibold tracking-tight">
-            Something broke
-          </p>
-          <p className="mt-2 text-sm leading-relaxed text-muted">
-            The page hit an unexpected error. Reload it, or head back home.
-          </p>
-          <div className="mt-6 flex justify-center gap-3">
+      <div className="flex min-h-screen flex-col items-center justify-center bg-background px-6 py-16 text-center text-text">
+        <Logo className="h-10 w-auto text-muted" />
+
+        <p className="mono-label mt-10">Error</p>
+        <h1 className="mt-4 text-5xl font-medium tracking-[-2px] sm:text-6xl">
+          Something broke
+        </h1>
+        <p className="mt-5 max-w-md text-base leading-relaxed text-muted">
+          The page hit an unexpected error. Reload it, head back home, or copy
+          the details if you want to report the bug.
+        </p>
+
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <button
+            type="button"
+            onClick={() => window.location.reload()}
+            className="rounded-lg bg-text px-4 py-2.5 text-sm font-medium text-background shadow-xs transition-opacity hover:opacity-80"
+          >
+            Reload page
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              this.setState({ error: null });
+              window.location.hash = "#/";
+            }}
+            className="rounded-lg bg-border px-4 py-2.5 text-sm font-medium text-text shadow-xs transition-colors hover:bg-surface-2"
+          >
+            Back home
+          </button>
+        </div>
+
+        <div className="mt-10 w-full max-w-md">
+          <div className="flex items-center justify-between gap-3 rounded-lg border border-border bg-code-bg px-4 py-3 text-left">
+            <code className="truncate font-mono text-xs text-code-text">
+              {message}
+            </code>
             <button
               type="button"
-              onClick={() => window.location.reload()}
-              className="rounded-lg bg-text px-4 py-2 text-sm font-medium text-background transition-opacity hover:opacity-80"
+              onClick={this.copyError}
+              aria-label={copied ? "Copied error message" : "Copy error message"}
+              className="flex shrink-0 items-center gap-1 rounded-md border border-code-text/15 bg-code-text/10 px-2 py-1 text-[11px] text-code-text/80 transition-colors hover:text-code-text"
             >
-              Reload
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                this.setState({ error: null });
-                window.location.hash = "#/";
-              }}
-              className="rounded-lg border border-border px-4 py-2 text-sm font-medium transition-colors hover:bg-surface-2"
-            >
-              Go home
+              {copied ? <Check size={11} /> : <Copy size={11} />}
             </button>
           </div>
-          <p className="mt-6 break-all font-mono text-[11px] text-muted">
-            {String(error.message || error)}
+          <p className="mt-3 text-xs leading-relaxed text-muted">
+            Report it on{" "}
+            <a
+              href="https://github.com/bilalmlkdev/cssframes/issues"
+              target="_blank"
+              rel="noreferrer"
+              className="underline underline-offset-4 transition-opacity hover:opacity-70"
+            >
+              GitHub
+            </a>{" "}
+            if it keeps happening.
           </p>
         </div>
       </div>

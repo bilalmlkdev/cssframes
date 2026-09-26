@@ -34,7 +34,7 @@ export function CodeBlock({ code, lang, copied, onCopy, maxH }) {
   return (
     <div className="group/code relative">
       <HighlightedPre code={code} lang={lang} maxH={maxH} />
-      <span className="absolute right-2 top-2 opacity-0 transition-opacity focus-within:opacity-100 group-hover/code:opacity-100">
+      <span className="absolute right-2 top-2 opacity-0 transition-opacity focus-within:opacity-100 group-hover/code:opacity-100 [@media(hover:none)]:opacity-100">
         <button
           type="button"
           onClick={onCopy}
