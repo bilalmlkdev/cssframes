@@ -1,8 +1,11 @@
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { REPO_URL } from "../../data/site";
+import { animations } from "../../data/animations";
+
+const COUNT = animations.length;
 
 const MARKS = [
-  ["45", "animations, written by hand"],
+  [String(COUNT), "animations, written by hand"],
   ["1", "file, plain CSS"],
   ["0", "lines of JavaScript"],
 ];
@@ -35,10 +38,10 @@ export function Hero() {
           <div className="grid gap-10 md:grid-cols-2 md:gap-16">
             <p className="max-w-[48ch] text-[17px] leading-relaxed text-muted sm:text-[18px]">
               Most motion on the web arrives as a dependency, a runtime, and a
-              build step to keep it honest. cssframes takes the opposite position:
-              forty five keyframe animations shipped as a single stylesheet you can
-              read in one sitting, paste into any project, and delete the rest of
-              your tooling over.
+              build step to keep it honest. cssframes takes the opposite
+              position: keyframe animations shipped as a single stylesheet you
+              can read in one sitting, paste into any project, and delete the
+              rest of your tooling over.
             </p>
             <p className="max-w-[48ch] text-[17px] leading-relaxed text-muted sm:text-[18px]">
               There is nothing to import, nothing to hydrate, and nothing to
@@ -53,7 +56,9 @@ export function Hero() {
               <li key={l.href}>
                 <a
                   href={l.href}
-                  {...(l.external ? { target: "_blank", rel: "noreferrer" } : {})}
+                  {...(l.external
+                    ? { target: "_blank", rel: "noreferrer" }
+                    : {})}
                   className="group inline-flex items-center gap-2 text-[15px]"
                 >
                   <span className="border-b border-border pb-0.5 transition-colors group-hover:border-text">

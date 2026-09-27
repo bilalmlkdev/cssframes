@@ -11,15 +11,14 @@ import { ThemeToggle } from "../ui/ThemeToggle";
 function SidebarContent({ active, slug }) {
   const linkClass = (isActive) =>
     `w-fit rounded-md px-2 py-1.5 text-sm transition-colors ${
-      isActive ? "bg-surface-2 font-medium" : "hover:bg-surface-2 hover:text-text"
+      isActive
+        ? "bg-surface-2 font-medium"
+        : "hover:bg-surface-2 hover:text-text"
     }`;
 
   return (
     <>
-      <a
-        href="#/"
-        className="mb-6 flex items-center gap-1"
-      >
+      <a href="#/" className="mb-6 flex items-center gap-1">
         <Logo className="h-8 w-auto" />
         <span className="text-xl font-medium tracking-tight">cssframes</span>
       </a>
@@ -114,7 +113,8 @@ export function DocsLayout({ active, slug, onToggleTheme, children }) {
   useEffect(() => {
     const onOpenSearch = () => setSearchOpen(true);
     window.addEventListener("cssframes-open-search", onOpenSearch);
-    return () => window.removeEventListener("cssframes-open-search", onOpenSearch);
+    return () =>
+      window.removeEventListener("cssframes-open-search", onOpenSearch);
   }, []);
 
   useEffect(() => {
@@ -198,9 +198,7 @@ export function DocsLayout({ active, slug, onToggleTheme, children }) {
         </main>
       </div>
 
-      {searchOpen && (
-        <SearchDialog onClose={() => setSearchOpen(false)} />
-      )}
+      {searchOpen && <SearchDialog onClose={() => setSearchOpen(false)} />}
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import { CSS_URL } from "../../data/site";
+import { animations } from "../../data/animations";
 
 const PARTS = [
   {
@@ -9,7 +10,7 @@ const PARTS = [
   {
     token: "cf-fade-in-up",
     role: "The motion",
-    note: "Names the keyframes you actually want. Forty five of these, grouped by what they are for.",
+    note: `Names the keyframes you actually want. ${animations.length} of these, grouped by what they are for.`,
   },
 ];
 
@@ -20,10 +21,22 @@ const VARIABLES = [
 ];
 
 const GUARANTEES = [
-  ["Readable", "Plain CSS you can open and audit. No build output, no minified payload to reverse engineer."],
-  ["Portable", "React, Next, Astro, Rails, a static page. It works anywhere CSS works, with no adapter."],
-  ["Retirable", "Delete the one stylesheet and your project is exactly as it was. That is the whole dependency."],
-  ["Polite", "A prefers-reduced-motion query switches the entire library off for anyone who asks for less movement."],
+  [
+    "Readable",
+    "Plain CSS you can open and audit. No build output, no minified payload to reverse engineer.",
+  ],
+  [
+    "Portable",
+    "React, Next, Astro, Rails, a static page. It works anywhere CSS works, with no adapter.",
+  ],
+  [
+    "Retirable",
+    "Delete the one stylesheet and your project is exactly as it was. That is the whole dependency.",
+  ],
+  [
+    "Polite",
+    "A prefers-reduced-motion query switches the entire library off for anyone who asks for less movement.",
+  ],
 ];
 
 export function HowItWorksSection() {
@@ -42,7 +55,9 @@ export function HowItWorksSection() {
             <span className="font-mono text-[clamp(1.1rem,3.4vw,2rem)] tracking-tight">
               cf-animated
             </span>
-            <span className="font-mono text-[clamp(1.1rem,3.4vw,2rem)] text-muted">+</span>
+            <span className="font-mono text-[clamp(1.1rem,3.4vw,2rem)] text-muted">
+              +
+            </span>
             <span className="font-mono text-[clamp(1.1rem,3.4vw,2rem)] tracking-tight text-highlight-a">
               cf-fade-in-up
             </span>

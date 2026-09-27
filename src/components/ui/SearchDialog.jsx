@@ -20,8 +20,7 @@ function buildItems() {
     label: a.name,
     hint: `cf-${a.slug}`,
     href: `#/animations/${a.slug}`,
-    group:
-      categories.find((c) => c.id === a.category)?.label || "Animations",
+    group: categories.find((c) => c.id === a.category)?.label || "Animations",
   }));
   return [...pages, library, ...anims];
 }

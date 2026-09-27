@@ -3,7 +3,7 @@ import { Highlight, themes } from "prism-react-renderer";
 import { useDarkMode } from "../../hooks/useDarkMode";
 import "../../lib/prismLanguages";
 
-export function HighlightedPre({ code, lang = "jsx", maxH }) {
+function HighlightedPre({ code, lang = "jsx", maxH }) {
   const dark = useDarkMode();
 
   return (

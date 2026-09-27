@@ -87,8 +87,13 @@ export function AnimationPage({ slug }) {
       <div className="mt-3">
         {tab === "preview" ? (
           <div className="relative flex min-h-[300px] items-center justify-center overflow-hidden rounded-xl border border-border bg-surface">
-            <div key={`static-${anim.slug}`} className={`cf-animated cf-${anim.slug}`}>
-              <span className="rounded-xl border border-border bg-background px-6 py-4 text-sm font-medium">Preview target</span>
+            <div
+              key={`static-${anim.slug}`}
+              className={`cf-animated cf-${anim.slug}`}
+            >
+              <span className="rounded-xl border border-border bg-background px-6 py-4 text-sm font-medium">
+                Preview target
+              </span>
             </div>
             <button
               type="button"
@@ -156,30 +161,96 @@ export function AnimationPage({ slug }) {
         playground. The defaults below are generated from the animation source.
       </p>
       <div className="mt-4 overflow-x-auto rounded-lg border border-border">
-        <table aria-label="Animation API properties" className="w-full border-collapse text-left text-sm">
+        <table
+          aria-label="Animation API properties"
+          className="w-full border-collapse text-left text-sm"
+        >
           <thead>
             <tr className="bg-surface-2">
-              <th scope="col" className="border-b border-border px-4 py-2.5 font-medium">Property</th>
-              <th scope="col" className="border-b border-border px-4 py-2.5 font-medium">Type</th>
-              <th scope="col" className="border-b border-border px-4 py-2.5 font-medium">Default</th>
-              <th scope="col" className="border-b border-border px-4 py-2.5 font-medium">Description</th>
+              <th
+                scope="col"
+                className="border-b border-border px-4 py-2.5 font-medium"
+              >
+                Property
+              </th>
+              <th
+                scope="col"
+                className="border-b border-border px-4 py-2.5 font-medium"
+              >
+                Type
+              </th>
+              <th
+                scope="col"
+                className="border-b border-border px-4 py-2.5 font-medium"
+              >
+                Default
+              </th>
+              <th
+                scope="col"
+                className="border-b border-border px-4 py-2.5 font-medium"
+              >
+                Description
+              </th>
             </tr>
           </thead>
           <tbody>
             {[
-              ["--cf-duration", "time", `${anim.duration}ms`, "How long the animation runs."],
-              ["--cf-delay", "time", "0ms", "Wait before the animation starts."],
-              ["--cf-iteration", "number", anim.iteration || "1", "Repeat count, use infinite for loops."],
-              ["animation-timing-function", "easing", anim.timing || "ease-out", "Controls the pace between keyframes."],
-              ["animation-direction", "keyword", "normal", "Controls which direction iterations play."],
-              ["animation-fill-mode", "keyword", "both", "Controls styles before and after the animation."],
-              ["transform-origin", "position", "center", "Sets the origin for transforms such as scale and rotate."],
+              [
+                "--cf-duration",
+                "time",
+                `${anim.duration}ms`,
+                "How long the animation runs.",
+              ],
+              [
+                "--cf-delay",
+                "time",
+                "0ms",
+                "Wait before the animation starts.",
+              ],
+              [
+                "--cf-iteration",
+                "number",
+                anim.iteration || "1",
+                "Repeat count, use infinite for loops.",
+              ],
+              [
+                "animation-timing-function",
+                "easing",
+                anim.timing || "ease-out",
+                "Controls the pace between keyframes.",
+              ],
+              [
+                "animation-direction",
+                "keyword",
+                "normal",
+                "Controls which direction iterations play.",
+              ],
+              [
+                "animation-fill-mode",
+                "keyword",
+                "both",
+                "Controls styles before and after the animation.",
+              ],
+              [
+                "transform-origin",
+                "position",
+                "center",
+                "Sets the origin for transforms such as scale and rotate.",
+              ],
             ].map(([property, type, defaultValue, description]) => (
               <tr key={property}>
-                <td className="border-b border-border px-4 py-2.5 font-mono text-xs">{property}</td>
-                <td className="border-b border-border px-4 py-2.5 text-muted">{type}</td>
-                <td className="border-b border-border px-4 py-2.5 font-mono text-xs">{defaultValue}</td>
-                <td className="border-b border-border px-4 py-2.5 text-muted">{description}</td>
+                <td className="border-b border-border px-4 py-2.5 font-mono text-xs">
+                  {property}
+                </td>
+                <td className="border-b border-border px-4 py-2.5 text-muted">
+                  {type}
+                </td>
+                <td className="border-b border-border px-4 py-2.5 font-mono text-xs">
+                  {defaultValue}
+                </td>
+                <td className="border-b border-border px-4 py-2.5 text-muted">
+                  {description}
+                </td>
               </tr>
             ))}
           </tbody>
@@ -192,7 +263,9 @@ export function AnimationPage({ slug }) {
             ? { href: `#/animations/${prev.slug}`, label: prev.name }
             : { href: "#/installation", label: "Installation" }
         }
-        next={next ? { href: `#/animations/${next.slug}`, label: next.name } : null}
+        next={
+          next ? { href: `#/animations/${next.slug}`, label: next.name } : null
+        }
       />
     </DocsArticle>
   );

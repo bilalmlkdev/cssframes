@@ -7,7 +7,6 @@ No JavaScript runs your motion. No package to install. Free and open source.
 [![GitHub Stars](https://img.shields.io/github/stars/bilalmlkdev/cssframes?style=for-the-badge&logo=github&color=yellow)](https://github.com/bilalmlkdev/cssframes)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg?style=for-the-badge)](./LICENSE)
 
-
 ## Why cssframes
 
 - **Pure CSS.** Every animation is a `@keyframes` rule and a class. No JavaScript library, no runtime.
@@ -66,6 +65,8 @@ Available scripts:
 - `npm run css` regenerates `cssframes.css` only.
 - `npm run lint` runs ESLint.
 - `npm test` runs the test suite with the Node test runner.
+- `npm run format` rewrites the repo with Prettier.
+- `npm run format:check` verifies formatting without writing.
 
 ## Accessibility
 

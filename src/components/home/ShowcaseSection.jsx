@@ -18,7 +18,7 @@ export function ShowcaseSection() {
       <div className="mx-auto max-w-[1120px]">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <h2 className="max-w-[22ch] font-heading text-[clamp(2rem,5vw,3.4rem)] font-light leading-[1.02] tracking-[-0.03em]">
-            Forty five animations, sorted by what they are for.
+            {animations.length} animations, sorted by what they are for.
           </h2>
           <a
             href="#/animations"

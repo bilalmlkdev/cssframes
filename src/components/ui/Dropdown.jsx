@@ -1,4 +1,10 @@
-import { useState, useRef, useEffect, useCallback, useLayoutEffect } from "react";
+import {
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+  useLayoutEffect,
+} from "react";
 import { createPortal } from "react-dom";
 import { X, ChevronDown, Search } from "lucide-react";
 
@@ -60,7 +66,9 @@ export function Dropdown({
 
   useEffect(() => {
     if (!open || !listRef.current) return;
-    listRef.current.querySelector("[data-active]")?.scrollIntoView({ block: "nearest" });
+    listRef.current
+      .querySelector("[data-active]")
+      ?.scrollIntoView({ block: "nearest" });
   }, [highlighted, open]);
 
   // Anchor the menu to the trigger and flip it up when there is no room below.
@@ -181,9 +189,15 @@ export function Dropdown({
         </div>
       )}
 
-      <div ref={listRef} role="listbox" className="max-h-60 overflow-y-auto py-1">
+      <div
+        ref={listRef}
+        role="listbox"
+        className="max-h-60 overflow-y-auto py-1"
+      >
         {filtered.length === 0 ? (
-          <p className="px-4 py-3 text-center text-sm text-muted">No results found</p>
+          <p className="px-4 py-3 text-center text-sm text-muted">
+            No results found
+          </p>
         ) : (
           filtered.map((item, i) => {
             const isActive = i === highlighted;
@@ -197,13 +211,25 @@ export function Dropdown({
                 onClick={() => handleSelect(item)}
                 onMouseEnter={() => setHighlighted(i)}
                 className={`flex w-full items-center gap-3 px-3 py-2 text-left transition-colors ${
-                  isActive ? "bg-surface-2 text-text" : "text-muted hover:bg-surface-2 hover:text-text"
+                  isActive
+                    ? "bg-surface-2 text-text"
+                    : "text-muted hover:bg-surface-2 hover:text-text"
                 }`}
               >
-                {item.icon && <span className="shrink-0 text-base leading-none">{item.icon}</span>}
+                {item.icon && (
+                  <span className="shrink-0 text-base leading-none">
+                    {item.icon}
+                  </span>
+                )}
                 <div className="min-w-0 flex-1">
-                  <p className="truncate text-[13px] font-medium">{labelOf(item)}</p>
-                  {item.hint && <p className="truncate text-[11px] text-muted">{item.hint}</p>}
+                  <p className="truncate text-[13px] font-medium">
+                    {labelOf(item)}
+                  </p>
+                  {item.hint && (
+                    <p className="truncate text-[11px] text-muted">
+                      {item.hint}
+                    </p>
+                  )}
                 </div>
                 {item.badge && (
                   <span className="shrink-0 rounded-full bg-surface-2 px-2 py-0.5 font-mono text-[10px] text-muted">
@@ -217,7 +243,8 @@ export function Dropdown({
       </div>
 
       <div className="border-t border-border px-3 py-1.5 text-[10px] text-muted/70">
-        {showSearch ? "Type to filter · " : ""}↑↓ Navigate · Enter Select · Esc Close
+        {showSearch ? "Type to filter · " : ""}↑↓ Navigate · Enter Select · Esc
+        Close
       </div>
     </div>
   );

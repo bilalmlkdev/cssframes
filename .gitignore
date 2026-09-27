@@ -47,3 +47,6 @@ Thumbs.db
 # Logs
 *.log
 npm-debug.log*
+
+# Local project notes (personal handoff doc, not part of the project)
+PROJECT-NOTES.txt

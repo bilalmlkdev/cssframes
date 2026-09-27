@@ -10,7 +10,9 @@ export function animCss(anim) {
     `animation-timing-function: ${anim.timing || "ease-out"};`,
   ];
   if (anim.iteration) {
-    parts.push(`animation-iteration-count: var(--cf-iteration, ${anim.iteration});`);
+    parts.push(
+      `animation-iteration-count: var(--cf-iteration, ${anim.iteration});`,
+    );
   }
   if (anim.classCss) {
     parts.push(anim.classCss);

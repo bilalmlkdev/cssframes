@@ -16,8 +16,8 @@ export function NotFoundPage() {
         Page not found
       </h1>
       <p className="mt-5 max-w-md text-base leading-relaxed text-muted">
-        This page does not exist. The link may be old, or the animation slug
-        is wrong.
+        This page does not exist. The link may be old, or the animation slug is
+        wrong.
       </p>
 
       <div className="mt-8 flex flex-wrap items-center justify-center gap-3">

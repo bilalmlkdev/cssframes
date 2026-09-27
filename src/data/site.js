@@ -3,7 +3,6 @@ export const REPO = "bilalmlkdev/cssframes";
 export const REPO_URL = `https://github.com/${REPO}`;
 export const REPO_CLONE = `https://github.com/${REPO}.git`;
 export const X_URL = "https://x.com/bilalmlkdev";
-export const SITE_URL = "https://cssframes.vercel.app";
 export const CSS_URL = `https://raw.githubusercontent.com/${REPO}/main/cssframes.css`;
 
 export const GET_STARTED = [

@@ -36,9 +36,7 @@ export function InstallationPage() {
 
   return (
     <DocsArticle>
-      <h1 className="text-[24px] font-medium tracking-tight">
-        Installation
-      </h1>
+      <h1 className="text-[24px] font-medium tracking-tight">Installation</h1>
 
       {/* Prerequisites */}
       <h2 className="mt-12 text-2xl font-medium tracking-tight">
@@ -65,8 +63,8 @@ export function InstallationPage() {
         <code className="rounded bg-surface-2 px-1.5 py-0.5 font-mono text-sm">
           cssframes.css
         </code>{" "}
-        file, or paste it into the stylesheet you already have. Then link it
-        in your project:
+        file, or paste it into the stylesheet you already have. Then link it in
+        your project:
       </p>
       <div className="mt-4">
         <CodeBlock
@@ -102,8 +100,8 @@ export function InstallationPage() {
         <code className="rounded bg-surface-2 px-1.5 py-0.5 font-mono text-sm">
           cf-animated
         </code>{" "}
-        turns the element on and the second class picks the animation. Open
-        any animation in the sidebar to preview it and copy its CSS.
+        turns the element on and the second class picks the animation. Open any
+        animation in the sidebar to preview it and copy its CSS.
       </p>
       <div className="mt-4">
         <CodeBlock
@@ -119,9 +117,9 @@ export function InstallationPage() {
         Running this project locally
       </h2>
       <p className="mt-4 text-base leading-relaxed">
-        Want to browse the docs offline or contribute? The site is a small
-        Vite + React app. Clone it, install the dependencies once, and start
-        the dev server:
+        Want to browse the docs offline or contribute? The site is a small Vite
+        + React app. Clone it, install the dependencies once, and start the dev
+        server:
       </p>
 
       <ol className="mt-5 space-y-4">

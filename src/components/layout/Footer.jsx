@@ -65,8 +65,8 @@ export function Footer() {
             >
               Vercel
             </a>
-            . Every animation is pure CSS, generated from a single data file,
-            so the page and the copied code never drift. The font used is{" "}
+            . Every animation is pure CSS, generated from a single data file, so
+            the page and the copied code never drift. The font used is{" "}
             <a
               href="https://rsms.me/inter/"
               target="_blank"

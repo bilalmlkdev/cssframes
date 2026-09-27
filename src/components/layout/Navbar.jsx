@@ -13,7 +13,9 @@ const LINKS = [
 ];
 
 function focusSearch() {
-  const isDocs = window.location.hash.replace(/^#/, "").startsWith("/animations");
+  const isDocs = window.location.hash
+    .replace(/^#/, "")
+    .startsWith("/animations");
   if (isDocs) {
     window.dispatchEvent(new CustomEvent("cssframes-open-search"));
   } else {
@@ -44,9 +46,7 @@ export function Navbar({ onToggleTheme, fixed = false }) {
 
   const shell = fixed
     ? `fixed inset-x-0 top-0 z-50 backdrop-blur-xl backdrop-saturate-150 ${
-        scrolled
-          ? "bg-background/70"
-          : "border-transparent bg-transparent"
+        scrolled ? "bg-background/70" : "border-transparent bg-transparent"
       }`
     : "relative";
 
@@ -59,12 +59,21 @@ export function Navbar({ onToggleTheme, fixed = false }) {
       <div className={fixed ? `${inner} py-2` : `${inner} py-2`}>
         <a href="#/" className="flex items-center gap-1">
           <Logo className="h-6 w-auto" />
-          <span className="text-base font-medium tracking-tight">cssframes</span>
+          <span className="text-base font-medium tracking-tight">
+            cssframes
+          </span>
         </a>
 
-        <nav aria-label="Main" className="hidden items-center gap-5 text-sm md:flex">
+        <nav
+          aria-label="Main"
+          className="hidden items-center gap-5 text-sm md:flex"
+        >
           {LINKS.map((l) => (
-            <a key={l.href} href={l.href} className="transition-colors hover:text-muted">
+            <a
+              key={l.href}
+              href={l.href}
+              className="transition-colors hover:text-muted"
+            >
               {l.label}
             </a>
           ))}

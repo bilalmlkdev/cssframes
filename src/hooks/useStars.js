@@ -10,11 +10,7 @@ export function useStars(repo) {
     fetch(`https://api.github.com/repos/${repo}`)
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
-        if (
-          !cancelled &&
-          data &&
-          typeof data.stargazers_count === "number"
-        ) {
+        if (!cancelled && data && typeof data.stargazers_count === "number") {
           setStars(data.stargazers_count);
         }
       })

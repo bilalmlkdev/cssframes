@@ -1,16 +1,5 @@
 import { animCss } from "./css.js";
 
-export const PLAYGROUND_TARGETS = [
-  { id: "box", label: "Box" },
-  { id: "button", label: "Button" },
-  { id: "card", label: "Card" },
-  { id: "heading", label: "Heading" },
-  { id: "input", label: "Input" },
-  { id: "notice", label: "Notice" },
-  { id: "avatar", label: "Avatar" },
-  { id: "custom", label: "Custom HTML" },
-];
-
 export const EASINGS = [
   { id: "ease", label: "Ease" },
   { id: "ease-in", label: "Ease in" },
@@ -140,7 +129,8 @@ export function createInitialSettings(anim) {
     origin: "center",
     target: "heading",
     customHtml: `<div style="padding:20px;border:1px solid currentColor;border-radius:12px">Your element</div>`,
-    text: anim.category === "text" ? "Motion that feels intentional" : "Hello, CSS",
+    text:
+      anim.category === "text" ? "Motion that feels intentional" : "Hello, CSS",
   };
 }
 
@@ -165,7 +155,10 @@ export function fullCssSnippet(anim, settings) {
 export function exportSnippets(anim, settings) {
   const baseClass = `cf-animated cf-${anim.slug}`;
   const css = fullCssSnippet(anim, settings);
-  const outputText = settings.target === "custom" ? settings.customHtml : escapeHtml(settings.text);
+  const outputText =
+    settings.target === "custom"
+      ? settings.customHtml
+      : escapeHtml(settings.text);
   const html = `<div class="${baseClass}" style="--cf-duration:${settings.duration}ms; --cf-delay:${settings.delay}ms; --cf-iteration:${settings.iteration}; animation-timing-function:${settings.easing}; animation-direction:${settings.direction}; animation-fill-mode:${settings.fill}; transform-origin:${settings.origin};">${outputText}</div>`;
   const react = `<div\n  className="${baseClass}"\n  style={{\n    "--cf-duration": "${settings.duration}ms",\n    "--cf-delay": "${settings.delay}ms",\n    "--cf-iteration": "${settings.iteration}",\n    animationTimingFunction: "${settings.easing}",\n    animationDirection: "${settings.direction}",\n    animationFillMode: "${settings.fill}",\n    transformOrigin: "${settings.origin}",\n  }}\n>\n  ${settings.text}\n</div>`;
   const vue = `<div\n  class="${baseClass}"\n  style="--cf-duration:${settings.duration}ms; --cf-delay:${settings.delay}ms; --cf-iteration:${settings.iteration}; animation-timing-function:${settings.easing}; animation-direction:${settings.direction}; animation-fill-mode:${settings.fill}; transform-origin:${settings.origin};"\n>\n  ${settings.text}\n</div>`;
@@ -207,7 +200,9 @@ function writeJson(key, value) {
 
 export function readFavorites() {
   const value = readJson(FAVORITES_KEY, []);
-  return Array.isArray(value) ? value.filter((item) => typeof item === "string") : [];
+  return Array.isArray(value)
+    ? value.filter((item) => typeof item === "string")
+    : [];
 }
 
 export function toggleFavorite(slug) {

@@ -12,8 +12,7 @@ export const categories = [
 ];
 
 export const animations = [
-
-    // ---------- Attention ----------
+  // ---------- Attention ----------
   {
     slug: "bounce",
     name: "Bounce",

@@ -33,7 +33,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@use-gesture/react": "^10.3.1",
     "lucide-react": "^1.7.0",
     "prism-react-renderer": "^2.4.1",
     "prismjs": "^1.30.0",

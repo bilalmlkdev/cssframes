@@ -76,7 +76,9 @@ export class ErrorBoundary extends Component {
             <button
               type="button"
               onClick={this.copyError}
-              aria-label={copied ? "Copied error message" : "Copy error message"}
+              aria-label={
+                copied ? "Copied error message" : "Copy error message"
+              }
               className="flex shrink-0 items-center gap-1 rounded-md border border-code-text/15 bg-code-text/10 px-2 py-1 text-[11px] text-code-text/80 transition-colors hover:text-code-text"
             >
               {copied ? <Check size={11} /> : <Copy size={11} />}

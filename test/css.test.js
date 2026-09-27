@@ -14,8 +14,14 @@ test("animCss emits class, name, duration and timing", () => {
 test("animCss includes iteration only when the animation loops", () => {
   const looping = animations.find((a) => a.iteration);
   const once = animations.find((a) => !a.iteration);
-  assert.ok(looping && once, "library has both looping and one-shot animations");
-  assert.match(animCss(looping), /animation-iteration-count: var\(--cf-iteration/);
+  assert.ok(
+    looping && once,
+    "library has both looping and one-shot animations",
+  );
+  assert.match(
+    animCss(looping),
+    /animation-iteration-count: var\(--cf-iteration/,
+  );
   assert.doesNotMatch(animCss(once), /animation-iteration-count/);
 });
 
@@ -23,7 +29,10 @@ test("buildCss contains every animation class and keyframes", () => {
   const css = buildCss();
   assert.match(css, /\.cf-animated \{/);
   for (const anim of animations) {
-    assert.ok(css.includes(`.cf-${anim.slug} {`), `class rule for ${anim.slug}`);
+    assert.ok(
+      css.includes(`.cf-${anim.slug} {`),
+      `class rule for ${anim.slug}`,
+    );
     assert.ok(css.includes(anim.keyframes), `keyframes for ${anim.slug}`);
   }
 });

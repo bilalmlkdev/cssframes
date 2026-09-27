@@ -22,7 +22,9 @@ function parseRoute() {
   const match = hash.match(/^\/animations\/(.+)$/);
   if (match) {
     const slug = decodeURIComponent(match[1]);
-    return findAnimation(slug) ? { view: "animation", slug } : { view: "notfound" };
+    return findAnimation(slug)
+      ? { view: "animation", slug }
+      : { view: "notfound" };
   }
   return { view: "notfound" };
 }

@@ -1,6 +1,10 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { animations, categories, findAnimation } from "../src/data/animations.js";
+import {
+  animations,
+  categories,
+  findAnimation,
+} from "../src/data/animations.js";
 import { FAQS } from "../src/data/faqs.js";
 import { GET_STARTED, REPO } from "../src/data/site.js";
 
@@ -12,10 +16,20 @@ test("animations and categories are present", () => {
 test("every animation has required fields and a valid category", () => {
   const ids = new Set(categories.map((c) => c.id));
   for (const a of animations) {
-    for (const key of ["slug", "name", "desc", "category", "duration", "keyframes"]) {
+    for (const key of [
+      "slug",
+      "name",
+      "desc",
+      "category",
+      "duration",
+      "keyframes",
+    ]) {
       assert.ok(a[key], `${a.slug} missing ${key}`);
     }
-    assert.ok(ids.has(a.category), `${a.slug} has unknown category ${a.category}`);
+    assert.ok(
+      ids.has(a.category),
+      `${a.slug} has unknown category ${a.category}`,
+    );
     assert.match(a.slug, /^[a-z0-9-]+$/);
     assert.match(a.keyframes, new RegExp(`@keyframes cf-${a.slug}\\b`));
   }
