@@ -10,6 +10,12 @@ function buildItems() {
     href: p.href,
     group: "Get Started",
   }));
+  const library = {
+    label: "Animation library",
+    hint: "Browse, filter, favorite, and compose all animations",
+    href: "#/animations",
+    group: "Animations",
+  };
   const anims = animations.map((a) => ({
     label: a.name,
     hint: `cf-${a.slug}`,
@@ -17,7 +23,7 @@ function buildItems() {
     group:
       categories.find((c) => c.id === a.category)?.label || "Animations",
   }));
-  return [...pages, ...anims];
+  return [...pages, library, ...anims];
 }
 
 function goTo(href) {

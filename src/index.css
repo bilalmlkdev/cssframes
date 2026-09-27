@@ -128,7 +128,7 @@
   text-transform: uppercase;
   letter-spacing:0.5px;
   color: var(--text-muted);
-  font-weight:500;
+  font-weight: 500;
 }
 
 /* Hide scrollbar (sidebar) */
@@ -137,6 +137,24 @@
 }
 .scrollbar-hidden::-webkit-scrollbar {
   display: none;
+}
+
+/* Small uppercase mono eyebrow label */
+@utility mono-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+@utility shadow-xs {
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+
+.dark .shadow-xs {
+  box-shadow: 0 1px 2px 0 rgb(255 255 255 / 0.05);
 }
 
 /* First-time docs entry loader */

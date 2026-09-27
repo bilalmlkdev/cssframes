@@ -13,16 +13,12 @@ const LINKS = [
 ];
 
 function focusSearch() {
-  const isDocs = window.location.hash
-    .replace(/^#/, "")
-    .startsWith("/animations");
+  const isDocs = window.location.hash.replace(/^#/, "").startsWith("/animations");
   if (isDocs) {
-    window.dispatchEvent(
-      new KeyboardEvent("keydown", { key: "k", metaKey: true }),
-    );
-    return;
+    window.dispatchEvent(new CustomEvent("cssframes-open-search"));
+  } else {
+    window.location.hash = "#/animations";
   }
-  window.location.hash = "#/animations";
 }
 
 export function Navbar({ onToggleTheme }) {

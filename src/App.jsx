@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { animations, findAnimation } from "./data/animations";
 import { buildCss } from "./lib/css";
 import { ErrorBoundary } from "./components/error/ErrorBoundary";
@@ -10,24 +10,19 @@ import { NotFoundPage } from "./pages/NotFoundPage";
 import { IntroductionPage } from "./pages/docs/IntroductionPage";
 import { InstallationPage } from "./pages/docs/InstallationPage";
 import { AnimationPage } from "./pages/docs/AnimationPage";
+import { AnimationsPage } from "./pages/docs/AnimationsPage";
 
-// Hash router: #/ home, #/introduction, #/installation, #/animations/:slug.
-// Plain in-page anchors like #top stay on the home view.
 function parseRoute() {
   const hash = window.location.hash.replace(/^#/, "");
   if (!hash.startsWith("/")) return { view: "home" };
   if (hash === "/" || hash === "") return { view: "home" };
   if (hash === "/introduction") return { view: "introduction" };
   if (hash === "/installation") return { view: "installation" };
-  if (hash === "/animations") {
-    return { view: "animation", slug: animations[0].slug };
-  }
+  if (hash === "/animations") return { view: "animations" };
   const match = hash.match(/^\/animations\/(.+)$/);
   if (match) {
     const slug = decodeURIComponent(match[1]);
-    return findAnimation(slug)
-      ? { view: "animation", slug }
-      : { view: "notfound" };
+    return findAnimation(slug) ? { view: "animation", slug } : { view: "notfound" };
   }
   return { view: "notfound" };
 }
@@ -37,20 +32,16 @@ export default function App() {
     document.documentElement.classList.contains("dark") ? "dark" : "light",
   );
 
-  // The full library stylesheet: injected once for the site and reused
-  // by every copy button, so the page and the copied code never drift.
   const css = useMemo(() => buildCss(animations), []);
   const [route, setRoute] = useState(parseRoute);
-
-  // First time this session enters the docs from the site, play a short
-  // loader. Driven from the hashchange handler so it never sets state
-  // inside an effect.
   const [docsLoader, setDocsLoader] = useState(false);
+  const hasRunLoaderRef = useRef(false);
 
   const maybeShowDocsLoader = useCallback((view) => {
     const isDocs =
       view === "introduction" ||
       view === "installation" ||
+      view === "animations" ||
       view === "animation";
     if (!isDocs) return;
     try {
@@ -64,7 +55,7 @@ export default function App() {
     } catch {
       /* storage unavailable */
     }
-    setDocsLoader(true);
+    window.setTimeout(() => setDocsLoader(true), 0);
     window.setTimeout(() => setDocsLoader(false), 1250);
   }, []);
 
@@ -77,6 +68,12 @@ export default function App() {
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
   }, [maybeShowDocsLoader]);
+
+  useEffect(() => {
+    if (hasRunLoaderRef.current) return;
+    hasRunLoaderRef.current = true;
+    maybeShowDocsLoader(route.view);
+  }, [route, maybeShowDocsLoader]);
 
   useEffect(() => {
     if (window.location.hash.startsWith("#/")) {
@@ -108,12 +105,14 @@ export default function App() {
       page = <IntroductionPage />;
     } else if (route.view === "installation") {
       page = <InstallationPage />;
+    } else if (route.view === "animations") {
+      page = <AnimationsPage />;
     } else {
       page = <AnimationPage key={route.slug} slug={route.slug} />;
     }
     view = (
       <DocsLayout
-        active={route.view}
+        active={route.view === "animations" ? "animations" : route.view}
         slug={route.slug}
         onToggleTheme={toggleTheme}
       >

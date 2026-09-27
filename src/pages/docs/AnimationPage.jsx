@@ -1,117 +1,23 @@
-import { useState } from "react";
-import { RefreshCw } from "lucide-react";
-import {
-  animations,
-  findAnimation,
-} from "../../data/animations";
+import { useMemo, useState } from "react";
+import { Check, Copy, RefreshCw } from "lucide-react";
+import { animations, findAnimation } from "../../data/animations";
 import { animCss } from "../../lib/css";
 import { CodeBlock } from "../../components/ui/CodeBlock";
 import { useCopy } from "../../hooks/useCopy";
 import { useDocumentMeta } from "../../hooks/useDocumentMeta";
 import { DocsArticle } from "../../components/layout/DocsArticle";
 import { Pager } from "../../components/layout/Pager";
-
-const OBJECTS = ["box", "circle", "text", "button"];
-
-function Target({ object }) {
-  if (object === "circle") {
-    return <div className="h-20 w-20 rounded-full bg-accent" />;
-  }
-  if (object === "text") {
-    return <span className="text-4xl font-semibold text-accent">Hello</span>;
-  }
-  if (object === "button") {
-    return (
-      <span className="rounded-xl bg-accent px-6 py-3 text-sm font-medium text-accent-fg">
-        Button
-      </span>
-    );
-  }
-  return <div className="h-20 w-20 rounded-3xl bg-text" />;
-}
-
-function Preview({ anim }) {
-  const [object, setObject] = useState("text");
-  const [duration, setDuration] = useState(anim.duration);
-  const [infinite, setInfinite] = useState(Boolean(anim.iteration));
-  const [replay, setReplay] = useState(0);
-  return (
-    <div>
-      <div className="flex min-h-[340px] items-center justify-center rounded-xl border border-border bg-surface px-6 sm:px-8">
-        <div
-          key={`${object}-${replay}`}
-          className={`cf-animated cf-${anim.slug}`}
-          style={{
-            "--cf-duration": `${duration}ms`,
-            "--cf-iteration": infinite ? "infinite" : "1",
-          }}
-        >
-          <Target object={object} />
-        </div>
-      </div>
-
-      <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-3">
-        <div className="flex rounded-lg bg-surface-2 p-0.5">
-          {OBJECTS.map((o) => (
-            <button
-              key={o}
-              type="button"
-              onClick={() => setObject(o)}
-              className={`rounded-md px-2.5 py-1 text-xs capitalize transition-colors ${
-                object === o
-                  ? "bg-text text-background"
-                  : "text-muted hover:text-text"
-              }`}
-            >
-              {o}
-            </button>
-          ))}
-        </div>
-
-        <label className="flex items-center gap-2 text-xs text-muted">
-          Duration
-          <input
-            type="range"
-            min={100}
-            max={3000}
-            step={50}
-            value={duration}
-            onChange={(e) => setDuration(Number(e.target.value))}
-            className="w-24 accent-[var(--accent)] sm:w-36"
-          />
-          <span className="w-12 font-mono text-xs">{duration}ms</span>
-        </label>
-
-        <label className="flex cursor-pointer items-center gap-1.5 text-xs text-muted">
-          <input
-            type="checkbox"
-            checked={infinite}
-            onChange={(e) => setInfinite(e.target.checked)}
-            className="accent-[var(--accent)]"
-          />
-          Infinite
-        </label>
-
-        <button
-          type="button"
-          onClick={() => setReplay((r) => r + 1)}
-          className="ml-auto flex items-center gap-1.5 rounded-lg bg-surface-2 px-2.5 py-1.5 text-xs shadow-xs text-text transition-colors hover:text-muted"
-        >
-          <RefreshCw size={12} />
-          Replay
-        </button>
-      </div>
-    </div>
-  );
-}
+import { MotionWorkbench } from "../../components/motion/MotionWorkbench";
+import { MotionComposer } from "../../components/motion/MotionComposer";
 
 export function AnimationPage({ slug }) {
   const anim = findAnimation(slug);
   const [tab, setTab] = useState("preview");
   const { copiedKey, doCopy } = useCopy();
+
   useDocumentMeta(
     `${anim.name} animation - cssframes`,
-    `${anim.desc} Preview it live and copy the CSS for ${anim.name}.`,
+    `${anim.desc} Tune it live, compose it with other effects, and copy the CSS for ${anim.name}.`,
   );
 
   const index = animations.findIndex((a) => a.slug === anim.slug);
@@ -119,29 +25,41 @@ export function AnimationPage({ slug }) {
   const next = index < animations.length - 1 ? animations[index + 1] : null;
 
   const usage = `<div class="cf-animated cf-${anim.slug}">Hello</div>`;
-  const codeSnippet = `${usage}\n\n${animCss(anim)}\n\n${anim.keyframes}`;
+  const codeSnippet = useMemo(
+    () => `${usage}\n\n${animCss(anim)}\n\n${anim.keyframes}`,
+    [anim, usage],
+  );
   const vars = `.cf-animated.cf-${anim.slug} {
   --cf-duration: ${anim.duration}ms;
-  --cf-delay: 0s;
+  --cf-delay: 0ms;
   --cf-iteration: ${anim.iteration || "1"};
 }`;
 
   return (
     <DocsArticle>
-      <h1 className="text-[24px] font-medium tracking-tight">
-        {anim.name}
-      </h1>
-      <p className="mt-3 text-base leading-relaxed text-muted">
-        {anim.desc}
-      </p>
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <p className="mono-label">Animation / {anim.category}</p>
+          <h1 className="mt-2 text-[24px] font-medium tracking-tight">
+            {anim.name}
+          </h1>
+          <p className="mt-3 max-w-2xl text-base leading-relaxed text-muted">
+            {anim.desc}
+          </p>
+        </div>
+        <span className="rounded-md border border-border px-2.5 py-1.5 font-mono text-[10px] text-muted">
+          cf-{anim.slug}
+        </span>
+      </div>
 
-      {/* Examples */}
-      <h2 className="mt-12 text-2xl font-semibold tracking-tight">
-        Examples
-      </h2>
+      <MotionWorkbench anim={anim} />
+
+      <MotionComposer initialAnimation={anim} />
+
+      <h2 className="mt-14 text-2xl font-semibold tracking-tight">Examples</h2>
       <p className="mt-6 text-base font-medium">Basic usage</p>
 
-      <div className="mt-4 flex px-2 gap-6 border-b border-border">
+      <div className="mt-4 flex gap-6 border-b border-border px-2">
         <button
           type="button"
           onClick={() => setTab("preview")}
@@ -168,28 +86,55 @@ export function AnimationPage({ slug }) {
 
       <div className="mt-3">
         {tab === "preview" ? (
-          <Preview anim={anim} />
+          <div className="relative flex min-h-[300px] items-center justify-center overflow-hidden rounded-xl border border-border bg-surface">
+            <div key={`static-${anim.slug}`} className={`cf-animated cf-${anim.slug}`}>
+              <span className="rounded-xl border border-border bg-background px-6 py-4 text-sm font-medium">Preview target</span>
+            </div>
+            <button
+              type="button"
+              onClick={(event) => {
+                const target = event.currentTarget.previousElementSibling;
+                if (!(target instanceof HTMLElement)) return;
+                target.classList.remove("cf-animated");
+                void target.offsetWidth;
+                target.classList.add("cf-animated");
+              }}
+              className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-lg border border-border bg-background px-2.5 py-1.5 text-xs text-muted hover:text-text"
+            >
+              <RefreshCw size={12} /> Replay
+            </button>
+          </div>
         ) : (
-          <CodeBlock
-            code={codeSnippet}
-            lang="css"
-            maxH="max-h-96"
-            copied={copiedKey === "usage"}
-            onCopy={() => doCopy(codeSnippet, "usage")}
-          />
+          <div className="relative">
+            <CodeBlock
+              code={codeSnippet}
+              lang="css"
+              maxH="max-h-96"
+              copied={copiedKey === "usage"}
+              onCopy={() => doCopy(codeSnippet, "usage")}
+            />
+            <button
+              type="button"
+              onClick={() => doCopy(codeSnippet, "usage")}
+              className="absolute right-3 bottom-3 inline-flex items-center gap-1.5 rounded-md border border-border bg-code-bg px-2 py-1 text-[10px] text-code-text transition-colors hover:bg-surface-2"
+            >
+              {copiedKey === "usage" ? <Check size={11} /> : <Copy size={11} />}
+              {copiedKey === "usage" ? "Copied" : "Copy"}
+            </button>
+          </div>
         )}
       </div>
 
-      {/* Usage */}
       <h2 className="mt-14 text-2xl font-semibold tracking-tight">Usage</h2>
       <p className="mt-4 text-sm leading-relaxed text-muted">
-        Add the base class plus this animation to your markup, tune the
-        variables, or copy the full stylesheet into your project.
+        Add the base class plus the animation class to your element. The
+        generated playground above can then tune the variables without changing
+        the animation source itself.
       </p>
       <div className="mt-4">
         <CodeBlock
           lang="markup"
-          code={`${usage}`}
+          code={usage}
           copied={copiedKey === "html"}
           onCopy={() => doCopy(usage, "html")}
         />
@@ -203,76 +148,44 @@ export function AnimationPage({ slug }) {
         />
       </div>
 
-      {/* Animation API */}
       <h2 className="mt-14 text-2xl font-semibold tracking-tight">
         Animation API
       </h2>
-      <p className="mt-4 font-medium">Properties</p>
-      <div className="mt-3 overflow-x-auto rounded-lg border border-border">
-        <table
-        aria-label="Animation API properties" className="w-full border-collapse text-left text-sm">
+      <p className="mt-4 text-sm leading-relaxed text-muted">
+        Every animation exposes the standard CSS animation controls shown in the
+        playground. The defaults below are generated from the animation source.
+      </p>
+      <div className="mt-4 overflow-x-auto rounded-lg border border-border">
+        <table aria-label="Animation API properties" className="w-full border-collapse text-left text-sm">
           <thead>
             <tr className="bg-surface-2">
-              <th scope="col" className="border-b border-border px-4 py-2.5 font-medium">
-                Property
-              </th>
-              <th scope="col" className="border-b border-border px-4 py-2.5 font-medium">
-                Type
-              </th>
-              <th scope="col" className="border-b border-border px-4 py-2.5 font-medium">
-                Default
-              </th>
-              <th scope="col" className="border-b border-border px-4 py-2.5 font-medium">
-                Description
-              </th>
+              <th scope="col" className="border-b border-border px-4 py-2.5 font-medium">Property</th>
+              <th scope="col" className="border-b border-border px-4 py-2.5 font-medium">Type</th>
+              <th scope="col" className="border-b border-border px-4 py-2.5 font-medium">Default</th>
+              <th scope="col" className="border-b border-border px-4 py-2.5 font-medium">Description</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className="border-b border-border px-4 py-2.5 font-mono text-xs">
-                --cf-duration
-              </td>
-              <td className="border-b border-border px-4 py-2.5 text-muted">
-                time
-              </td>
-              <td className="border-b border-border px-4 py-2.5 font-mono text-xs">
-                {anim.duration}ms
-              </td>
-              <td className="border-b border-border px-4 py-2.5 text-muted">
-                How long the animation runs.
-              </td>
-            </tr>
-            <tr>
-              <td className="border-b border-border px-4 py-2.5 font-mono text-xs">
-                --cf-delay
-              </td>
-              <td className="border-b border-border px-4 py-2.5 text-muted">
-                time
-              </td>
-              <td className="border-b border-border px-4 py-2.5 font-mono text-xs">
-                0ms
-              </td>
-              <td className="border-b border-border px-4 py-2.5 text-muted">
-                Wait before the animation starts.
-              </td>
-            </tr>
-            <tr>
-              <td className="px-4 py-2.5 font-mono text-xs">
-                --cf-iteration
-              </td>
-              <td className="px-4 py-2.5 text-muted">number</td>
-              <td className="px-4 py-2.5 font-mono text-xs">
-                {anim.iteration || "1"}
-              </td>
-              <td className="px-4 py-2.5 text-muted">
-                Repeat count, use infinite for loops.
-              </td>
-            </tr>
+            {[
+              ["--cf-duration", "time", `${anim.duration}ms`, "How long the animation runs."],
+              ["--cf-delay", "time", "0ms", "Wait before the animation starts."],
+              ["--cf-iteration", "number", anim.iteration || "1", "Repeat count, use infinite for loops."],
+              ["animation-timing-function", "easing", anim.timing || "ease-out", "Controls the pace between keyframes."],
+              ["animation-direction", "keyword", "normal", "Controls which direction iterations play."],
+              ["animation-fill-mode", "keyword", "both", "Controls styles before and after the animation."],
+              ["transform-origin", "position", "center", "Sets the origin for transforms such as scale and rotate."],
+            ].map(([property, type, defaultValue, description]) => (
+              <tr key={property}>
+                <td className="border-b border-border px-4 py-2.5 font-mono text-xs">{property}</td>
+                <td className="border-b border-border px-4 py-2.5 text-muted">{type}</td>
+                <td className="border-b border-border px-4 py-2.5 font-mono text-xs">{defaultValue}</td>
+                <td className="border-b border-border px-4 py-2.5 text-muted">{description}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
 
-      {/* Prev / Next */}
       <Pager
         prev={
           prev

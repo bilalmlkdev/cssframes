@@ -1,4 +1,3 @@
-import DomeGallery from "./DomeGallery";
 
 export function Hero() {
   return (
@@ -30,20 +29,6 @@ export function Hero() {
         </a>
       </div>
 
-            <div className="mt-10 h-[500px] w-[900px] max-w-full overflow-hidden">
-        <DomeGallery
-          fit={1}
-          minRadius={250}
-          maxRadius={560}
-          overlayBlurColor="var(--background)"
-          maxVerticalRotationDeg={0}
-          segments={25}
-          dragDampening={0.1}
-          openedImageWidth="280px"
-          openedImageHeight="280px"
-          grayscale={false}
-        />
-      </div>
     </section>
   );
 }

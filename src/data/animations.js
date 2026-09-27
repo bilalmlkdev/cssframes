@@ -12,276 +12,8 @@ export const categories = [
 ];
 
 export const animations = [
-  // ---------- Entrances ----------
-  {
-    slug: "fade-in",
-    name: "Fade In",
-    desc: "Reveals an element by fading it smoothly from transparent to fully visible.",
-    category: "entrances",
-    duration: 500,
-    keyframes: `@keyframes cf-fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}`,
-  },
-  {
-    slug: "fade-in-up",
-    name: "Fade In Up",
-    desc: "Fades an element in while rising from slightly below, a classic content reveal.",
-    category: "entrances",
-    duration: 600,
-    keyframes: `@keyframes cf-fade-in-up {
-  from { opacity: 0; transform: translate3d(0, 24px, 0); }
-  to { opacity: 1; transform: translate3d(0, 0, 0); }
-}`,
-  },
-  {
-    slug: "fade-in-down",
-    name: "Fade In Down",
-    desc: "Fades an element in as it settles down from above into place.",
-    category: "entrances",
-    duration: 600,
-    keyframes: `@keyframes cf-fade-in-down {
-  from { opacity: 0; transform: translate3d(0, -24px, 0); }
-  to { opacity: 1; transform: translate3d(0, 0, 0); }
-}`,
-  },
-  {
-    slug: "fade-in-left",
-    name: "Fade In Left",
-    desc: "Slides an element in from the left edge while fading it into view.",
-    category: "entrances",
-    duration: 600,
-    keyframes: `@keyframes cf-fade-in-left {
-  from { opacity: 0; transform: translate3d(-24px, 0, 0); }
-  to { opacity: 1; transform: translate3d(0, 0, 0); }
-}`,
-  },
-  {
-    slug: "fade-in-right",
-    name: "Fade In Right",
-    desc: "Slides an element in from the right edge while fading it into view.",
-    category: "entrances",
-    duration: 600,
-    keyframes: `@keyframes cf-fade-in-right {
-  from { opacity: 0; transform: translate3d(24px, 0, 0); }
-  to { opacity: 1; transform: translate3d(0, 0, 0); }
-}`,
-  },
-  {
-    slug: "zoom-in",
-    name: "Zoom In",
-    desc: "Scales an element up gently from smaller as it fades into place.",
-    category: "entrances",
-    duration: 500,
-    keyframes: `@keyframes cf-zoom-in {
-  from { opacity: 0; transform: scale(0.86); }
-  to { opacity: 1; transform: scale(1); }
-}`,
-  },
-  {
-    slug: "zoom-bounce",
-    name: "Zoom Bounce",
-    desc: "Pops an element in with a playful overshoot before it settles.",
-    category: "entrances",
-    duration: 700,
-    timing: "ease-out",
-    keyframes: `@keyframes cf-zoom-bounce {
-  0% { opacity: 0; transform: scale(0.4); }
-  60% { opacity: 1; transform: scale(1.06); }
-  80% { transform: scale(0.97); }
-  100% { opacity: 1; transform: scale(1); }
-}`,
-  },
-  {
-    slug: "slide-in-up",
-    name: "Slide In Up",
-    desc: "Pushes an element up from below the viewport edge, without fading.",
-    category: "entrances",
-    duration: 600,
-    timing: "cubic-bezier(0.22, 1, 0.36, 1)",
-    keyframes: `@keyframes cf-slide-in-up {
-  from { transform: translate3d(0, 100%, 0); }
-  to { transform: translate3d(0, 0, 0); }
-}`,
-  },
-  {
-    slug: "slide-in-down",
-    name: "Slide In Down",
-    desc: "Drops an element down from above into its position, without fading.",
-    category: "entrances",
-    duration: 600,
-    timing: "cubic-bezier(0.22, 1, 0.36, 1)",
-    keyframes: `@keyframes cf-slide-in-down {
-  from { transform: translate3d(0, -100%, 0); }
-  to { transform: translate3d(0, 0, 0); }
-}`,
-  },
-  {
-    slug: "slide-in-left",
-    name: "Slide In Left",
-    desc: "Moves an element in from the left with a smooth decelerating curve.",
-    category: "entrances",
-    duration: 600,
-    timing: "cubic-bezier(0.22, 1, 0.36, 1)",
-    keyframes: `@keyframes cf-slide-in-left {
-  from { transform: translate3d(-100%, 0, 0); }
-  to { transform: translate3d(0, 0, 0); }
-}`,
-  },
-  {
-    slug: "slide-in-right",
-    name: "Slide In Right",
-    desc: "Moves an element in from the right with a smooth decelerating curve.",
-    category: "entrances",
-    duration: 600,
-    timing: "cubic-bezier(0.22, 1, 0.36, 1)",
-    keyframes: `@keyframes cf-slide-in-right {
-  from { transform: translate3d(100%, 0, 0); }
-  to { transform: translate3d(0, 0, 0); }
-}`,
-  },
-  {
-    slug: "flip-in-x",
-    name: "Flip In X",
-    desc: "Rotates an element into view around its horizontal axis.",
-    category: "entrances",
-    duration: 700,
-    timing: "ease-out",
-    keyframes: `@keyframes cf-flip-in-x {
-  from { opacity: 0; transform: perspective(600px) rotateX(90deg); }
-  to { opacity: 1; transform: perspective(600px) rotateX(0); }
-}`,
-  },
-  {
-    slug: "flip-in-y",
-    name: "Flip In Y",
-    desc: "Rotates an element into view around its vertical axis.",
-    category: "entrances",
-    duration: 700,
-    timing: "ease-out",
-    keyframes: `@keyframes cf-flip-in-y {
-  from { opacity: 0; transform: perspective(600px) rotateY(90deg); }
-  to { opacity: 1; transform: perspective(600px) rotateY(0); }
-}`,
-  },
-  {
-    slug: "rise-in",
-    name: "Rise In",
-    desc: "A subtle entrance that lifts an element a short distance as it appears.",
-    category: "entrances",
-    duration: 600,
-    keyframes: `@keyframes cf-rise-in {
-  from { opacity: 0; transform: translate3d(0, 16px, 0) scale(0.985); }
-  to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
-}`,
-  },
 
-  // ---------- Exits ----------
-  {
-    slug: "fade-out",
-    name: "Fade Out",
-    desc: "Removes an element by fading it smoothly to full transparency.",
-    category: "exits",
-    duration: 500,
-    keyframes: `@keyframes cf-fade-out {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}`,
-  },
-  {
-    slug: "fade-out-up",
-    name: "Fade Out Up",
-    desc: "Fades an element away as it drifts upward out of view.",
-    category: "exits",
-    duration: 500,
-    keyframes: `@keyframes cf-fade-out-up {
-  from { opacity: 1; transform: translate3d(0, 0, 0); }
-  to { opacity: 0; transform: translate3d(0, -24px, 0); }
-}`,
-  },
-  {
-    slug: "fade-out-down",
-    name: "Fade Out Down",
-    desc: "Fades an element away as it sinks downward out of view.",
-    category: "exits",
-    duration: 500,
-    keyframes: `@keyframes cf-fade-out-down {
-  from { opacity: 1; transform: translate3d(0, 0, 0); }
-  to { opacity: 0; transform: translate3d(0, 24px, 0); }
-}`,
-  },
-  {
-    slug: "zoom-out",
-    name: "Zoom Out",
-    desc: "Shrinks an element slightly as it fades away.",
-    category: "exits",
-    duration: 500,
-    keyframes: `@keyframes cf-zoom-out {
-  from { opacity: 1; transform: scale(1); }
-  to { opacity: 0; transform: scale(0.8); }
-}`,
-  },
-  {
-    slug: "slide-out-down",
-    name: "Slide Out Down",
-    desc: "Pushes an element down past the bottom edge as it leaves.",
-    category: "exits",
-    duration: 600,
-    timing: "cubic-bezier(0.22, 1, 0.36, 1)",
-    keyframes: `@keyframes cf-slide-out-down {
-  from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(0, 100%, 0); }
-}`,
-  },
-  {
-    slug: "slide-out-up",
-    name: "Slide Out Up",
-    desc: "Pushes an element up past the top edge as it leaves.",
-    category: "exits",
-    duration: 600,
-    timing: "cubic-bezier(0.22, 1, 0.36, 1)",
-    keyframes: `@keyframes cf-slide-out-up {
-  from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(0, -100%, 0); }
-}`,
-  },
-  {
-    slug: "flip-out-x",
-    name: "Flip Out X",
-    desc: "Rotates an element away around its horizontal axis as it disappears.",
-    category: "exits",
-    duration: 700,
-    timing: "ease-in",
-    keyframes: `@keyframes cf-flip-out-x {
-  from { opacity: 1; transform: perspective(600px) rotateX(0); }
-  to { opacity: 0; transform: perspective(600px) rotateX(90deg); }
-}`,
-  },
-  {
-    slug: "blur-out",
-    name: "Blur Out",
-    desc: "Softens an element out of focus as it fades away.",
-    category: "exits",
-    duration: 500,
-    keyframes: `@keyframes cf-blur-out {
-  from { opacity: 1; filter: blur(0); }
-  to { opacity: 0; filter: blur(8px); }
-}`,
-  },
-  {
-    slug: "collapse-out",
-    name: "Collapse Out",
-    desc: "Contracts an element inward as it quickly fades out.",
-    category: "exits",
-    duration: 450,
-    keyframes: `@keyframes cf-collapse-out {
-  from { opacity: 1; transform: scale(1); }
-  to { opacity: 0; transform: scale(0.85); }
-}`,
-  },
-
-  // ---------- Attention ----------
+    // ---------- Attention ----------
   {
     slug: "bounce",
     name: "Bounce",
@@ -574,6 +306,274 @@ export const animations = [
     keyframes: `@keyframes cf-type-in {
   from { width: 0; }
   to { width: 100%; }
+}`,
+  },
+  // ---------- Entrances ----------
+  {
+    slug: "fade-in",
+    name: "Fade In",
+    desc: "Reveals an element by fading it smoothly from transparent to fully visible.",
+    category: "entrances",
+    duration: 500,
+    keyframes: `@keyframes cf-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}`,
+  },
+  {
+    slug: "fade-in-up",
+    name: "Fade In Up",
+    desc: "Fades an element in while rising from slightly below, a classic content reveal.",
+    category: "entrances",
+    duration: 600,
+    keyframes: `@keyframes cf-fade-in-up {
+  from { opacity: 0; transform: translate3d(0, 24px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}`,
+  },
+  {
+    slug: "fade-in-down",
+    name: "Fade In Down",
+    desc: "Fades an element in as it settles down from above into place.",
+    category: "entrances",
+    duration: 600,
+    keyframes: `@keyframes cf-fade-in-down {
+  from { opacity: 0; transform: translate3d(0, -24px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}`,
+  },
+  {
+    slug: "fade-in-left",
+    name: "Fade In Left",
+    desc: "Slides an element in from the left edge while fading it into view.",
+    category: "entrances",
+    duration: 600,
+    keyframes: `@keyframes cf-fade-in-left {
+  from { opacity: 0; transform: translate3d(-24px, 0, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}`,
+  },
+  {
+    slug: "fade-in-right",
+    name: "Fade In Right",
+    desc: "Slides an element in from the right edge while fading it into view.",
+    category: "entrances",
+    duration: 600,
+    keyframes: `@keyframes cf-fade-in-right {
+  from { opacity: 0; transform: translate3d(24px, 0, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}`,
+  },
+  {
+    slug: "zoom-in",
+    name: "Zoom In",
+    desc: "Scales an element up gently from smaller as it fades into place.",
+    category: "entrances",
+    duration: 500,
+    keyframes: `@keyframes cf-zoom-in {
+  from { opacity: 0; transform: scale(0.86); }
+  to { opacity: 1; transform: scale(1); }
+}`,
+  },
+  {
+    slug: "zoom-bounce",
+    name: "Zoom Bounce",
+    desc: "Pops an element in with a playful overshoot before it settles.",
+    category: "entrances",
+    duration: 700,
+    timing: "ease-out",
+    keyframes: `@keyframes cf-zoom-bounce {
+  0% { opacity: 0; transform: scale(0.4); }
+  60% { opacity: 1; transform: scale(1.06); }
+  80% { transform: scale(0.97); }
+  100% { opacity: 1; transform: scale(1); }
+}`,
+  },
+  {
+    slug: "slide-in-up",
+    name: "Slide In Up",
+    desc: "Pushes an element up from below the viewport edge, without fading.",
+    category: "entrances",
+    duration: 600,
+    timing: "cubic-bezier(0.22, 1, 0.36, 1)",
+    keyframes: `@keyframes cf-slide-in-up {
+  from { transform: translate3d(0, 100%, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}`,
+  },
+  {
+    slug: "slide-in-down",
+    name: "Slide In Down",
+    desc: "Drops an element down from above into its position, without fading.",
+    category: "entrances",
+    duration: 600,
+    timing: "cubic-bezier(0.22, 1, 0.36, 1)",
+    keyframes: `@keyframes cf-slide-in-down {
+  from { transform: translate3d(0, -100%, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}`,
+  },
+  {
+    slug: "slide-in-left",
+    name: "Slide In Left",
+    desc: "Moves an element in from the left with a smooth decelerating curve.",
+    category: "entrances",
+    duration: 600,
+    timing: "cubic-bezier(0.22, 1, 0.36, 1)",
+    keyframes: `@keyframes cf-slide-in-left {
+  from { transform: translate3d(-100%, 0, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}`,
+  },
+  {
+    slug: "slide-in-right",
+    name: "Slide In Right",
+    desc: "Moves an element in from the right with a smooth decelerating curve.",
+    category: "entrances",
+    duration: 600,
+    timing: "cubic-bezier(0.22, 1, 0.36, 1)",
+    keyframes: `@keyframes cf-slide-in-right {
+  from { transform: translate3d(100%, 0, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}`,
+  },
+  {
+    slug: "flip-in-x",
+    name: "Flip In X",
+    desc: "Rotates an element into view around its horizontal axis.",
+    category: "entrances",
+    duration: 700,
+    timing: "ease-out",
+    keyframes: `@keyframes cf-flip-in-x {
+  from { opacity: 0; transform: perspective(600px) rotateX(90deg); }
+  to { opacity: 1; transform: perspective(600px) rotateX(0); }
+}`,
+  },
+  {
+    slug: "flip-in-y",
+    name: "Flip In Y",
+    desc: "Rotates an element into view around its vertical axis.",
+    category: "entrances",
+    duration: 700,
+    timing: "ease-out",
+    keyframes: `@keyframes cf-flip-in-y {
+  from { opacity: 0; transform: perspective(600px) rotateY(90deg); }
+  to { opacity: 1; transform: perspective(600px) rotateY(0); }
+}`,
+  },
+  {
+    slug: "rise-in",
+    name: "Rise In",
+    desc: "A subtle entrance that lifts an element a short distance as it appears.",
+    category: "entrances",
+    duration: 600,
+    keyframes: `@keyframes cf-rise-in {
+  from { opacity: 0; transform: translate3d(0, 16px, 0) scale(0.985); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}`,
+  },
+
+  // ---------- Exits ----------
+  {
+    slug: "fade-out",
+    name: "Fade Out",
+    desc: "Removes an element by fading it smoothly to full transparency.",
+    category: "exits",
+    duration: 500,
+    keyframes: `@keyframes cf-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}`,
+  },
+  {
+    slug: "fade-out-up",
+    name: "Fade Out Up",
+    desc: "Fades an element away as it drifts upward out of view.",
+    category: "exits",
+    duration: 500,
+    keyframes: `@keyframes cf-fade-out-up {
+  from { opacity: 1; transform: translate3d(0, 0, 0); }
+  to { opacity: 0; transform: translate3d(0, -24px, 0); }
+}`,
+  },
+  {
+    slug: "fade-out-down",
+    name: "Fade Out Down",
+    desc: "Fades an element away as it sinks downward out of view.",
+    category: "exits",
+    duration: 500,
+    keyframes: `@keyframes cf-fade-out-down {
+  from { opacity: 1; transform: translate3d(0, 0, 0); }
+  to { opacity: 0; transform: translate3d(0, 24px, 0); }
+}`,
+  },
+  {
+    slug: "zoom-out",
+    name: "Zoom Out",
+    desc: "Shrinks an element slightly as it fades away.",
+    category: "exits",
+    duration: 500,
+    keyframes: `@keyframes cf-zoom-out {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.8); }
+}`,
+  },
+  {
+    slug: "slide-out-down",
+    name: "Slide Out Down",
+    desc: "Pushes an element down past the bottom edge as it leaves.",
+    category: "exits",
+    duration: 600,
+    timing: "cubic-bezier(0.22, 1, 0.36, 1)",
+    keyframes: `@keyframes cf-slide-out-down {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(0, 100%, 0); }
+}`,
+  },
+  {
+    slug: "slide-out-up",
+    name: "Slide Out Up",
+    desc: "Pushes an element up past the top edge as it leaves.",
+    category: "exits",
+    duration: 600,
+    timing: "cubic-bezier(0.22, 1, 0.36, 1)",
+    keyframes: `@keyframes cf-slide-out-up {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(0, -100%, 0); }
+}`,
+  },
+  {
+    slug: "flip-out-x",
+    name: "Flip Out X",
+    desc: "Rotates an element away around its horizontal axis as it disappears.",
+    category: "exits",
+    duration: 700,
+    timing: "ease-in",
+    keyframes: `@keyframes cf-flip-out-x {
+  from { opacity: 1; transform: perspective(600px) rotateX(0); }
+  to { opacity: 0; transform: perspective(600px) rotateX(90deg); }
+}`,
+  },
+  {
+    slug: "blur-out",
+    name: "Blur Out",
+    desc: "Softens an element out of focus as it fades away.",
+    category: "exits",
+    duration: 500,
+    keyframes: `@keyframes cf-blur-out {
+  from { opacity: 1; filter: blur(0); }
+  to { opacity: 0; filter: blur(8px); }
+}`,
+  },
+  {
+    slug: "collapse-out",
+    name: "Collapse Out",
+    desc: "Contracts an element inward as it quickly fades out.",
+    category: "exits",
+    duration: 450,
+    keyframes: `@keyframes cf-collapse-out {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.85); }
 }`,
   },
 ];
