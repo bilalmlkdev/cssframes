@@ -45,6 +45,17 @@ function FavoriteButton({ slug, onChange }) {
 }
 
 function AnimationCard({ anim, onFavorite, copied, onCopy }) {
+  // The preview stays still until the card is pointed at, then replays from
+  // the first frame on every hover. Remounting via `key` is what restarts it.
+  const [runId, setRunId] = useState(0);
+  const [armed, setArmed] = useState(false);
+
+  const start = () => {
+    setArmed(true);
+    setRunId((current) => current + 1);
+  };
+  const stop = () => setArmed(false);
+
   return (
     <div className="group rounded-xl border border-border bg-surface p-4 transition-colors hover:bg-surface-2">
       <div className="flex items-start justify-between gap-3">
@@ -55,8 +66,21 @@ function AnimationCard({ anim, onFavorite, copied, onCopy }) {
         <FavoriteButton slug={anim.slug} onChange={onFavorite} />
       </div>
 
-      <a href={`#/animations/${anim.slug}`} className="mt-4 flex h-28 items-center justify-center overflow-hidden rounded-lg border border-border bg-background">
-        <span className={`cf-animated cf-${anim.slug} text-sm font-medium`}>Preview</span>
+      <a
+        href={`#/animations/${anim.slug}`}
+        onMouseEnter={start}
+        onMouseLeave={stop}
+        onFocus={start}
+        onBlur={stop}
+        className="mt-4 flex h-28 items-center justify-center overflow-hidden rounded-lg border border-border bg-background"
+      >
+        <span
+          key={runId}
+          className={`text-sm font-medium ${armed ? `cf-animated cf-${anim.slug}` : ""}`}
+          aria-hidden="true"
+        >
+          Preview
+        </span>
       </a>
 
       <div className="mt-3 flex items-center justify-between gap-2 text-[10px] text-muted">

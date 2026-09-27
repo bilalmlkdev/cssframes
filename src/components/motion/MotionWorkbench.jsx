@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { animations, categories } from "../../data/animations";
 import { CodeBlock } from "../ui/CodeBlock";
+import { Dropdown } from "../ui/Dropdown";
 import { useCopy } from "../../hooks/useCopy";
 import { MotionTarget } from "./MotionTarget";
 import { MotionTimeline } from "./MotionTimeline";
@@ -55,28 +56,17 @@ const EXPORT_LABELS = {
 };
 
 function SelectField({ label, value, onChange, options }) {
+  const selected = options.find((option) => option.id === value);
   return (
-    <label className="block min-w-0">
+    <div className="min-w-0">
       <span className="mb-1.5 block text-xs font-medium">{label}</span>
-      <span className="relative block">
-        <select
-          value={value}
-          onChange={(event) => onChange(event.target.value)}
-          className="w-full appearance-none rounded-lg border border-border bg-background px-3 py-2 pr-8 text-xs outline-none transition-colors hover:border-text/40"
-        >
-          {options.map((option) => (
-            <option key={option.id} value={option.id}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-        <ChevronDown
-          size={13}
-          className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-muted"
-          aria-hidden="true"
-        />
-      </span>
-    </label>
+      <Dropdown
+        trigger={selected?.label}
+        placeholder="Select..."
+        items={options.map((option) => ({ ...option, value: option.id }))}
+        onSelect={(item) => onChange(item.value)}
+      />
+    </div>
   );
 }
 

@@ -1,6 +1,8 @@
 import { Navbar } from "../components/layout/Navbar";
 import { Hero } from "../components/home/Hero";
-import { IntroSection } from "../components/home/IntroSection";
+import { ManifestoSection } from "../components/home/ManifestoSection";
+import { HowItWorksSection } from "../components/home/HowItWorksSection";
+import { ShowcaseSection } from "../components/home/ShowcaseSection";
 import { FaqSection } from "../components/home/FaqSection";
 import { Footer } from "../components/layout/Footer";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
@@ -8,15 +10,18 @@ import { useDocumentMeta } from "../hooks/useDocumentMeta";
 export function HomePage({ onToggleTheme }) {
   useDocumentMeta(
     "cssframes - Open-source CSS animation library",
-    "Pure CSS keyframe animations you can preview, copy, and paste into any project. No JavaScript, no dependencies, free and open source.",
+    "45 pure CSS keyframe animations you can preview, copy, and paste into any project. No JavaScript, no dependencies, free and open source.",
   );
 
   return (
     <div className="mx-auto w-full max-w-[1220px]">
-      <Navbar onToggleTheme={onToggleTheme} />
-      <main id="main" className="flex flex-col">
+      <Navbar onToggleTheme={onToggleTheme} fixed />
+      {/* pt offsets the fixed navbar so the hero clears it */}
+      <main id="main" className="flex flex-col pt-12">
         <Hero />
-        <IntroSection />
+        <ManifestoSection />
+        <HowItWorksSection />
+        <ShowcaseSection />
         <FaqSection />
       </main>
       <Footer />

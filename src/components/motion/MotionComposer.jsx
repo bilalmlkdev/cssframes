@@ -3,9 +3,18 @@ import { GripVertical, Trash2 } from "lucide-react";
 import { animations } from "../../data/animations";
 import { MotionTarget } from "./MotionTarget";
 import { CodeBlock } from "../ui/CodeBlock";
+import { Dropdown } from "../ui/Dropdown";
 import { useCopy } from "../../hooks/useCopy";
 import { animationMood, downloadText, escapeHtml } from "../../lib/motion";
 import { animCss } from "../../lib/css";
+
+const COMPOSER_TARGETS = [
+  { id: "heading", label: "Heading" },
+  { id: "button", label: "Button" },
+  { id: "card", label: "Card" },
+  { id: "notice", label: "Notice" },
+  { id: "avatar", label: "Avatar" },
+];
 
 function compositionMarkup(sequence, target, text, gap) {
   let child = `<span class="cf-composer-target">${escapeHtml(text)}</span>`;
@@ -121,34 +130,31 @@ export function MotionComposer({ initialAnimation }) {
             </div>
 
             {sequence.length < 4 && (
-              <label className="block">
+              <div>
                 <span className="mb-1.5 block text-xs font-medium">Add stage</span>
-                <select
-                  defaultValue=""
-                  onChange={(event) => {
-                    addAnimation(event.target.value);
-                    event.target.value = "";
-                  }}
-                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-xs outline-none"
-                >
-                  <option value="">Choose an animation...</option>
-                  {available.map((item) => (
-                    <option key={item.slug} value={item.slug}>{item.name}</option>
-                  ))}
-                </select>
-              </label>
+                <Dropdown
+                  trigger="Choose an animation..."
+                  placeholder="Choose an animation..."
+                  searchable
+                  items={available.map((item) => ({
+                    value: item.slug,
+                    label: item.name,
+                    hint: item.desc,
+                    badge: `${item.duration}ms`,
+                  }))}
+                  onSelect={(item) => addAnimation(item.value)}
+                />
+              </div>
             )}
 
-            <label className="block">
+            <div>
               <span className="mb-1.5 block text-xs font-medium">Target</span>
-              <select value={target} onChange={(event) => setTarget(event.target.value)} className="w-full rounded-lg border border-border bg-background px-3 py-2 text-xs outline-none">
-                <option value="heading">Heading</option>
-                <option value="button">Button</option>
-                <option value="card">Card</option>
-                <option value="notice">Notice</option>
-                <option value="avatar">Avatar</option>
-              </select>
-            </label>
+              <Dropdown
+                trigger={COMPOSER_TARGETS.find((t) => t.id === target)?.label}
+                items={COMPOSER_TARGETS.map((t) => ({ ...t, value: t.id }))}
+                onSelect={(item) => setTarget(item.value)}
+              />
+            </div>
 
             <label className="block">
               <span className="mb-1.5 flex items-center justify-between text-xs font-medium"><span>Gap between stages</span><span className="font-mono text-[10px] text-muted">{gap}ms</span></span>

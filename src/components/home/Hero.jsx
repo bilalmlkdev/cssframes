@@ -1,34 +1,97 @@
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { REPO_URL } from "../../data/site";
+
+const MARKS = [
+  ["45", "animations, written by hand"],
+  ["1", "file, plain CSS"],
+  ["0", "lines of JavaScript"],
+];
+
+const LINKS = [
+  { href: "#/introduction", label: "Get started" },
+  { href: "#/animations", label: "Browse the animations" },
+  { href: REPO_URL, label: "Source on GitHub", external: true },
+];
 
 export function Hero() {
   return (
-    <section id="top" className="flex flex-col items-center px-5 pb-20 pt-16 text-center sm:px-8 sm:pt-24">
-      <h1 className="font-heading max-w-4xl text-4xl leading-tight tracking-[-1px] sm:text-5xl">
-        Pure CSS animations you can
-        <br className="hidden sm:block" /> copy, paste, and ship anywhere.
-      </h1>
+    <section className="relative isolate overflow-hidden px-5 pb-24 pt-10 sm:px-8 sm:pb-28 sm:pt-14">
+      {/* typographic ghost, bled off the right edge clear of the headline */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-25 top-8 -z-10 hidden select-none whitespace-nowrap font-mono text-[13vw] font-medium leading-none tracking-tighter text-text/[0.05] lg:block"
+      >
+        @keyframes
+      </span>
 
-      <p className="mt-5 max-w-xl text-base leading-relaxed text-muted">
-        An open-source library of pure CSS keyframe animations. Preview every
-        animation live, copy the CSS, and drop it into any project - no
-        JavaScript, no dependencies, no build step.
-      </p>
+      <div className="relative mx-auto w-full max-w-[1120px]">
+        <p className="mono-label">An open-source CSS animation library</p>
 
+        <h1 className="mt-8 max-w-[17ch] font-heading text-[clamp(2.9rem,8.5vw,6.5rem)] font-light leading-[0.95] tracking-[-0.035em]">
+          Motion belongs in the stylesheet, not the bundle.
+        </h1>
 
-      <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-        <a
-          href="#/introduction"
-          className="flex items-center gap-2 rounded-full shadow-xs bg-text px-4 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-80"
-        >
-          Get Started
-        </a>
-        <a
-          href="#/animations"
-          className="flex items-center gap-2 rounded-full shadow-xs bg-border px-4 py-2.5 text-sm font-medium text-text transition-opacity hover:opacity-80"
-        >
-          View Animations
-        </a>
+        <div className="mt-14 border-t border-border pt-10">
+          <div className="grid gap-10 md:grid-cols-2 md:gap-16">
+            <p className="max-w-[48ch] text-[17px] leading-relaxed text-muted sm:text-[18px]">
+              Most motion on the web arrives as a dependency, a runtime, and a
+              build step to keep it honest. cssframes takes the opposite position:
+              forty five keyframe animations shipped as a single stylesheet you can
+              read in one sitting, paste into any project, and delete the rest of
+              your tooling over.
+            </p>
+            <p className="max-w-[48ch] text-[17px] leading-relaxed text-muted sm:text-[18px]">
+              There is nothing to import, nothing to hydrate, and nothing to
+              configure. Add two class names and the motion is already running.
+              Retime it with a CSS variable rather than a rebuild, and ship a
+              stylesheet a colleague can actually read.
+            </p>
+          </div>
+
+          <ul className="mt-12 flex flex-wrap gap-x-10 gap-y-4 border-t border-border pt-8">
+            {LINKS.map((l) => (
+              <li key={l.href}>
+                <a
+                  href={l.href}
+                  {...(l.external ? { target: "_blank", rel: "noreferrer" } : {})}
+                  className="group inline-flex items-center gap-2 text-[15px]"
+                >
+                  <span className="border-b border-border pb-0.5 transition-colors group-hover:border-text">
+                    {l.label}
+                  </span>
+                  {l.external ? (
+                    <ArrowUpRight
+                      size={14}
+                      className="text-muted transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    />
+                  ) : (
+                    <ArrowRight
+                      size={14}
+                      className="text-muted transition-transform group-hover:translate-x-1"
+                    />
+                  )}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <dl className="mt-20 grid gap-10 border-t border-border pt-10 sm:grid-cols-3">
+          {MARKS.map(([value, label]) => (
+            <div key={label}>
+              <dt className="sr-only">{label}</dt>
+              <dd>
+                <span className="block font-heading text-[clamp(3rem,6.5vw,4.5rem)] font-light leading-[0.85] tracking-[-0.03em] text-highlight-a">
+                  {value}
+                </span>
+                <span className="mt-3 block max-w-[22ch] text-[14px] leading-snug text-muted">
+                  {label}
+                </span>
+              </dd>
+            </div>
+          ))}
+        </dl>
       </div>
-
     </section>
   );
 }
