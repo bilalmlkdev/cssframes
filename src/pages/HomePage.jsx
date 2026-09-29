@@ -15,10 +15,9 @@ export function HomePage({ onToggleTheme }) {
   );
 
   return (
-    <div className="mx-auto w-full max-w-[1220px]">
+    <div className="mx-auto w-full max-w-[1280px] border-x border-border">
       <Navbar onToggleTheme={onToggleTheme} fixed />
-      {/* pt offsets the fixed navbar so the hero clears it */}
-      <main id="main" className="flex flex-col pt-12">
+      <main id="main">
         <Hero />
         <ManifestoSection />
         <HowItWorksSection />
