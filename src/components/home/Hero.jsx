@@ -88,14 +88,21 @@ export function Hero() {
             <div className="relative border-b border-border py-10 pr-0 lg:border-b-0 lg:border-r lg:py-14 lg:pr-14">
               <div className="flex items-center justify-between">
                 <span className="mono-label">CSS motion / v1.0</span>
-                <span className="font-mono text-[11px] text-muted">01 — 04</span>
+                <span className="font-mono text-[11px] text-muted">
+                  01 — 04
+                </span>
               </div>
 
-              <div className="cssframes-hero-in mt-12" style={{ animationDelay: "80ms" }}>
-               <p className="max-w-[15ch] font-heading text-[clamp(4.2rem,8vw,7.2rem)] font-light leading-[0.88] tracking-[-0.055em] sm:max-w-[13ch]">
- Make every interaction
-<span className="mt-1 block text-highlight-a">feel alive.</span>
-</p>
+              <div
+                className="cssframes-hero-in mt-12"
+                style={{ animationDelay: "80ms" }}
+              >
+                <p className="max-w-[15ch] font-heading text-[clamp(4.2rem,8vw,7.2rem)] font-light leading-[0.88] tracking-[-0.055em] sm:max-w-[13ch]">
+                  Make every interaction
+                  <span className="mt-1 block text-highlight-a">
+                    feel alive.
+                  </span>
+                </p>
 
                 <p className="mt-8 max-w-[44ch] text-[15px] leading-[1.75] text-muted sm:text-[16px]">
                   A hand-written collection of pure CSS keyframes. Preview the
@@ -143,7 +150,11 @@ export function Hero() {
                       Small, legible CSS that gets out of your way.
                     </p>
                   </div>
-                  <MoveUpRight size={18} strokeWidth={1.5} className="shrink-0" />
+                  <MoveUpRight
+                    size={18}
+                    strokeWidth={1.5}
+                    className="shrink-0"
+                  />
                 </div>
               </div>
             </div>
@@ -166,10 +177,14 @@ export function Hero() {
 
                 <div className="absolute inset-x-0 top-[16%]">
                   <div className="ml-[5%] flex items-baseline gap-3 overflow-hidden whitespace-nowrap">
-                    <span className="font-mono text-[11px] text-muted">.cf-animated</span>
+                    <span className="font-mono text-[11px] text-muted">
+                      .cf-animated
+                    </span>
                     <span className="font-mono text-[11px] text-muted">{`{`}</span>
                     <span className="font-mono text-[11px]">animation:</span>
-                    <span className="font-mono text-[11px] text-highlight-a">keyframes;</span>
+                    <span className="font-mono text-[11px] text-highlight-a">
+                      keyframes;
+                    </span>
                     <span className="font-mono text-[11px] text-muted">{`}`}</span>
                   </div>
                 </div>

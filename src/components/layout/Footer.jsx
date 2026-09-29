@@ -24,8 +24,8 @@ export function Footer() {
               >
                 Bilal Malik
               </a>
-              . Built with React, Vite, and Tailwind CSS. The animation source is
-              kept in one data file so the docs, previews, and generated
+              . Built with React, Vite, and Tailwind CSS. The animation source
+              is kept in one data file so the docs, previews, and generated
               stylesheet stay in sync.
             </p>
 

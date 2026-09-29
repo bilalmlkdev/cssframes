@@ -56,7 +56,10 @@ export function HowItWorksSection() {
 
           <ol className="grid gap-12 lg:grid-cols-3 lg:gap-0">
             {STEPS.map((step) => (
-              <li key={step.number} className="relative lg:px-7 first:lg:pl-0 last:lg:pr-0">
+              <li
+                key={step.number}
+                className="relative lg:px-7 first:lg:pl-0 last:lg:pr-0"
+              >
                 <div className="flex items-center gap-3">
                   <span className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background font-mono text-[11px]">
                     {step.number}
@@ -90,7 +93,9 @@ export function HowItWorksSection() {
                   <code className="block min-w-max font-mono text-[clamp(1rem,2vw,1.35rem)] tracking-[-0.03em]">
                     <span className="text-muted">&lt;div</span>{" "}
                     <span>className=</span>
-                    <span className="text-highlight-a">&quot;cf-animated cf-fade-in-up&quot;</span>
+                    <span className="text-highlight-a">
+                      &quot;cf-animated cf-fade-in-up&quot;
+                    </span>
                     <span className="text-muted">&gt;</span>
                   </code>
                 </div>
@@ -105,10 +110,14 @@ export function HowItWorksSection() {
                   <div
                     key={name}
                     className={`py-4 sm:px-5 first:pl-0 last:pr-0 ${
-                      index > 0 ? "border-t border-border sm:border-l sm:border-t-0" : ""
+                      index > 0
+                        ? "border-t border-border sm:border-l sm:border-t-0"
+                        : ""
                     }`}
                   >
-                    <code className="font-mono text-[13px] tracking-[-0.02em]">{name}</code>
+                    <code className="font-mono text-[13px] tracking-[-0.02em]">
+                      {name}
+                    </code>
                     <div className="mt-2 flex items-baseline justify-between gap-3 sm:block">
                       <span className="font-heading text-[25px] font-light tracking-[-0.02em]">
                         {value}

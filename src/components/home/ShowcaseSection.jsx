@@ -45,7 +45,10 @@ function Preview({ category }) {
   }
 
   return (
-    <span className="cf-animated h-11 w-20 rounded-md border border-border bg-background [--cf-duration:1100ms] [--cf-iteration:infinite]" style={{ animationName: `cf-${sample.slug}` }} />
+    <span
+      className="cf-animated h-11 w-20 rounded-md border border-border bg-background [--cf-duration:1100ms] [--cf-iteration:infinite]"
+      style={{ animationName: `cf-${sample.slug}` }}
+    />
   );
 }
 
@@ -80,7 +83,9 @@ export function ShowcaseSection() {
                 key={category.id}
                 href="#/animations"
                 className={`group flex min-h-[290px] flex-col justify-between bg-background p-6 transition-colors hover:bg-surface-2 sm:p-7 ${
-                  index === categories.length - 1 ? "md:col-span-2 xl:col-span-1" : ""
+                  index === categories.length - 1
+                    ? "md:col-span-2 xl:col-span-1"
+                    : ""
                 }`}
               >
                 <div className="flex items-start justify-between gap-6">
